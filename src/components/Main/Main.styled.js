@@ -43,12 +43,12 @@ export const MainContainer = styled.div`
     align-items: center;
     justify-content: start;
     height: 768px;
-    background-image: url('${bgDesc1}');
+    background-image: url('${bgDesc2}');
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url('${bgDesc2}');
+      background-image: url('${bgDesc1}');
     }
   }
 `;
