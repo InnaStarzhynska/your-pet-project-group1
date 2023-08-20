@@ -16,19 +16,17 @@ import imgMob1 from '../../images/mobile/mobile1x.png';
 import imgMob2 from '../../images/mobile/mobile2x.png';
 
 export const MainContainer = styled.div`
-  height: 600px;
-  background-image: url('${bgMob2}');
-
-  padding: 20px;
+  padding-top: 80px;
+  background-image: url('${bgMob1}');
+  background-size: cover;
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url('${bgMob1}');
+    background-image: url('${bgMob2}');
   }
 
   @media screen and (${devices.tablet}) {
-    height: 1024px;
     background-image: url('${bgTabl1}');
 
     @media (min-device-pixel-ratio: 2),
@@ -39,10 +37,6 @@ export const MainContainer = styled.div`
   }
 
   @media screen and (${devices.desktop}) {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    height: 768px;
     background-image: url('${bgDesc1}');
 
     @media (min-device-pixel-ratio: 2),
@@ -76,10 +70,8 @@ export const Images = styled.img`
   }
   @media screen and (${devices.desktop}) {
     content: url('${imgDesc1}');
-    height: 670px;
-    width: 917px;
-    left: 25rem;
-    top: 18%;
+    left: 20%;
+    top: 10%;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -89,20 +81,18 @@ export const Images = styled.img`
 `;
 
 export const MainTitle = styled.h1`
-  padding-top: 80px;
-  width: 280px;
   font-size: 32px;
   font-weight: 700;
   color: #000000;
   @media screen and (${devices.tablet}) {
+    padding-left: 20px;
     width: 588px;
     font-size: 68px;
     font-weight: 600;
-    margin-top: 10rem;
+    margin-top: 160px;
   }
 
   @media screen and (${devices.desktop}) {
-    width: 500px;
     font-size: 68px;
     font-weight: 800;
   }
