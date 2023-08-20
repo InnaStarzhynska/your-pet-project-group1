@@ -17,14 +17,14 @@ import imgMob2 from '../../images/mobile/mobile2x.png';
 
 export const MainContainer = styled.div`
   height: 600px;
-  background-image: url('${bgMob1}');
+  background-image: url('${bgMob2}');
 
   padding: 20px;
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url('${bgMob2}');
+    background-image: url('${bgMob1}');
   }
 
   @media screen and (${devices.tablet}) {
