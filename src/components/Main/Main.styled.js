@@ -47,19 +47,16 @@ export const MainContainer = styled.div`
   }
 `;
 export const Images = styled.img`
-  position: absolute;
-  left: 0;
-  top: 40%;
-  content: url('${imgMob2}');
+  margin-top: 20px;
+  content: url('${imgMob1}');
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    content: url('${imgMob1}');
+    content: url('${imgMob2}');
   }
 
   @media screen and (${devices.tablet}) {
-    height: 818px;
     content: url('${imgTab1}');
 
     @media (min-device-pixel-ratio: 2),
@@ -89,7 +86,6 @@ export const MainTitle = styled.h1`
     width: 588px;
     font-size: 68px;
     font-weight: 600;
-    margin-top: 160px;
   }
 
   @media screen and (${devices.desktop}) {
