@@ -17,7 +17,7 @@ import cardtabletx2 from '../../images/notFound/tablet/404_tabletx2.png';
 import cardDesktopx1 from '../../images/notFound/desktop/404_desktopx1.png';
 import cardDesktopx2 from '../../images/notFound/desktop/404_desktopx2.png';
 
-export const Container = styled.div`
+export const Section = styled.section`
   padding-top: 80px;
   background-image: url(${bgMobile1x});
   background-size: cover;
@@ -55,36 +55,41 @@ export const Banner = styled.h2`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
   width: 280px;
+
   margin: 0 auto;
-  color: #000;
+
   font-size: 24px;
   font-weight: 700;
+  color: #000;
 
   @media screen and (${devices.tablet}) {
     width: 450px;
-    color: ${colors.textColor};
+
     font-size: 32px;
     font-weight: 600;
     line-height: 41.6px;
+    color: ${colors.textColor};
   }
 `;
 
 export const Span = styled.span`
   margin: 0;
-  color: #000;
+
   font-size: 24px;
   font-weight: 700;
   line-height: 41.6px;
+  color: #000;
 
   @media screen and (${devices.tablet}) {
-    color: ${colors.textColor};
     font-size: 32px;
     font-weight: 600;
+    color: ${colors.textColor};
   }
 `;
 
-export const ImageContainer = styled.img`
+export const Image = styled.img`
   width: 280px;
   height: 123px;
   margin: 80px auto 0;
@@ -125,17 +130,20 @@ export const ImageContainer = styled.img`
 
 export const Button = styled(Link)`
   display: flex;
-  width: 248px;
-  height: 40px;
-  margin: 0 auto;
-  margin-top: 60px;
-  padding: 8px 28px;
-  background-color: ${colors.blueColor};
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   gap: 12px;
   border: none;
   border-radius: 40px;
+
+  width: 248px;
+  height: 40px;
+
+  margin: 0 auto;
+  margin-top: 60px;
+  padding: 8px 28px;
+
+  background-color: ${colors.blueColor};
 
   font-size: 16px;
   font-weight: 700;
