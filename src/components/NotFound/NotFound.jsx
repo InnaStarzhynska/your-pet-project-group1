@@ -3,11 +3,8 @@ import { useLocation } from 'react-router-dom';
 import {
   Container,
   Banner,
-  Ooops,
+  Span,
   ImageContainer,
-  FourLeft,
-  OrangeAndCat,
-  FourRight,
   Button,
 } from './NotFound.styled';
 import IconSvg from '../SvgIcon/SvgIcon';
@@ -15,18 +12,14 @@ import IconSvg from '../SvgIcon/SvgIcon';
 export default function NotFound() {
   const location = useLocation();
 
-  const backLink = useRef(location.state?.from ?? '/');
+  const backLink = useRef(location.state ?? '/');
 
   return (
     <Container>
       <Banner>
-        <Ooops>Ooops!</Ooops> This page not found :(
+        <Span>Ooops!</Span> This page not found :(
       </Banner>
-      <ImageContainer>
-        <FourLeft>4</FourLeft>
-        <OrangeAndCat />
-        <FourRight>4</FourRight>
-      </ImageContainer>
+      <ImageContainer></ImageContainer>
       <Button type="button" to={backLink.current}>
         To main page
         <IconSvg id={'icon-pawprint-1'} />

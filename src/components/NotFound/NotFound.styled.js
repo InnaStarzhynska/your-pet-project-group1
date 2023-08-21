@@ -10,12 +10,12 @@ import bgtablet2x from '../../images/background/bg_tablet2x.png';
 import bg_desctop1x from '../../images/background/bg_desctop1x.png';
 import bg_desctop2x from '../../images/background/bg_desctop2x.png';
 
-import cat_x1 from '../../images/notFound/mobile/cat_x1.png';
-import cat_x2 from '../../images/notFound/mobile/cat_x2.png';
-import cat_tablet1x from '../../images/notFound/tablet/cat_tabletx1.png';
-import cat_tabletx2 from '../../images/notFound/tablet/cat_tabletx2.png';
-import cat_desktopx1 from '../../images/notFound/desktop/cat_desktopx1.png';
-import cat_desktopx2 from '../../images/notFound/desktop/cat_desktopx2.png';
+import cardMobilex1 from '../../images/notFound/mobile/404_mobilex1.png';
+import cardMobilex2 from '../../images/notFound/mobile/404_mobilex2.png';
+import cardtabletx1 from '../../images/notFound/tablet/404_tabletx1.png';
+import cardtabletx2 from '../../images/notFound/tablet/404_tabletx2.png';
+import cardDesktopx1 from '../../images/notFound/desktop/404_desktopx1.png';
+import cardDesktopx2 from '../../images/notFound/desktop/404_desktopx2.png';
 
 export const Container = styled.div`
   padding-top: 80px;
@@ -31,31 +31,31 @@ export const Container = styled.div`
   @media screen and (${devices.tablet}) {
     padding-top: 60px;
     background-image: url(${bgtablet1x});
-  }
 
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${bgtablet2x});
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${bgtablet2x});
+    }
   }
 
   @media screen and (${devices.desktop}) {
     padding-top: 60px;
     background-image: url(${bg_desctop1x});
-  }
 
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${bg_desctop2x});
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${bg_desctop2x});
+    }
   }
 `;
 
-export const Banner = styled.h1`
+export const Banner = styled.h2`
   display: flex;
-  width: 280px;
   flex-wrap: wrap;
   justify-content: center;
+  width: 280px;
   margin: 0 auto;
   color: #000;
   font-size: 24px;
@@ -70,7 +70,7 @@ export const Banner = styled.h1`
   }
 `;
 
-export const Ooops = styled.pre`
+export const Span = styled.span`
   margin: 0;
   color: #000;
   font-size: 24px;
@@ -84,102 +84,42 @@ export const Ooops = styled.pre`
   }
 `;
 
-export const ImageContainer = styled.div`
-  display: flex;
-  padding-top: 80px;
-  align-items: baseline;
-  justify-content: center;
-
-  @media screen and (${devices.tablet}) {
-    justify-content: normal;
-  }
-
-  @media screen and (${devices.desktop}) {
-    justify-content: center;
-  }
-`;
-
-export const FourLeft = styled.div`
-  width: 80px;
-  color: ${colors.blueColor};
-  transform: rotate(-11.342deg);
-  font-size: 129.782px;
-  font-weight: 800;
-
-  @media screen and (${devices.tablet}) {
-    margin-right: 110px;
-    font-size: 326.31px;
-  }
-
-  @media screen and (${devices.desktop}) {
-    margin-right: 150px;
-    font-size: 381.004px;
-  }
-`;
-
-export const OrangeAndCat = styled.div`
-  width: 111px;
-  height: 112px;
-  background-color: ${colors.accentColor};
-  border-radius: 50%;
-  background-image: url(${cat_x1});
-  background-repeat: no-repeat;
-  background-position: 100% 100%;
-  overflow: hidden;
+export const ImageContainer = styled.img`
+  width: 280px;
+  height: 123px;
+  margin: 80px auto 0;
+  content: url(${cardMobilex1});
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
-    background-image: url(${cat_x2});
-    background-size: 106px 107px;
-    background-position: 200% 100%;
+    content: url('${cardMobilex2}');
   }
 
   @media screen and (${devices.tablet}) {
-    width: 311px;
-    height: 307px;
-    background-image: url(${cat_tablet1x});
-    background-position: 75% 20%;
-    background-size: 250.083px 330.589px;
+    width: 704px;
+    height: 308px;
+    content: url('${cardtabletx1}');
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${cat_tabletx2});
+      width: 704px;
+      height: 308px;
+      content: url('${cardtabletx2}');
     }
   }
 
   @media screen and (${devices.desktop}) {
-    width: 341px;
-    height: 347px;
-    background-image: url(${cat_desktopx1});
-    background-position: 95% 10%;
-    background-size: 292px 356px;
+    width: 822px;
+    height: 360px;
+    content: url('${cardDesktopx1}');
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${cat_desktopx2});
+      content: url('${cardDesktopx2}');
     }
-  }
-`;
-
-export const FourRight = styled.div`
-  width: 80px;
-  margin-left: 5px;
-  color: ${colors.blueColor};
-  transform: rotate(24.226deg);
-  font-size: 129.782px;
-  font-weight: 800;
-
-  @media screen and (${devices.tablet}) {
-    display: table;
-    font-size: 326.31px;
-    line-height: 424.203px;
-  }
-
-  @media screen and (${devices.desktop}) {
-    font-size: 381.004px;
   }
 `;
 
