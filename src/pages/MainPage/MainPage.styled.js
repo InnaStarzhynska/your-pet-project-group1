@@ -16,6 +16,7 @@ import imgMob1 from '../../images/mobile/mobile1x.png';
 import imgMob2 from '../../images/mobile/mobile2x.png';
 
 export const MainContainer = styled.div`
+position: relative;
   padding-top: 60px;
   background-image: url('${bgMob1}');
   background-size: cover;
@@ -69,8 +70,8 @@ export const Images = styled.img`
   @media screen and (${devices.desktop}) {
     content: url('${imgDesc1}');
     position: absolute;
-    left: 20%;
-    top: 10%;
+    right: 0;
+    top: 36px;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
