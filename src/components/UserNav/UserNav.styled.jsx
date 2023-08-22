@@ -4,9 +4,12 @@ import { devices } from '../../constants/breakpoints';
 import { colors } from '../../constants/colors';
 
 export const Wrapper = styled.div`
+margin-bottom: 84px;
+
   @media only screen and ${devices.tablet} {
     display: flex;
     gap: 20px;
+    margin-bottom: 0;
   }
 
   @media only screen and ${devices.desktop} {

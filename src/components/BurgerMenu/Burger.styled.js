@@ -12,7 +12,6 @@ export const BurgerMenuContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 84px;
   align-items: center;
   padding-top: 82px;
   background-color: ${colors.whiteColor};
@@ -20,6 +19,10 @@ export const BurgerMenuContainer = styled.div`
 
   @media only screen and ${devices.tablet} {
     padding-top: 160px;
+  }
+
+  @media only screen and ${devices.desktop} {
+    display: none;
   }
 `;
 

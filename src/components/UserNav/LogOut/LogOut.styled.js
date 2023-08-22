@@ -8,12 +8,6 @@ export const BoxLogOut = styled.div`
   position: absolute;
   bottom: 20px;
   left: 20px;
-  width: 135px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  padding-top: 9px;
-  padding-bottom: 9px;
   border-radius: 40px;
   border: none;
   background-color: ${colors.blueColor};
@@ -28,8 +22,15 @@ export const BoxLogOut = styled.div`
 `;
 
 export const LinkLogOut = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 135px;
+  padding-top: 9px;
+  padding-bottom: 9px;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.36;
   color: ${colors.secondaryTextColor};
+  cursor: pointer;
 `;

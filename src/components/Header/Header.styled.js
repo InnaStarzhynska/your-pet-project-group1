@@ -8,7 +8,7 @@ import logoTab2x from '../../images/header/logo_tablet@2x.png';
 import logoMob1x from '../../images/header/logo_mobile@1x.png';
 import logoMob2x from '../../images/header/logo_mobile@2x.png';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.header`
   position: relative;
   z-index: 50;
   display: flex;
