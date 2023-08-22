@@ -1,50 +1,7 @@
 @import-normalize; /* bring in normalize.css styles */
+@import "./css/baseStyles.css";
+@import "./css/Header.css";
+@import "./css/LoginPage.css";
+@import "./css/RegisterPage.css";
+@import "./css/NoticesPage.css";
 
-body {
-  font-family: 'Manrope', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  margin:0
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-html {
-  box-sizing: border-box;
-  width: 100vw;
-  overflow-x: hidden;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-ul,
-li,
-p,
-h1,
-h2,
-h3 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-ul {
-  list-style: none;
-}
-
-a{
-  text-decoration: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
