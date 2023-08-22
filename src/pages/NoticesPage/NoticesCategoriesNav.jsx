@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, NoticesNavList } from './NoticesPage.styled';
 
 export default function NoticesCategoriesNav() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn] = useState(true);
   return (
     <NoticesNavList>
       {!isLoggedIn ? (
