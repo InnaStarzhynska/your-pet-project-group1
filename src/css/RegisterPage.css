@@ -1,0 +1,47 @@
+.stylledSvg {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+     right: 13px;
+      
+}
+
+.input { 
+    box-sizing: border-box;
+    width: 100%;
+    outline: 1px solid #54adff;
+    border: none;
+    border-radius: 40px;
+    padding: 12px 42px 12px 16px;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #888888;}
+
+    .successInput {
+        outline: 1px solid #00c3ad;
+      }
+      
+      .errorInput {
+        outline: 1px solid #f43f5e;
+      }
+
+
+      .errorIcon {
+        position: absolute;
+        right: 13px;
+        top: 20px;
+       display: block;
+        
+        fill: #f43f5e;
+        cursor: pointer;
+      }
+      
+      .checkIcon {
+        position: absolute;
+        right: 18px;
+        top: 18px;
+        color: #00c3ad;
+        stroke: #00c3ad;
+      }
+
