@@ -4,7 +4,7 @@ import { devices } from '../../constants/breakpoints';
 import { colors } from '../../constants/colors';
 
 export const Wrapper = styled.div`
-margin-bottom: 84px;
+  margin-bottom: ${props => props.isMenuOpen ? "84px" : "0"};
 
   @media only screen and ${devices.tablet} {
     display: flex;
