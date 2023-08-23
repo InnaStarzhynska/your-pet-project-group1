@@ -11,6 +11,7 @@ export const MenuList = styled.ul`
   gap: 20px;
 
   @media only screen and ${devices.tablet} {
+    gap: 60px;
   }
 
   @media only screen and ${devices.desktop} {

@@ -17,9 +17,11 @@ export const Wrapper = styled.div`
 `;
 
 //////////////////// Burger Icon ////////////
-export const BurgerIcon = styled.div`
+export const BurgerIcon = styled.button`
   // display: none;
   flex-direction: column;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 
   @media only screen and ${devices.desktop} {
