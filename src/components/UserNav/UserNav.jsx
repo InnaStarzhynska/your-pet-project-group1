@@ -10,9 +10,9 @@ import { colors } from 'constants/colors';
 
 export default function UserNav({isMenuOpen = false}) {
   return (
-    <Wrapper isMenuOpen={isMenuOpen}>
+    <Wrapper $isopen={isMenuOpen}>
       <LogOut onClick={() => {}} isMenuOpen={isMenuOpen}/>
-      <BoxUser isMenuOpen={isMenuOpen}>
+      <BoxUser $isopen={isMenuOpen}>
         <SvgIcon id={'icon-user-1'} color={colors.accentColor}/>
         <LinkUser to="user" isMenuOpen={isMenuOpen}>Anna</LinkUser>
       </BoxUser>

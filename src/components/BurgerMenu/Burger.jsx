@@ -4,7 +4,7 @@ import {BurgerMenuContainer} from  "./Burger.styled";
 
 export default function BurgerMenu({ isOpen, children }) {
     return (
-      <BurgerMenuContainer isOpen={isOpen}>
+      <BurgerMenuContainer $isOpen={isOpen}>
         {children}
       </BurgerMenuContainer>
     )

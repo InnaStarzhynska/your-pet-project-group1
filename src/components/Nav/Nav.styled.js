@@ -4,7 +4,7 @@ import { devices } from '../../constants/breakpoints';
 import { colors } from '../../constants/colors';
 
 export const MenuList = styled.ul`
-  display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
+  display: ${props => (props.$isMenuOpen ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   flex-direction: column;
