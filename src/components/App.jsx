@@ -7,20 +7,33 @@ import MainPage from 'pages/MainPage/MainPage';
 import RegisterPage from 'pages/RegisterPage/RegisterPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import AddPetPage from 'pages/AddPetPage/AddPetPage';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentUser } from 'redux/operations';
+import { selectRefreshing } from 'redux/selectors';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectRefreshing);
+
+  useEffect(() => {
+    dispatch(getCurrentUser())
+}, [dispatch])
+
   return (
-    <Routes>
+    !isRefreshing && <Routes>
       <Route path="/" element={<Sharedlayout />}>
         <Route index element={<MainPage />} />
         <Route path="/notices/:sell" element={<NoticesPage />}>
           <Route path={'lost-found'}  />
           <Route path={'in-good-hands'}  />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/user" element={<UserPage />} />
-        <Route path="/add-pet" element={<AddPetPage/> } />
+        <Route path="/login" element={<RestrictedRoute component={LoginPage} redirectTo='/user'/>} />
+        <Route path="/register" element={<RestrictedRoute component={RegisterPage} redirectTo='/user'/>} />
+        <Route path="/user" element={<PrivateRoute component={UserPage} redirectTo='/login'/>} />
+        <Route path="/add-pet" element={<PrivateRoute component={AddPetPage} redirectTo='/login'/>} />
         <Route path="/news" />
         <Route path="/friends" />
         <Route path="*" element={<NotFound />} />

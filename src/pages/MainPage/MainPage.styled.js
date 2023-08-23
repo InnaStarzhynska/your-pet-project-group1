@@ -14,38 +14,50 @@ import imgTab1 from '../../images/tablet/tablet1x.png';
 import imgTab2 from '../../images/tablet/tablet2x.png';
 import imgMob1 from '../../images/mobile/mobile1x.png';
 import imgMob2 from '../../images/mobile/mobile2x.png';
+import { Container } from 'components/Sharedlayout/Sharedlayout.styled';
 
-export const MainContainer = styled.div`
-position: relative;
-  padding-top: 60px;
-  background-image: url('${bgMob1}');
+export const MainSection = styled.section`
+background-image: url('${bgMob1}');
   background-size: cover;
-
-  @media (min-device-pixel-ratio: 2),
+  
+   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     background-image: url('${bgMob2}');
-  }
+  };
 
   @media screen and (${devices.tablet}) {
     background-image: url('${bgTabl1}');
-    padding-top: 80px;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: url('${bgTabl2}');
     }
-  }
+  };
 
-  @media screen and (${devices.desktop}) {
+@media screen and (${devices.desktop}) {
     background-image: url('${bgDesc1}');
-    padding-top: 188px;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: url('${bgDesc2}');
     }
+  }
+
+  `
+
+export const MainContainer = styled(Container)`
+position: relative;
+  padding-top: 60px;
+  
+
+  @media screen and (${devices.tablet}) {
+    padding-top: 80px;
+  }
+
+  @media screen and (${devices.desktop}) {
+    padding-top: 188px;
   }
 `;
 export const Images = styled.img`
