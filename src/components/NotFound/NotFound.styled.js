@@ -19,6 +19,7 @@ import cardDesktopx2 from '../../images/notFound/desktop/404_desktopx2.png';
 
 export const Section = styled.section`
   padding-top: 80px;
+   padding-bottom: 102px;
   background-image: url(${bgMobile1x});
   background-size: cover;
 
@@ -40,7 +41,6 @@ export const Section = styled.section`
   }
 
   @media screen and (${devices.desktop}) {
-    padding-top: 60px;
     background-image: url(${bg_desctop1x});
 
     @media (min-device-pixel-ratio: 2),

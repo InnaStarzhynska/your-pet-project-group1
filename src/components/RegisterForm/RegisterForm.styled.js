@@ -1,6 +1,7 @@
 import { Field } from 'formik';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { devices } from '../../constants/breakpoints';
 
 export const FormContainer = styled.div`
   box-sizing: border-box;
@@ -11,26 +12,26 @@ export const FormContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   padding: 40px 12px;
-  gap: 16px;
+  gap: 26px;
   background-color: #ffffff;
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 
   border-radius: 20px;
 
-  @media screen and (min-width: 480px) {
+  @media screen and (${devices.mobile}) {
     max-width: 480px;
     border-radius: 40px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${devices.tablet}) {
     max-width: 608px;
     padding: 60px 75px;
     border-radius: 40px;
-    gap: 52px;
+    gap: 22px;
   }
 
-  @media screen and (min-width: 1280px) {
-    gap: 28px;
+  @media screen and (${devices.desktop}) {
+    gap: 8px;
   }
 `;
 
@@ -40,9 +41,10 @@ export const Title = styled.h2`
   font-size: 24px;
   line-height: 1.38;
   color: #111111;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${devices.tablet}) {
+    margin-bottom: 40px;
     font-size: 36px;
     letter: 4%;
     font-weight: 500;
@@ -54,7 +56,7 @@ export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 `;
 export const InputWrap = styled.div`
   box-sizing: border-box;
@@ -92,20 +94,19 @@ export const ErrorWrap = styled.div`
   padding-left: 12px;
   align-items: center;
   justify-content: left;
-  height: 24px;
+  height: 14px;
   color: #f43f5e;
   font-size: 14px;
   font-weight: 400;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (${devices.tablet}) {
     height: 32px;
   }
 `;
 export const Button = styled.button`
   width: 100%;
-  gap: 8px;
   padding: 11px 0;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   color: #ffffff;
   background-color: #54adff;
   border-radius: 40px;
@@ -120,6 +121,10 @@ export const Button = styled.button`
 
   &:hover {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  }
+
+  @media screen and (${devices.tablet}) {
+    margin-bottom: 16px;
   }
 `;
 
@@ -144,6 +149,7 @@ export const IconBtn = styled.button`
   height: 48px;
   position: absolute;
   right: 0;
+    padding: 12px 0; 
   background-color: #ffffff;
   border: none;
   border-top-right-radius: 40px;
@@ -152,11 +158,12 @@ export const IconBtn = styled.button`
 `;
 
 export const CrossIcon = styled.button`
-  width: 40px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   position: absolute;
-  top: 8px;
-  right: 10px;
+ 
+  right: 18px;
+ padding: 12px 0;
   background-color: #ffffff;
   border: none;
   border-top-right-radius: 40px;
@@ -164,11 +171,11 @@ export const CrossIcon = styled.button`
   cursor: pointer;
 `;
 export const ConfirmIcon = styled.button`
-  width: 40px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
   position: absolute;
-  top: 8px;
-  right: 10px;
+  right: 18px;
+ padding: 12px 0;
   background-color: #ffffff;
   border: none;
   border-top-right-radius: 40px;
@@ -186,7 +193,7 @@ export const ConfirmMessage = styled.div`
   padding-left: 12px;
   font-size: 14px;
   font-weight: 400;
-  @media screen and (min-width: 768px) {
+  @media screen and (${devices.tablet}) {
     height: 32px;
   }
 `;
