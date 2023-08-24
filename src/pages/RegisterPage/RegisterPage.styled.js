@@ -8,7 +8,7 @@ import bgMob1 from '../../images/background/bg_mobile1x.png';
 import bgMob2 from '../../images/background/bg_mobile2x.png';
 
 export const StyledSection = styled.section`
-padding: 40px 0 0;
+padding: 40px 0 34px;
 background-image: url('${bgMob1}');
 background-size: cover;
 
@@ -19,7 +19,7 @@ background-size: cover;
   }
 
 @media screen and (${devices.tablet}) {
-padding: 80px 0 0;
+padding: 80px 0 247px;
 background-image: url('${bgTabl1}');
 background-size: cover;
 
@@ -32,6 +32,7 @@ background-size: cover;
 }
 
 @media screen and (${devices.desktop}) {
+  padding: 80px 0 75px;
     background-image: url('${bgDesc1}');
     
     @media (min-device-pixel-ratio: 2),
