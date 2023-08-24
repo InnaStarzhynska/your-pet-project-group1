@@ -1,8 +1,6 @@
-import styled from "styled-components";
-import { Form, Field } from "formik";
-
-import { ReactComponent as CloseSvg } from "../../images/eye-closed.svg";
-import { ReactComponent as CheckSvg } from "../../images/check.svg";
+import styled from 'styled-components';
+import { Form, Field } from 'formik';
+import { Link } from 'react-router-dom';
 
 export const FormContainer = styled(Form)`
   display: flex;
@@ -11,7 +9,6 @@ export const FormContainer = styled(Form)`
   justify-content: center;
   margin: 0 auto;
   margin-top: 80px;
-
   position: relative;
   width: 280px;
   height: 425px;
@@ -47,8 +44,8 @@ export const LoginHeader = styled.h1`
   margin-top: 40px;
 
   @media (min-width: 768px) {
-    font-size: 36px;
     margin-bottom: 40px;
+    font-size: 36px;
     margin-top: 0;
   }
 `;
@@ -114,18 +111,14 @@ export const Btn = styled.button`
   z-index: 10;
   margin-top: 170px;
   margin-bottom: 20px;
-
   font-weight: 500;
   font-size: 20px;
   font-family: Manrope, sans-serif;
   color: #fff;
   background-color: #54adff;
-
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 25px;
-
   transition: all 250ms ease-in-out;
-
   cursor: pointer;
 
   @media (min-width: 768px) {
@@ -138,16 +131,18 @@ export const Btn = styled.button`
 
 export const Text = styled.p`
   margin-bottom: 20px;
-
   font-family: Manrope, sans-serif;
   font-size: 14px;
   color: #888888;
   text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
-
-  a {
-    color: #54adff;
-    text-decoration: underline;
-  }
+`;
+export const StyledLink = styled(Link)`
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  display: inline-block;
+  color: #54adff;
 `;
 
 export const PassWrapper = styled.div`
@@ -163,11 +158,9 @@ export const ShowPassBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 5px;
   width: 33px;
   height: 33px;
-
   background-color: transparent;
   outline: none;
   border: none;
@@ -184,25 +177,22 @@ export const IconShown = styled.svg`
   width: 24px;
   height: 24px;
 `;
-
-export const WrapperCheckCross = styled.div`
+export const CrossIcon = styled.span`
   width: 24px;
   height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  right: 18px;
+  padding: 12px 0;
+  background-color: #ffffff;
+  border: none;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
+  cursor: pointer;
 `;
 
-export const IconCross = styled(CloseSvg)`
-  stroke: #f43f5e;
-`;
-
-export const IconCheck = styled(CheckSvg)`
+export const IconCheck = styled.span`
   width: 24px;
   height: 24px;
-  * {
-    stroke: #00c3ad;
-  }
 `;
 
 export const WrapperShowCheck = styled.div`
