@@ -5,19 +5,10 @@ import { colors } from 'constants/colors';
 
 export default function LogOut({isMenuOpen}) {
   return (
-    <BoxLogOut isMenuOpen={isMenuOpen}>
+    <BoxLogOut $isopen={isMenuOpen}>
         <LinkLogOut>Log out&nbsp;&nbsp;
         <SvgIcon id={'icon-logout'} color={colors.secondaryTextColor}/>
         </LinkLogOut>
     </BoxLogOut>
   )
 }
-
-// export default function LogOut({isMenuOpen}) {
-//   return (
-//     <BoxLogOut isMenuOpen={isMenuOpen}>
-//         <LinkLogOut>Log out</LinkLogOut>
-//         <SvgIcon id={'icon-logout'} color={colors.secondaryTextColor}/>
-//     </BoxLogOut>
-//   )
-// }

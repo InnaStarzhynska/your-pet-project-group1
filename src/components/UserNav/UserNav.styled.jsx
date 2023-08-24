@@ -35,7 +35,7 @@ export const BoxUser = styled.div`
 `;
 
 export const LinkUser = styled(NavLink)`
-  display: ${props => props.isMenuOpen ? 'block' : 'none'};
+  display: ${props => props.$isopen ? 'block' : 'none'};
   font-weight: 500;
   font-size: 16px;
   line-height: 1.36;

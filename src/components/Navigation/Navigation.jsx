@@ -16,7 +16,8 @@ export default function Navigation() {
     window.innerWidth > 767 && window.innerWidth <= 1280
   );
 
-  const isAuth = useSelector(state => state.auth.isLoggedIn);
+  // const isAuth = useSelector(state => state.auth.isLoggedIn);
+  const isAuth = true;
 
   useEffect(() => {
     const handleResize = () => {
