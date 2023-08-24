@@ -3,7 +3,7 @@ import { MenuList, MenuItem, MainNavLink } from './Nav.styled';
 
 export default function Nav({isMenuOpen = false}) {
   return (
-    <MenuList isMenuOpen={isMenuOpen}>
+    <MenuList $isMenuOpen={isMenuOpen}>
       <MenuItem>
         <MainNavLink to="/news">News</MainNavLink>
       </MenuItem>

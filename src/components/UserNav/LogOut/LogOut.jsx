@@ -1,23 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SvgIcon from '../../SvgIcon/SvgIcon';
-import {LinkLogOut, BoxLogOut} from "./LogOut.styled";
+import { LinkLogOut, BoxLogOut } from './LogOut.styled';
 import { colors } from 'constants/colors';
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
+import { Text } from 'components/ModalApproveAction/ModalApproveAction.styled';
 
-export default function LogOut({isMenuOpen}) {
+export default function LogOut({ isMenuOpen }) {
+  const [modalClose, setModalClose] = useState(false);
+
+  const toggleModal = () => {
+    setModalClose(prevState => !prevState);
+  };
+
   return (
-    <BoxLogOut isMenuOpen={isMenuOpen}>
-        <LinkLogOut>Log out&nbsp;&nbsp;
-        <SvgIcon id={'icon-logout'} color={colors.secondaryTextColor}/>
-        </LinkLogOut>
-    </BoxLogOut>
-  )
+    <>
+      {modalClose ? (
+        <ModalApproveAction modalClose={toggleModal}>
+          <Text>Already leaving?</Text>
+        </ModalApproveAction>
+      ) : (
+        <BoxLogOut $isopen={isMenuOpen} onClick={toggleModal}>
+          <LinkLogOut>
+            Log out&nbsp;&nbsp;
+            <SvgIcon id={'icon-logout'} color={colors.secondaryTextColor} />
+          </LinkLogOut>
+        </BoxLogOut>
+      )}
+    </>
+  );
 }
-
-// export default function LogOut({isMenuOpen}) {
-//   return (
-//     <BoxLogOut isMenuOpen={isMenuOpen}>
-//         <LinkLogOut>Log out</LinkLogOut>
-//         <SvgIcon id={'icon-logout'} color={colors.secondaryTextColor}/>
-//     </BoxLogOut>
-//   )
-// }

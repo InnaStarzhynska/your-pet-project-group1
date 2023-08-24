@@ -1,4 +1,5 @@
 import React from 'react';
+// import { useSelector } from 'react-redux';
 import {
   Wrapper,
   BoxUser,
@@ -9,12 +10,14 @@ import SvgIcon from '../SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 
 export default function UserNav({isMenuOpen = false}) {
+  // const {name, avatar} = useSelector(state => state.auth.user);
+
   return (
-    <Wrapper >
+    <Wrapper $isopen={isMenuOpen}>
       <LogOut onClick={() => {}} isMenuOpen={isMenuOpen}/>
-      <BoxUser isMenuOpen={isMenuOpen}>
+      <BoxUser $isopen={isMenuOpen}>
         <SvgIcon id={'icon-user-1'} color={colors.accentColor}/>
-        <LinkUser to="user" isMenuOpen={isMenuOpen}>Anna</LinkUser>
+        <LinkUser to="user" $isopen={isMenuOpen}>Anna</LinkUser>
       </BoxUser>
     </Wrapper>
   );

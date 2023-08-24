@@ -23,9 +23,9 @@ export const AuthItem = styled.li`
   border-radius: 40px;
   cursor: pointer;
   border: ${props =>
-    props.register ? `2px solid ${colors.accentColor}` : 'none'};
+    props.$register ? `2px solid ${colors.accentColor}` : 'none'};
   background-color: ${props =>
-    props.register ? 'transparent' : colors.accentColor};
+    props.$register ? 'transparent' : colors.accentColor};
 
   @media only screen and ${devices.tablet} {
   }
@@ -41,8 +41,8 @@ export const AuthLink = styled(NavLink)`
   align-items: center;
   padding-top: 9px;
   padding-bottom: 9px;
-  font-weight: ${props => (props.register ? 600 : 700)};
+  font-weight: ${props => (props.$register ? 600 : 700)};
   font-size: 16px;
   line-height: 1.36;
-  color: ${props => (props.register ? colors.accentColor : '#fef9f9')};
+  color: ${props => (props.$register ? colors.accentColor : '#fef9f9')};
 `;

@@ -4,7 +4,7 @@ import { devices } from '../../constants/breakpoints';
 import { colors } from '../../constants/colors';
 
 export const Wrapper = styled.div`
-margin-bottom: 84px;
+  margin-bottom: ${props => props.$isopen ? "84px" : "0"};
 
   @media only screen and ${devices.tablet} {
     display: flex;
@@ -18,7 +18,7 @@ margin-bottom: 84px;
 `;
 
 export const BoxUser = styled.div`
-  display: ${props => props.isMenuOpen ? 'none' : 'flex'};
+  display: ${props => props.$isopen ? 'none' : 'flex'};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@ export const BoxUser = styled.div`
 `;
 
 export const LinkUser = styled(NavLink)`
-  display: ${props => props.isMenuOpen ? 'block' : 'none'};
+  display: ${props => props.$isopen ? 'block' : 'none'};
   font-weight: 500;
   font-size: 16px;
   line-height: 1.36;
