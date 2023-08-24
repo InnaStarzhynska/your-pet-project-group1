@@ -8,6 +8,8 @@ import SvgIcon from '../SvgIcon/SvgIcon';
 import { colors } from '../../constants/colors';
 import UserNav from '../UserNav/UserNav';
 import LogOut from '../UserNav/LogOut/LogOut';
+import { selectLoggedIn } from 'redux/selectors';
+
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,8 +18,7 @@ export default function Navigation() {
     window.innerWidth > 767 && window.innerWidth <= 1280
   );
 
-  // const isAuth = useSelector(state => state.auth.isLoggedIn);
-  const isAuth = true;
+  const isAuth = useSelector(selectLoggedIn);
 
   useEffect(() => {
     const handleResize = () => {
