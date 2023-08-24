@@ -13,6 +13,8 @@ import { getCurrentUser } from 'redux/operations';
 import { selectRefreshing } from 'redux/selectors';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+import NewsPage from 'pages/NewsPage/NewsPage';
+
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ export const App = () => {
         <Route path="/register" element={<RestrictedRoute component={RegisterPage} redirectTo='/user'/>} />
         <Route path="/user" element={<PrivateRoute component={UserPage} redirectTo='/login'/>} />
         <Route path="/add-pet" element={<PrivateRoute component={AddPetPage} redirectTo='/login'/>} />
-        <Route path="/news" />
+        <Route path="/news" element={<NewsPage/>} />
         <Route path="/friends" />
         <Route path="*" element={<NotFound />} />
       </Route>
