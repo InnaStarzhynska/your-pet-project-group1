@@ -1,141 +1,142 @@
-import styled from 'styled-components';
-import { Form, Field } from 'formik';
+import { Field } from 'formik';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { devices } from '../../constants/breakpoints';
 
-export const FormContainer = styled(Form)`
+export const FormContainer = styled.div`
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 80px;
-  position: relative;
-  width: 280px;
-  height: 425px;
-  background-color: #fff;
-  box-shadow: 7px 13px 14px rgba(116, 177, 232, 0.24);
-  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 12px;
+  gap: 26px;
+  background-color: #ffffff;
+  box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 
-  @media (min-width: 768px) {
-    width: 600px;
-    height: 480px;
-    border-radius: 50px;
+  border-radius: 20px;
+
+  @media screen and (${devices.mobile}) {
+    max-width: 480px;
+    border-radius: 40px;
+  }
+
+  @media screen and (${devices.tablet}) {
+    max-width: 608px;
+    padding: 60px 75px;
+    border-radius: 40px;
+    gap: 22px;
+  }
+
+  @media screen and (${devices.desktop}) {
+    gap: 8px;
   }
 `;
 
-export const Error = styled.div`
-  margin-top: 4px;
-  margin-left: 20px;
-  width: 100%;
-  font-size: 12px;
-  font-family: Manrope, sans-serif;
-  color: red;
-`;
-
-export const Correct = styled(Error)`
-  color: green;
-`;
-
-export const LoginHeader = styled.h1`
-  font-size: 24px;
-  font-family: Manrope, sans-serif;
+export const Title = styled.h2`
+  box-sizing: border-box;
   font-weight: 500;
+  font-size: 24px;
+  line-height: 1.38;
+  color: #111111;
   margin-bottom: 20px;
-  margin-top: 40px;
 
-  @media (min-width: 768px) {
+  @media screen and (${devices.tablet}) {
     margin-bottom: 40px;
     font-size: 36px;
-    margin-top: 0;
+    letter: 4%;
+    font-weight: 500;
   }
 `;
-
-export const InputWrapper = styled.div`
-  max-width: 100%;
-  width: 256px;
-  height: 50px;
-
+export const InputContainer = styled.div`
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
+  /* margin-bottom: 24px; */
+`;
+export const InputWrap = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-  @media (min-width: 768px) {
-    width: 460px;
-    padding-bottom: 15px;
-    margin-bottom: 60px;
-  }
+export const BtnContainer = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Input = styled(Field)`
+  box-sizing: border-box;
   width: 100%;
-
-  font-size: 16px;
-  color: #888888;
-
-  background-color: #fff;
-
-  outline: none;
+  outline: 1px solid #54adff;
   border: none;
+  border-radius: 40px;
+  padding: 12px 42px 12px 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #888888;
 `;
-
-export const WrapperInput = styled.div`
+export const ErrorWrap = styled.div`
+  box-sizing: border-box;
   display: flex;
+  width: 100%;
   padding-left: 12px;
-  padding-right: 12px;
   align-items: center;
-  background-color: #fff;
-  border: 1px solid #54adff;
-  border-radius: 25px;
-  height: 45px;
+  justify-content: left;
+  height: 14px;
+  color: #f43f5e;
+  font-size: 14px;
+  font-weight: 400;
 
-  &.default {
-    border-color: #54adff;
-  }
-  &.success {
-    border-color: #00c3ad;
-  }
-  &.error {
-    border-color: #f43f5e;
-  }
-
-  @media (min-width: 768px) {
-    border-radius: 25px;
+  @media screen and (${devices.tablet}) {
+    height: 32px;
   }
 `;
-
-export const Btn = styled.button`
-  width: 256px;
-  height: 50px;
-  padding: 16px 32px;
-  z-index: 10;
-  margin-top: 170px;
-  margin-bottom: 20px;
-  font-weight: 500;
-  font-size: 20px;
-  font-family: Manrope, sans-serif;
-  color: #fff;
+export const Button = styled.button`
+  width: 100%;
+  padding: 11px 0;
+  margin-bottom: 8px;
+  color: #ffffff;
   background-color: #54adff;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 25px;
-  transition: all 250ms ease-in-out;
+  border-radius: 40px;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
   cursor: pointer;
+  margin-top:60px;
 
-  @media (min-width: 768px) {
-    width: 460px;
-    border-radius: 25px;
-    font-size: 16px;
-    margin-top: 100px;
+  &:hover {
+    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+  }
+
+  @media screen and (${devices.tablet}) {
+    margin-bottom: 16px;
   }
 `;
 
 export const Text = styled.p`
-  margin-bottom: 20px;
-  font-family: Manrope, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+  text-align: center;
   color: #888888;
-  text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
 `;
+
 export const StyledLink = styled(Link)`
   font-size: 12px;
   line-height: 1.33;
@@ -144,43 +145,23 @@ export const StyledLink = styled(Link)`
   display: inline-block;
   color: #54adff;
 `;
-
-export const PassWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  &:first-child {
-    margin-bottom: 32px;
-  }
-`;
-
-export const ShowPassBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  width: 33px;
-  height: 33px;
-  background-color: transparent;
-  outline: none;
+export const IconBtn = styled.button`
+  width: 70px;
+  height: 48px;
+  position: absolute;
+  right: 0;
+  padding: 12px 0; 
+  background-color: #ffffff;
   border: none;
-
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
   cursor: pointer;
 `;
 
-export const IconHidden = styled.svg`
+export const CrossIcon = styled.button`
   width: 24px;
   height: 24px;
-`;
-
-export const IconShown = styled.svg`
-  width: 24px;
-  height: 24px;
-`;
-export const CrossIcon = styled.span`
-  width: 24px;
-  height: 24px;
-  position: relative;
+  position: absolute;
   right: 18px;
   padding: 12px 0;
   background-color: #ffffff;
@@ -190,13 +171,31 @@ export const CrossIcon = styled.span`
   cursor: pointer;
 `;
 
-export const IconCheck = styled.span`
+export const PasswordIcon = styled.button`
   width: 24px;
   height: 24px;
+  position: absolute;
+  right: 18px;
+  padding: 12px 0;
+  background-color: #ffffff;
+  border: none;
+  border-top-right-radius: 40px;
+  border-bottom-right-radius: 40px;
 `;
 
-export const WrapperShowCheck = styled.div`
+export const PasswordMessage = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
-  gap: 10px;
+  justify-content: left;
+  height: 24px;
+  font-size: 12px;
+  color: #00c3ad;
+  padding-left: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  @media screen and (${devices.tablet}) {
+    height: 32px;
+  }
 `;
+
