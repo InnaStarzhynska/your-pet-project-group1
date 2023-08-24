@@ -65,6 +65,8 @@ export const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  
 `;
 
 export const BtnContainer = styled.div`
@@ -86,6 +88,16 @@ export const Input = styled(Field)`
   line-height: 1.5;
   letter-spacing: 0.04em;
   color: #888888;
+  &.default {
+    outline: 1px solid #54adff;
+  }
+  &.success {
+    outline: 1px solid #00c3ad;
+  }
+  &.error {
+    outline: 1px solid #f43f5e;
+  }
+
 `;
 export const ErrorWrap = styled.div`
   box-sizing: border-box;
@@ -96,7 +108,7 @@ export const ErrorWrap = styled.div`
   justify-content: left;
   height: 14px;
   color: #f43f5e;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
 
   @media screen and (${devices.tablet}) {
@@ -187,11 +199,11 @@ export const ConfirmMessage = styled.div`
   width: 100%;
   align-items: center;
   justify-content: left;
-  height: 24px;
+  height: 14px;
   font-size: 12px;
   color: #00c3ad;
   padding-left: 12px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   @media screen and (${devices.tablet}) {
     height: 32px;

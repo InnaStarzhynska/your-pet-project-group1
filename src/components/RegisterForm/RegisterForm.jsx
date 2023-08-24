@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import {registerUser} from '../../redux/operations';
+
 
 import {
   Button,
@@ -47,13 +50,23 @@ const initialValues = {
 };
 
 const RegisterForm = () => {
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
-  };
 
+  const dispatch = useDispatch();
+
+  
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passworConfirmdVisible, setPasswordConfirmVisible] = useState(false);
+
+  const handleSubmit = ({name, email, password}, { resetForm }) => {
+    dispatch(
+      registerUser({
+        name: name,
+        email: email, 
+        password: password,
+      })
+    );
+    resetForm();
+  };
 
   const handleClickPasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -76,16 +89,20 @@ const RegisterForm = () => {
       onSubmit={handleSubmit}
       validationSchema={registrationValidationSchema}
     >
-      {({ isSubmitting, errors, touched, setFieldValue }) => (
+      {({ isSubmitting, errors, touched, values, setFieldValue }) => (
         <Form autoComplete="off">
           <FormContainer>
             <InputContainer>
               <Title>Registration</Title>
-              <InputWrap>
+              <InputWrap  >
                 <label htmlFor="name" hidden>
                   Name
                 </label>
-                <Input id="name" type="name" name="name" placeholder="Name" />
+                <Input id="name" type="name" name="name" placeholder="Name" className={`${"defoult"}
+${touched.name && !errors.name  && "success"}
+                  ${touched.name && errors.name && "error"}`}
+                
+/>
                 {touched.name && hasFieldError(errors, 'name') && (
                   <CrossIcon
                     type="button"
@@ -122,6 +139,9 @@ const RegisterForm = () => {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  className={`${"defoult"}
+${touched.email && !errors.email  && "success"}
+                  ${touched.email && errors.email && "error"}`}
                 />
                 {touched.email && hasFieldError(errors, 'email') && (
                   <CrossIcon
@@ -159,9 +179,13 @@ const RegisterForm = () => {
                   type={passwordVisible ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
+                  className={`${"defoult"}
+                  ${touched.password && !errors.password  && "success"}
+                                    ${touched.password && errors.password && "error"}`}
+                
                 />
                 {passwordVisible ? (
-                  <IconBtn
+                  <IconBtn  
                     type="button"
                     onClick={handleClickPasswordVisibility}
                   >
@@ -192,6 +216,9 @@ const RegisterForm = () => {
                   type={passworConfirmdVisible ? 'text' : 'password'}
                   name="confirmPassword"
                   placeholder="Confirm password"
+                  className={`${"defoult"}
+                  ${touched.confirmPassword && !errors.confirmPassword  && "success"}
+                                    ${touched.confirmPassword && errors.confirmPassword && "error"}`}
                 />
                 {passworConfirmdVisible ? (
                   <IconBtn
