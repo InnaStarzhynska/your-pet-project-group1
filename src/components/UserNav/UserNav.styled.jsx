@@ -4,7 +4,7 @@ import { devices } from '../../constants/breakpoints';
 import { colors } from '../../constants/colors';
 
 export const Wrapper = styled.div`
-  margin-bottom: ${props => props.$isopen ? "84px" : "0"};
+  margin-bottom: ${props => (props.$isopen ? '84px' : '0')};
 
   @media only screen and ${devices.tablet} {
     display: flex;
@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
 `;
 
 export const BoxUser = styled.div`
-  display: ${props => props.$isopen ? 'none' : 'flex'};
+  display: ${props => (props.$isopen ? 'none' : 'flex')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,15 +27,28 @@ export const BoxUser = styled.div`
   padding-bottom: 8px;
 
   @media only screen and ${devices.tablet} {
-    display: ${props => props.isMenuOpen ? 'none' : 'flex'};
+    display: ${props => (props.isMenuOpen ? 'none' : 'flex')};
   }
 
   @media only screen and ${devices.desktop} {
   }
 `;
 
+export const BoxAvatar = styled.div`
+  width: 24px;
+  height: 24px;
+`;
+
+export const ImgAvatar = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+`;
+
 export const LinkUser = styled(NavLink)`
-  display: ${props => props.$isopen ? 'block' : 'none'};
+  display: ${props => (props.$isopen ? 'block' : 'none')};
   font-weight: 500;
   font-size: 16px;
   line-height: 1.36;

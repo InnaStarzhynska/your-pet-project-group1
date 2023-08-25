@@ -26,13 +26,10 @@ export const AuthItem = styled.li`
     props.$register ? `2px solid ${colors.accentColor}` : 'none'};
   background: ${props =>
     props.$register ? 'transparent' : colors.accentColor};
-    box-shadow: none;
-    // transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover,
   &:focus {
     color: ${colors.accentColor};
-    // box-shadow: 0 10px 10px -5px rgba(255, 193, 7, 1);
     transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
     background: ${props => props.$register ? "linear-gradient(to right, #FDF7F2, #FFF5DB)" : "linear-gradient(to left, #FFC107, #FFD54F)"}
   }
