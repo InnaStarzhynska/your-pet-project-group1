@@ -10,7 +10,15 @@ export const BoxLogOut = styled.div`
   left: 20px;
   border-radius: 40px;
   border: none;
-  background-color: ${colors.blueColor};
+  background: ${colors.blueColor};
+  
+  
+  &:hover,
+  &:focus {
+    background: ${colors.gradientBlueColor};
+    transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+  }
 
   @media only screen and ${devices.tablet} {
     position: static;
