@@ -30,7 +30,9 @@ export const App = () => {
         <Route index element={<MainPage />} />
         <Route path="/notices/:sell" element={<NoticesPage />}>
           <Route path={'lost-found'}  />
-          <Route path={'in-good-hands'}  />
+          <Route path={'in-good-hands'} />
+          <Route path={'favorite'}  />
+          <Route path={'own'} />
         </Route>
         <Route path="/login" element={<RestrictedRoute component={LoginPage} redirectTo='/user'/>} />
         <Route path="/register" element={<RestrictedRoute component={RegisterPage} redirectTo='/user'/>} />
