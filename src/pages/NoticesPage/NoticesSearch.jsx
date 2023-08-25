@@ -1,6 +1,6 @@
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import {
-  NoticesContainer,
+  NoticesSearchContainer,
   NoticesTitle,
   Search,
   SearchForm,
@@ -8,12 +8,12 @@ import {
 
 export default function NoticesSearch() {
   return (
-    <NoticesContainer>
+    <NoticesSearchContainer>
       <NoticesTitle>Find your favorite pet</NoticesTitle>
       <SearchForm>
         <Search type="text" name="search" placeholder="Search" />
         <SvgIcon id={'icon-search'} className={'svg'} />
       </SearchForm>
-    </NoticesContainer>
+    </NoticesSearchContainer>
   );
 }

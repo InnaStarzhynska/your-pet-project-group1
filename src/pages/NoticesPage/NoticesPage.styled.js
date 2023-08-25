@@ -1,8 +1,21 @@
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
 import { Link } from 'react-router-dom';
+
+export const Section = styled.section`
+  padding-top: 40px;
+
+  @media screen and (${devices.tablet}) {
+    padding-top: 80px;
+  }
+`;
 export const NoticesContainer = styled.div`
-  padding-top: 88px;
+  display: flex;
+  @media screen and (${devices.tablet}) {
+    justify-content: space-between;
+  }
+`;
+export const NoticesSearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,12 +73,8 @@ export const NoticesNavbtn = styled(Link)`
   padding: 8px 16px;
   &:hover,
   &:focus {
-    background: linear-gradient(290.46deg, #9bd0ff 0%, #419ef1 107.89%);
+    background: rgba(84, 173, 255, 1);
     color: #fff;
-  }
-  @media screen and (${devices.tablet}) {
-  }
-  @media screen and (${devices.desktop}) {
   }
 `;
 
