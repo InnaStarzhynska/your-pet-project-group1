@@ -1,23 +1,23 @@
 import { useState } from 'react';
-import { Button, NoticesNavList } from './NoticesPage.styled';
+import { NoticesNavList, NoticesNavbtn } from './NoticesPage.styled';
 
 export default function NoticesCategoriesNav() {
-  const [isLoggedIn] = useState(true);
+  const [isLoggedIn] = useState(false);
   return (
     <NoticesNavList>
       {!isLoggedIn ? (
         <>
-          <Button>sell</Button>
-          <Button>lost/found</Button>
-          <Button>in good hands</Button>
+          <NoticesNavbtn>sell</NoticesNavbtn>
+          <NoticesNavbtn>lost/found</NoticesNavbtn>
+          <NoticesNavbtn>in good hands</NoticesNavbtn>
         </>
       ) : (
         <>
-          <Button>sell</Button>
-          <Button>lost/found</Button>
-          <Button>in good hands</Button>
-          <Button>favorite ads</Button>
-          <Button>my ads</Button>
+          <NoticesNavbtn>sell</NoticesNavbtn>
+          <NoticesNavbtn>lost/found</NoticesNavbtn>
+          <NoticesNavbtn>in good hands</NoticesNavbtn>
+          <NoticesNavbtn>favorite ads</NoticesNavbtn>
+          <NoticesNavbtn>my ads</NoticesNavbtn>
         </>
       )}
     </NoticesNavList>

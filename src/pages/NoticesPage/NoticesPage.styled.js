@@ -1,19 +1,15 @@
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
+import { Link } from 'react-router-dom';
 export const NoticesContainer = styled.div`
   padding-top: 88px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  @media screen and (${devices.tablet}) {
-  }
-  @media screen and (${devices.desktop}) {
-  }
 `;
 
-export const NoticesTitle = styled.h1`
+export const NoticesTitle = styled.h2`
   font-size: 24px;
   font-weight: 700;
   line-height: 33px;
@@ -56,7 +52,7 @@ export const Search = styled.input`
   }
 `;
 
-export const Button = styled.button`
+export const NoticesNavbtn = styled(Link)`
   background-color: #cce4fb;
   color: #54adff;
   border: none;
@@ -64,7 +60,7 @@ export const Button = styled.button`
   padding: 8px 16px;
   &:hover,
   &:focus {
-    background-color: #54adff;
+    background: linear-gradient(290.46deg, #9bd0ff 0%, #419ef1 107.89%);
     color: #fff;
   }
   @media screen and (${devices.tablet}) {
@@ -74,10 +70,6 @@ export const Button = styled.button`
 `;
 
 export const NoticesNavList = styled.ul`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
   display: flex;
   flex-wrap: wrap;
   width: 200px;
@@ -93,4 +85,15 @@ export const NoticesNavList = styled.ul`
   }
 `;
 
-export const NoticesList = styled.div``;
+export const NoticesList = styled.div`
+  list-style-type: none;
+  display: flex;
+
+  @media screen and (${devices.tablet}) {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+  }
+`;
