@@ -4,3 +4,4 @@ export const selectLoggedIn = state => state.user.isLoggedIn;
 
 export const selectRefreshing = state => state.user.isRefreshing;
 
+export const selectPets = state => state.user.pets
