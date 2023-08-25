@@ -1,23 +1,23 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Formik } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { logIn } from '../../redux/operations';
 
 import {
-  InputWrapper,
+  Button,
+  BtnContainer,
+  ErrorWrap,
   FormContainer,
-  PassWrapper,
   Input,
-  ShowPassBtn,
-  Btn,
-  LoginHeader,
-  Text,
-  IconCheck,
-  WrapperInput,
-  Correct,
-  Error,
+  InputContainer,
+  InputWrap,
+  Title,
+  IconBtn,
+  CrossIcon,
+  PasswordIcon,
   StyledLink,
+  PasswordMessage,
 } from './LoginForm.styled';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
@@ -40,22 +40,6 @@ const LoginSchema = Yup.object().shape({
     .min(6, 'Enter 6 or more characters')
     .required('Password field is required'),
 });
-
-const InputError = ({ name }) => {
-  return (
-    <Error>
-      <p style={{ margin: 0 }}>{name}</p>
-    </Error>
-  );
-};
-
-const InputCorrect = ({ name }) => {
-  return (
-    <Correct>
-      <p style={{ margin: 0 }}>{name}</p>
-    </Correct>
-  );
-};
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -83,6 +67,8 @@ const LoginForm = () => {
   };
 
   const togglePassword = () => setPassword(!password);
+  const hasFieldError = (errors, fieldName) => errors[fieldName];
+  const isFieldValid = (errors, fieldName) => !errors[fieldName];
 
   return (
     <Formik
@@ -90,18 +76,15 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
       validationSchema={LoginSchema}
     >
-      {({ errors, touched, values, setFieldValue }) => (
-        <FormContainer>
-          <LoginHeader>Login</LoginHeader>
-          <InputWrapper>
-            <PassWrapper>
-              <WrapperInput
-                className={
-                  (values.email === '' && 'default') ||
-                  (touched.email && errors.email && 'error') ||
-                  (!errors.email && 'success')
-                }
-              >
+      {({ isSubmitting, errors, touched, values, setFieldValue }) => (
+        <Form autoComplete="off">
+          <FormContainer>
+            <InputContainer>
+              <Title>Login</Title>
+              <InputWrap>
+                <label htmlFor="email" hidden>
+                  Email
+                </label>
                 <Input
                   type="email"
                   name="email"
@@ -109,87 +92,73 @@ const LoginForm = () => {
                   autoComplete="off"
                   placeholder={'Email'}
                 />
-                {(values.email === '' && true) ||
-                  (touched.email && errors.email && (
-                    <IconCheck
-                      type="button"
-                      onClick={() => clearInput('email', setFieldValue)}
-                    >
-                      <SvgIcon
-                        id={'icon-cross-small'}
-                        color={colors.redErrorColor}
-                      />
-                    </IconCheck>
-                  )) ||
-                  (!errors.email && (
-                    <IconCheck>
-                      <SvgIcon
-                        id={'icon-check'}
-                        color={colors.greenStepSuccessColor}
-                      />
-                    </IconCheck>
-                  ))}
-              </WrapperInput>
-
-              {values.email === '' && true
-                ? null
-                : errors.email &&
-                  touched.email !== '' && (
-                    <InputError name="Enter a valid Email" />
-                  )}
-            </PassWrapper>
-            <PassWrapper>
-              <WrapperInput
-                className={
-                  (values.password === '' && 'default') ||
-                  (touched.password && errors.password && 'error') ||
-                  (!errors.password && 'success')
-                }
-              >
+                {touched.email && hasFieldError(errors, 'email') && (
+                  <CrossIcon
+                    type="button"
+                    onClick={() => clearInput('email', setFieldValue)}
+                  >
+                    <SvgIcon
+                      id={'icon-cross-small'}
+                      color={colors.redErrorColor}
+                    />
+                  </CrossIcon>
+                )}
+                {touched.email && isFieldValid(errors, 'email') && (
+                  <PasswordIcon>
+                    <SvgIcon
+                      id="icon-check"
+                      color={colors.greenStepSuccessColor}
+                    />
+                  </PasswordIcon>
+                )}
+              </InputWrap>
+              {touched.email && !errors.email ? (
+                <PasswordMessage>Email is secure</PasswordMessage>
+              ) : (
+                <ErrorWrap>
+                  <ErrorMessage name="email" component="div" />
+                </ErrorWrap>
+              )}
+              <InputWrap>
+                <label htmlFor="password" hidden>
+                  Password
+                </label>
                 <Input
+                  id="password"
                   type={password ? 'text' : 'password'}
                   name="password"
-                  id="password"
-                  autoComplete="off"
-                  placeholder={'Password'}
+                  placeholder="Password"
                 />
-
-                <ShowPassBtn
-                  type="button"
-                  onClick={togglePassword}
-                  data-shown={password}
-                  className="btnShowHidden"
-                >
-                  {password ? (
+                {password ? (
+                  <IconBtn type="button" onClick={togglePassword}>
                     <SvgIcon id={'icon-eye-open'} />
-                  ) : (
+                  </IconBtn>
+                ) : (
+                  <IconBtn type="button" onClick={togglePassword}>
                     <SvgIcon id={'icon-eye-closed'} />
-                  )}
-                </ShowPassBtn>
-                {(values.password === '' && true) ||
-                  (touched.password && errors.password)}
+                  </IconBtn>
+                )}
 
-                {(values.password === '' && true) ||
-                  (!errors.password && (
-                    <IconCheck>
-                      <SvgIcon id={'icon-check'} />
-                    </IconCheck>
-                  ))}
-              </WrapperInput>
-              {values.password === '' && true
-                ? null
-                : !errors.password &&
-                  touched.password !== '' && (
-                    <InputCorrect name="Password is secure" />
-                  )}
-            </PassWrapper>
-          </InputWrapper>
-          <Btn type="submit">Login</Btn>
-          <Text>
-            Don't have an account?
-            <StyledLink to="/Register">Register</StyledLink>
-          </Text>
-        </FormContainer>
+                {touched.password && !errors.password ? (
+                  <PasswordMessage>Password is secure</PasswordMessage>
+                ) : (
+                  <ErrorWrap>
+                    <ErrorMessage name="password" component="div" />
+                  </ErrorWrap>
+                )}
+              </InputWrap>
+            </InputContainer>
+            <BtnContainer>
+              <Button type="submit" disabled={isSubmitting}>
+                Login
+              </Button>
+              <p>
+                Don't have an account?{' '}
+                <StyledLink to="/Register">Register</StyledLink>
+              </p>
+            </BtnContainer>
+          </FormContainer>
+        </Form>
       )}
     </Formik>
   );
