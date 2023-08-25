@@ -7,17 +7,17 @@ export default function NoticesCategoriesNav() {
     <NoticesNavList>
       {!isLoggedIn ? (
         <>
-          <NoticesNavbtn>sell</NoticesNavbtn>
-          <NoticesNavbtn>lost/found</NoticesNavbtn>
-          <NoticesNavbtn>in good hands</NoticesNavbtn>
+          <NoticesNavbtn to={`/sell`}>sell</NoticesNavbtn>
+          <NoticesNavbtn to={`/lost-found`}>lost/found</NoticesNavbtn>
+          <NoticesNavbtn to={`/in-good-hands`}>in good hands</NoticesNavbtn>
         </>
       ) : (
         <>
-          <NoticesNavbtn>sell</NoticesNavbtn>
-          <NoticesNavbtn>lost/found</NoticesNavbtn>
-          <NoticesNavbtn>in good hands</NoticesNavbtn>
-          <NoticesNavbtn>favorite ads</NoticesNavbtn>
-          <NoticesNavbtn>my ads</NoticesNavbtn>
+          <NoticesNavbtn to={`/sell`}>sell</NoticesNavbtn>
+          <NoticesNavbtn to={`/lost-found`}>lost/found</NoticesNavbtn>
+          <NoticesNavbtn to={`/in good hands`}>in good hands</NoticesNavbtn>
+          <NoticesNavbtn to={`/favorite-ads`}>favorite ads</NoticesNavbtn>
+          <NoticesNavbtn to={`/my ads`}>my ads</NoticesNavbtn>
         </>
       )}
     </NoticesNavList>
