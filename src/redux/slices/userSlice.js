@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
-import { getCurrentUser, logIn, logOut, registerUser } from 'redux/operations';
+import { getCurrentUser, getUserInfo, logIn, logOut, registerUser } from 'redux/operations';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
@@ -8,14 +8,18 @@ const initialState = {
     name: null,
     email: null,
     avatar: null,
+    birthday: null,
+    phone: null,
+    city: null,
   },
+  pets: [],
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
 };
 
-const authSlice = createSlice({
-  name: 'auth',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   extraReducers: builder => {
     builder
@@ -33,19 +37,29 @@ const authSlice = createSlice({
         state.user = {
           name: null,
           email: null,
-          avatar: null
+          avatar: null,
+          birthday: null,
+          phone: null,
+          city: null,
         };
         state.token = null;
         state.isLoggedIn = false;
-      }).addCase(getCurrentUser.pending, (state) => {
-            state.isRefreshing = true;
-        }).addCase(getCurrentUser.fulfilled, (state, { payload }) => {
+        state.pets = [];
+      }).addCase(getUserInfo.fulfilled, (state, { payload }) => {
             state.user = payload.user;
-            state.isLoggedIn = true;
-            state.isRefreshing = false;
-        }).addCase(getCurrentUser.rejected, (state) => {
-            state.isRefreshing = false;
+            state.pets = payload.pets;
         })
+      .addCase(getCurrentUser.pending, state => {
+        state.isRefreshing = true;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(getCurrentUser.rejected, state => {
+        state.isRefreshing = false;
+      });
   },
 });
 
@@ -55,4 +69,4 @@ const persistConfig = {
   whitelist: ['token'],
 };
 
-export const authReducer = persistReducer(persistConfig, authSlice.reducer);
+export const userReducer = persistReducer(persistConfig, userSlice.reducer);
