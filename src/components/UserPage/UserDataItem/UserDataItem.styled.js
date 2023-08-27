@@ -1,5 +1,3 @@
-// import { ReactComponent as CheckIcon } from '../../../images/icons.svg'; //check.svg
-// import { ReactComponent as EditIcon } from '../../../images/icons.svg'  //edit.svg
 import styled from 'styled-components';
 import { Field } from 'formik';
 // import SvgIcon from 'components/SvgIcon/SvgIcon';
