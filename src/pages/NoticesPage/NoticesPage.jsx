@@ -4,7 +4,6 @@ import NoticesCategoriesNav from './NoticesCategoriesNav';
 import NoticesSearch from './NoticesSearch';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
 import { NoticesContainer, Section } from './NoticesPage.styled';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
 import React from 'react';
 
 export default function NoticesPage() {

@@ -4,3 +4,22 @@
   right: 12px;
   top: 10px;
 }
+
+
+.card:hover .btn{
+  background-image: linear-gradient(to left, #419EF1, #9BD0FF);
+  color: white;
+  svg{display: block};
+}
+.card:hover svg{
+  display: block;
+} 
+
+
+.card:hover .heartIcon{
+  fill: #54ADFF;
+}
+
+.inFavouriteIcon{
+  fill: #54ADFF;
+}
