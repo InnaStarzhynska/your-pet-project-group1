@@ -25,9 +25,9 @@ const initialState = {
   isLoading: false,
 };
 
-const handlePending = state => state.isLoading = true;
+const handlePending = state => { state.isLoading = true };
 
-const handleRejected = state => state.isLoading = false;
+const handleRejected = state => { state.isLoading = false };
 
 const userSlice = createSlice({
   name: 'user',
