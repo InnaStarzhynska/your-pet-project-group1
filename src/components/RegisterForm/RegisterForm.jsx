@@ -19,11 +19,13 @@ import {
   ConfirmIcon,
   StyledLink,
   ConfirmMessage,
-} from './RegisterForm.styled';
+  PasswordComnfirIcon,
+  PasswordCrossIcon,
+  } from './RegisterForm.styled';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 
-const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/;
+
 
 const registrationValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -32,10 +34,12 @@ const registrationValidationSchema = Yup.object().shape({
     .max(16, 'Name must be no more than 16 characters'),
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
-    .matches(passwordRules, {
-      message:
-        'Password must contain 6 - 16 characters with at least one of each: uppercase, lowercase, number',
-    })
+  .min(6, 'Password must be at least 6 characters')
+  .max(16, 'Password must be no more than 16 characters')
+  .matches(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+    'Please create a stronger password'
+  )
     .required('Required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -184,6 +188,24 @@ ${touched.email && !errors.email  && "success"}
                                     ${touched.password && errors.password && "error"}`}
                 
                 />
+                 {touched.password && isFieldValid(errors, 'password') && (
+                  <PasswordComnfirIcon>
+                    <SvgIcon
+                      id="icon-check"
+                      color={colors.greenStepSuccessColor}
+                    />
+                  </PasswordComnfirIcon>)}
+                  {touched.password && hasFieldError(errors, 'password') && (
+                  <PasswordCrossIcon
+                    type="button"
+                    onClick={() => clearInput('password', setFieldValue)}
+                  >
+                    <SvgIcon
+                      id={'icon-cross-small'}
+                      color={colors.redErrorColor}
+                    />
+                  </PasswordCrossIcon>
+                )}
                 {passwordVisible ? (
                   <IconBtn  
                     type="button"
@@ -199,6 +221,8 @@ ${touched.email && !errors.email  && "success"}
                     <SvgIcon id={'icon-eye-closed'} />
                   </IconBtn>
                 )}
+               
+                  
               </InputWrap>
               {touched.password && !errors.password ? (
                 <ConfirmMessage>Password is secure</ConfirmMessage>
@@ -220,6 +244,24 @@ ${touched.email && !errors.email  && "success"}
                   ${touched.confirmPassword && !errors.confirmPassword  && "success"}
                                     ${touched.confirmPassword && errors.confirmPassword && "error"}`}
                 />
+                {touched.confirmPassword && isFieldValid(errors, 'confirmPassword') && (
+                  <PasswordComnfirIcon>
+                    <SvgIcon
+                      id="icon-check"
+                      color={colors.greenStepSuccessColor}
+                    />
+                  </PasswordComnfirIcon>)}
+                  {touched.confirmPassword && hasFieldError(errors, 'confirmPassword') && (
+                  <PasswordCrossIcon
+                    type="button"
+                    onClick={() => clearInput('confirmPassword', setFieldValue)}
+                  >
+                    <SvgIcon
+                      id={'icon-cross-small'}
+                      color={colors.redErrorColor}
+                    />
+                  </PasswordCrossIcon>
+                )}
                 {passworConfirmdVisible ? (
                   <IconBtn
                     type="button"
