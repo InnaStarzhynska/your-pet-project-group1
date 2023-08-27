@@ -12,15 +12,15 @@ export default function NotFound() {
   return (
     <Section>
       <Container>
-      <Banner>
-        <Span>Ooops!</Span> This page not found :(
-      </Banner>
-      <Image />
-      <Button type="button" to={backLink.current}>
-        To main page
-        <IconSvg id={'icon-pawprint-1'} />
+        <Banner>
+          <Span>Ooops!</Span> This page not found :(
+        </Banner>
+        <Image />
+        <Button type="button" to={backLink.current}>
+          To main page
+          <IconSvg id={'icon-pawprint-1'} />
         </Button>
-        </Container>
+      </Container>
     </Section>
   );
 }
