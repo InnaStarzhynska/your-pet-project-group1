@@ -9,7 +9,7 @@ import {
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 import { useDispatch } from 'react-redux';
-import { logOut } from 'redux/operations';
+import { logOut } from 'redux/operations/fetchUser';
 
 export default function ({ modalClose, children }) {
   const dispatch = useDispatch();

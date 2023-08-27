@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
-import { getCurrentUser, getUserInfo, logIn, logOut, registerUser } from 'redux/operations';
+import {
+  getCurrentUser,
+  getUserInfo,
+  logIn,
+  logOut,
+  registerUser,
+  updateUserInfo,
+} from 'redux/operations/fetchUser';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
@@ -15,24 +22,35 @@ const initialState = {
   pets: [],
   token: null,
   isLoggedIn: false,
-  isRefreshing: false,
+  isLoading: false,
 };
+
+const handlePending = state => state.isLoading = true;
+
+const handleRejected = state => state.isLoading = false;
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: builder => {
     builder
+      .addCase(registerUser.pending, handlePending)
       .addCase(registerUser.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false
       })
+      .addCase(registerUser.rejected, handleRejected)
+      .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
+        state.isLoading = false
       })
+      .addCase(logIn.rejected, handleRejected)
+      .addCase(logOut.pending, handlePending)
       .addCase(logOut.fulfilled, state => {
         state.user = {
           name: null,
@@ -44,22 +62,30 @@ const userSlice = createSlice({
         };
         state.token = null;
         state.isLoggedIn = false;
+        state.isLoading = false;
         state.pets = [];
-      }).addCase(getUserInfo.fulfilled, (state, { payload }) => {
-            state.user = payload.user;
-            state.pets = payload.pets;
-        })
-      .addCase(getCurrentUser.pending, state => {
-        state.isRefreshing = true;
       })
+      .addCase(logOut.rejected, handleRejected)
+      .addCase(getUserInfo.pending, handlePending)
+      .addCase(getUserInfo.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.pets = payload.pets;
+        state.isLoading = false
+      })
+      .addCase(getUserInfo.rejected, handleRejected)
+      .addCase(getCurrentUser.pending, handlePending)
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isLoggedIn = true;
-        state.isRefreshing = false;
+        state.isLoading = false;
       })
-      .addCase(getCurrentUser.rejected, state => {
-        state.isRefreshing = false;
-      });
+      .addCase(getCurrentUser.rejected, handleRejected)
+      .addCase(updateUserInfo.pending, handlePending)
+      .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
+        state.user = payload.user;
+        state.isLoading = false
+      })
+      .addCase(updateUserInfo.rejected, handleRejected);
   },
 });
 

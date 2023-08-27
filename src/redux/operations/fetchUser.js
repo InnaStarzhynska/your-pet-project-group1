@@ -66,10 +66,22 @@ export const getCurrentUser = createAsyncThunk("user/getCurrentUser", async (_, 
 export const getUserInfo = createAsyncThunk("user/getUserInfo", async (_, thunkAPI) => {
     try {
         const responce = await axios.get('/userInfo');
-        console.log(responce)
         return responce.data
     } catch (error) {
         Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);
     }
 })
+
+export const updateUserInfo = createAsyncThunk("user/updateUserInfo", async (credentials, thunkAPI) => {
+    try {
+        const responce = await axios.put('/updateUser', credentials);
+        Notiflix.Notify.success(`Information changed successfully`);
+        return responce.data
+    }
+    catch (error) {
+         Notiflix.Notify.failure(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+    }
+})
+
