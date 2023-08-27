@@ -1,23 +1,30 @@
-import { useState } from 'react';
+import { selectLoggedIn } from 'redux/selectors';
 import { NoticesNavList, NoticesNavbtn } from './NoticesPage.styled';
+import { useSelector } from 'react-redux';
 
 export default function NoticesCategoriesNav() {
-  const [isLoggedIn] = useState(false);
+  const isLoggedIn = useSelector(selectLoggedIn);
   return (
     <NoticesNavList>
       {!isLoggedIn ? (
         <>
-          <NoticesNavbtn to={`/sell`}>sell</NoticesNavbtn>
-          <NoticesNavbtn to={`/lost-found`}>lost/found</NoticesNavbtn>
-          <NoticesNavbtn to={`/in-good-hands`}>in good hands</NoticesNavbtn>
+          <NoticesNavbtn to={'/notices/sell'}>sell</NoticesNavbtn>
+          <NoticesNavbtn to={'/notices/lost-found'}>lost/found</NoticesNavbtn>
+          <NoticesNavbtn to={'/notices/in-good-hands'}>
+            in good hands
+          </NoticesNavbtn>
         </>
       ) : (
         <>
-          <NoticesNavbtn to={`/sell`}>sell</NoticesNavbtn>
-          <NoticesNavbtn to={`/lost-found`}>lost/found</NoticesNavbtn>
-          <NoticesNavbtn to={`/in good hands`}>in good hands</NoticesNavbtn>
-          <NoticesNavbtn to={`/favorite-ads`}>favorite ads</NoticesNavbtn>
-          <NoticesNavbtn to={`/my ads`}>my ads</NoticesNavbtn>
+          <NoticesNavbtn to={'/notices/sell'}>sell</NoticesNavbtn>
+          <NoticesNavbtn to={'/notices/lost-found'}>lost/found</NoticesNavbtn>
+          <NoticesNavbtn to={'/notices/in-good-hands'}>
+            in good hands
+          </NoticesNavbtn>
+          <NoticesNavbtn to={'/notices/favorite-ads'}>
+            favorite ads
+          </NoticesNavbtn>
+          <NoticesNavbtn to={'/notices/my-ads'}>my ads</NoticesNavbtn>
         </>
       )}
     </NoticesNavList>
