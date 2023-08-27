@@ -12,15 +12,19 @@ const initialState = {
   totalPages: 1,
 };
 
-const handlePending = state => (state.isLoading = true);
-const handleRejected = state => (state.isLoading = false);
+const handlePending = state => {
+  state.isLoading = true;
+};
+const handleRejected = state => {
+  state.isLoading = false;
+};
 
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(getNoticesByQuery.handlePending, handlePending)
+      .addCase(getNoticesByQuery.pending, handlePending)
       .addCase(getNoticesByQuery.fulfilled, (state, { payload }) => {
         state.notices = payload.notices;
         state.isLoading = false;
@@ -28,13 +32,21 @@ const noticesSlice = createSlice({
       })
       .addCase(getNoticesByQuery.rejected, handleRejected)
       .addCase(getNoticeById.pending, handlePending)
-      .addCase(getNoticeById.fulfilled, state => (state.isLoading = false))
-      .addCase(getNoticeById.rejected.handleRejected)
+      .addCase(getNoticeById.fulfilled, state => {
+        state.isLoading = false;
+      })
+      .addCase(getNoticeById.rejected, handleRejected)
       .addCase(addNotice.pending, handlePending)
-      .addCase(addNotice.fulfilled, state => (state.isLoading = false))
+      .addCase(addNotice.fulfilled, state => {
+        state.isLoading = false;
+      })
       .addCase(addNotice.rejected, handleRejected)
       .addCase(deleteNotice.pending, handlePending)
-      .addCase(deleteNotice.fulfilled, state => (state.isLoading = false))
+      .addCase(deleteNotice.fulfilled, state => {
+        state.isLoading = false;
+      })
       .addCase(deleteNotice.rejected, handleRejected);
   },
 });
+
+export const noticesReducer = noticesSlice.reducer;
