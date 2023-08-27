@@ -8,7 +8,7 @@ export default function Nav({isMenuOpen = false}) {
         <MainNavLink to="/news">News</MainNavLink>
       </MenuItem>
       <MenuItem>
-        <MainNavLink to="/notices/:sell">Find pet</MainNavLink>
+        <MainNavLink to="/notices">Find pet</MainNavLink>
       </MenuItem>
       <MenuItem>
         <MainNavLink to="/friends">Our friends</MainNavLink>

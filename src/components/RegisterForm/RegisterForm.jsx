@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import {registerUser} from '../../redux/operations';
+import {registerUser} from '../../redux/operations/fetchUser';
 
 
 import {

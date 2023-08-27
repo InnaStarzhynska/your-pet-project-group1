@@ -9,29 +9,32 @@ import LoginPage from 'pages/LoginPage/LoginPage';
 import AddPetPage from 'pages/AddPetPage/AddPetPage';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentUser } from 'redux/operations';
-import { selectRefreshing } from 'redux/selectors';
+import { getCurrentUser } from 'redux/operations/fetchUser';
+import { selectLoadingUser} from 'redux/selectors';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
 import NewsPage from 'pages/NewsPage/NewsPage';
+import { Navigate } from "react-router-dom";
 
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectRefreshing);
+  const isLoading = useSelector(selectLoadingUser);
 
   useEffect(() => {
     dispatch(getCurrentUser())
 }, [dispatch])
 
   return (
-    !isRefreshing && <Routes>
+    !isLoading && <Routes>
       <Route path="/" element={<Sharedlayout />}>
         <Route index element={<MainPage />} />
-        <Route path="/notices/:sell" element={<NoticesPage />}>
+        <Route path="/notices" element={<Navigate to={"/notices/sell"} />} />
+        <Route path="/notices/:categoryName" element={<NoticesPage />} >
+          <Route path={'sell'}/>
           <Route path={'lost-found'}  />
           <Route path={'in-good-hands'} />
-          <Route path={'favorite'}  />
+          <Route path={'favorite'} />
           <Route path={'own'} />
         </Route>
         <Route path="/login" element={<RestrictedRoute component={LoginPage} redirectTo='/user'/>} />
