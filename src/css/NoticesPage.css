@@ -1,11 +1,4 @@
 
-.svg{
-    position: absolute;
-  right: 12px;
-  top: 10px;
-}
-
-
 .card:hover .btn{
   background-image: linear-gradient(to left, #419EF1, #9BD0FF);
   color: white;

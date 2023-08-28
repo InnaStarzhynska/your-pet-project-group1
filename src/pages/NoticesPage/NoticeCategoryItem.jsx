@@ -16,26 +16,26 @@ import {
   HeartIcon,
   InfoIcon,
   PawIcon,
-} from './NoticesPage.styled';
+} from './NoticeCategoryItem.styled';
 
-const item = {
-  _id: '64e5b519832acb0de7029d2b',
-  category: 'sell',
-  title: 'rats for sell',
-  name: 'ratty',
-  dateOfBirth: '2015-02-21T22:00:00.000+00:00',
-  type: 'rat',
-  sex: 'female',
-  location: 'Lviv',
-  price: 333,
-  comments: 'ratratratrat',
-  owner: '64e5ad4c573d75c978b7a81f',
-  createdAt: '2023-08-23T07:28:25.039+00:00',
-  updatedAt: '2023-08-23T07:28:25.189+00:00',
-  avatar: 'https://picsum.photos/id/237/3500/2095',
-};
+// const item = {
+//   _id: '64e5b519832acb0de7029d2b',
+//   category: 'sell',
+//   title: 'rats for sell',
+//   name: 'ratty',
+//   dateOfBirth: '2015-02-21T22:00:00.000+00:00',
+//   type: 'rat',
+//   sex: 'female',
+//   location: 'Lviv',
+//   price: 333,
+//   comments: 'ratratratrat',
+//   owner: '64e5ad4c573d75c978b7a81f',
+//   createdAt: '2023-08-23T07:28:25.039+00:00',
+//   updatedAt: '2023-08-23T07:28:25.189+00:00',
+//   avatar: 'https://picsum.photos/id/237/3500/2095',
+// };
 
-export default function NoticesCategoriesList({ addToFavourite }) {
+export default function NoticesCategoryItem({item}) {
   const user = useSelector(selectUser);
   const isLoggedIn = useSelector(selectLoggedIn);
 
@@ -51,7 +51,7 @@ export default function NoticesCategoriesList({ addToFavourite }) {
 
   const petsAge = formatPetsAge(dateOfBirth);
 
-  const favourite = isLoggedIn && user.favourite.includes(_id);
+  // const favourite = isLoggedIn && user.favourite.includes(_id);
 
   const isOwnPet = owner?._id === user.id;
 
@@ -78,10 +78,10 @@ export default function NoticesCategoriesList({ addToFavourite }) {
       </InfoList>
       <CardTitle>{title}</CardTitle>
       <StyledCategory>{category}</StyledCategory>
-      <AddToFavouriteBtn type="button" onClick={() => addToFavourite(_id)}>
+      <AddToFavouriteBtn type="button">
         <HeartIcon
           id={'icon-heart'}
-          className={`${'heartIcon'} ${favourite && 'inFavouriteIcon'}`}
+          // className={`${'heartIcon'} ${favourite && 'inFavouriteIcon'}`}
         ></HeartIcon>
       </AddToFavouriteBtn>
       {isOwnPet && (
