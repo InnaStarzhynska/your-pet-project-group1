@@ -1,45 +1,29 @@
-import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { formatDistanceStrict } from 'date-fns';
-import { useSelector } from 'react-redux';
-import { selectUser, selectLoggedIn } from 'redux/selectors';
+import { useDispatch } from 'react-redux';
+import { getNoticeById } from 'redux/operations/fetchNotices';
 import {
   Avatar,
   Card,
   CardTitle,
-  InfoList,
-  InfoItem,
+  InfoIconsWraper,
+  LocateLink,
+  InfoElement,
   LearnMoreBtn,
   LearnMoreBtnWrap,
   AddToFavouriteBtn,
   StyledCategory,
-  DeleteBtn,
+  // DeleteBtn,
   HeartIcon,
   InfoIcon,
   PawIcon,
 } from './NoticeCategoryItem.styled';
 
-// const item = {
-//   _id: '64e5b519832acb0de7029d2b',
-//   category: 'sell',
-//   title: 'rats for sell',
-//   name: 'ratty',
-//   dateOfBirth: '2015-02-21T22:00:00.000+00:00',
-//   type: 'rat',
-//   sex: 'female',
-//   location: 'Lviv',
-//   price: 333,
-//   comments: 'ratratratrat',
-//   owner: '64e5ad4c573d75c978b7a81f',
-//   createdAt: '2023-08-23T07:28:25.039+00:00',
-//   updatedAt: '2023-08-23T07:28:25.189+00:00',
-//   avatar: 'https://picsum.photos/id/237/3500/2095',
-// };
+
 
 export default function NoticesCategoryItem({item}) {
-  const user = useSelector(selectUser);
-  const isLoggedIn = useSelector(selectLoggedIn);
+  const dispatch = useDispatch();
 
-  const { _id, category, owner, avatar, location, dateOfBirth, sex, title } =
+  const { _id, category, avatar, location, dateOfBirth, sex, title } =
     item;
 
   const formatPetsAge = birthDate => {
@@ -51,46 +35,66 @@ export default function NoticesCategoryItem({item}) {
 
   const petsAge = formatPetsAge(dateOfBirth);
 
-  // const favourite = isLoggedIn && user.favourite.includes(_id);
+  function formatNoticeTitle(noticeTitle) {
+    if (noticeTitle && noticeTitle.length > 32) {
+      return noticeTitle.slice(0, 32) + '...';
+    } else return noticeTitle;
+  }
 
-  const isOwnPet = owner?._id === user.id;
+  function formatLocation(noticeLocation) {
+    if (noticeLocation && noticeLocation.length > 5) {
+      return noticeLocation.slice(0, 5) + '...';
+    } else return noticeLocation;
+  }
+
+  const formatNoticeLocation = formatLocation(location);
+
+  const noticeTitle = formatNoticeTitle(title);
+
+    // const favourite = isLoggedIn && user.favourite.includes(_id);
+
+  
 
   return (
     <Card className="card">
       <Avatar src={avatar} alt={title} />
-      <InfoList>
-        <InfoItem>
+      <InfoIconsWraper>
+        <LocateLink
+        target="_blank"
+        href={`https://www.google.com/maps/place/${location}`}>
           <InfoIcon id={'icon-location-1'}></InfoIcon>
-          {location}
-        </InfoItem>
-        <InfoItem>
+          {formatNoticeLocation}
+        </LocateLink>
+        <InfoElement>
           <InfoIcon id={'icon-clock'}></InfoIcon>
           {petsAge}
-        </InfoItem>
-        <InfoItem>
+        </InfoElement>
+        <InfoElement>
           {sex === 'male' ? (
             <InfoIcon id={'icon-male'}></InfoIcon>
           ) : (
             <InfoIcon id={'icon-female'}></InfoIcon>
           )}
           {sex}
-        </InfoItem>
-      </InfoList>
-      <CardTitle>{title}</CardTitle>
+        </InfoElement>
+      </InfoIconsWraper>
+      <CardTitle>{noticeTitle}</CardTitle>
       <StyledCategory>{category}</StyledCategory>
-      <AddToFavouriteBtn type="button">
-        <HeartIcon
+      <AddToFavouriteBtn  type="button">
+        <HeartIcon className='heartIcon'
           id={'icon-heart'}
           // className={`${'heartIcon'} ${favourite && 'inFavouriteIcon'}`}
         ></HeartIcon>
       </AddToFavouriteBtn>
-      {isOwnPet && (
-        <DeleteBtn type="button">
+    
+        {/* <DeleteBtn type="button">
           <SvgIcon id={'icon-trash-2'}></SvgIcon>
-        </DeleteBtn>
-      )}
+        </DeleteBtn> */}
+      
       <LearnMoreBtnWrap>
-        <LearnMoreBtn type="button" className="btn">
+        <LearnMoreBtn type="button" className='btn'  onClick={() => {
+                  dispatch(getNoticeById(_id));
+                }}>
           Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>
         </LearnMoreBtn>
       </LearnMoreBtnWrap>
