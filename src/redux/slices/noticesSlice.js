@@ -4,6 +4,7 @@ import {
   getNoticeById,
   addNotice,
   deleteNotice,
+  getNoticesAddByUser,
 } from 'redux/operations/fetchNotices';
 
 const initialState = {
@@ -45,7 +46,14 @@ const noticesSlice = createSlice({
       .addCase(deleteNotice.fulfilled, state => {
         state.isLoading = false;
       })
-      .addCase(deleteNotice.rejected, handleRejected);
+      .addCase(deleteNotice.rejected, handleRejected)
+      .addCase(getNoticesAddByUser.pending, handlePending)
+      .addCase(getNoticesAddByUser.fulfilled, (state, { payload }) => {
+        state.notices = payload.notices;
+        state.totalPages = payload.totalPages;
+        state.isLoading = false;
+      })
+      .addCase(getNoticesAddByUser.rejected, handleRejected);
   },
 });
 

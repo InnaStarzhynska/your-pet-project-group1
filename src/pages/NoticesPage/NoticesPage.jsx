@@ -15,12 +15,12 @@ export default function NoticesPage() {
   const dispatch = useDispatch();
   const { categoryName: category } = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
-  const page = Number(searchParams.get('page')) ?? 1;
+  const page = Number(searchParams.get('page') ?? 1);
   const query = searchParams.get('query') ?? '';
   const totalPages = useSelector(selectTotalPages);
   
   useEffect(() => {
-    dispatch(getNoticesByQuery(category, query, page ))
+    dispatch(getNoticesByQuery({ category, query, page } ))
   }, [dispatch, category, query, page])
 
   const changePage = (e) => {

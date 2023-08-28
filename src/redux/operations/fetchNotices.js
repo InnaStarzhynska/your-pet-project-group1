@@ -6,9 +6,9 @@ axios.defaults.baseURL = 'https://yorpet-backpart-deployment.onrender.com/api';
 
 export const getNoticesByQuery = createAsyncThunk(
   'notices/getNoticesByQuery',
-  async (credentials, thunkAPI) => {
+    async (credentials, thunkAPI) => {
     try {
-      const queryURL = `/searchQuery=${credentials.query}&category=${credentials.category}&page=${credentials.page}`;
+      const queryURL = `/notice?searchQuery=${credentials.query}&category=${credentials.category}&page=${credentials.page}&limit=2`;
       const response = await axios.get(queryURL);
       return response.data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const addNotice = createAsyncThunk('notices/addNotice', async (credential
 
 export const deleteNotice = createAsyncThunk('notices/deleteNotice', async (credentials, thunkAPI) => {
     try {
-       const queryURL = `/notice/delete/${credentials.id}`;
+        const queryURL = `/notice/delete/${credentials.id}`;
         const response = await axios.delete(queryURL);
         Notiflix.Notify.success(`Your notice has been successfully deleted!`);
         return response.data
@@ -52,7 +52,18 @@ export const deleteNotice = createAsyncThunk('notices/deleteNotice', async (cred
         Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);
     }
-})
+});
 
+export const getNoticesAddByUser = createAsyncThunk('notices/getNoticesAddByUser', async (credentials, thunkAPI) => {
+    try {
+        const queryURL = `/added?${credentials.page}`;
+        const response = await axios.get(queryURL);
+        return response.data
+    } catch (error) {
+        Notiflix.Notify.failure(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+    }
+})
+ 
 
 
