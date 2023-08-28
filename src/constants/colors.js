@@ -8,5 +8,8 @@ export const colors = {
     gradientBlueColor: "linear-gradient(to left, #419EF1, #9BD0FF)",
     redErrorColor: "#F43F5E",
     greenStepSuccessColor: "#00C3AD",
-    blackColor: "#000000"
+    blackColor: "#000000",
+    textButtonColor: "#FEF9F9",
+    inputTextColor: "#888888",
+    whiteBgColor: "#FFFFFF",
 }

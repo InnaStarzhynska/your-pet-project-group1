@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import {registerUser} from '../../redux/operations/fetchUser';
+
 
 import {
   Button,
@@ -16,11 +19,13 @@ import {
   ConfirmIcon,
   StyledLink,
   ConfirmMessage,
-} from './RegisterForm.styled';
+  PasswordComnfirIcon,
+  PasswordCrossIcon,
+  } from './RegisterForm.styled';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 
-const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/;
+
 
 const registrationValidationSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,10 +34,12 @@ const registrationValidationSchema = Yup.object().shape({
     .max(16, 'Name must be no more than 16 characters'),
   email: Yup.string().email('Invalid email address').required('Required'),
   password: Yup.string()
-    .matches(passwordRules, {
-      message:
-        'Password must contain 6 - 16 characters with at least one of each: uppercase, lowercase, number',
-    })
+  .min(6, 'Password must be at least 6 characters')
+  .max(16, 'Password must be no more than 16 characters')
+  .matches(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+    'Please create a stronger password'
+  )
     .required('Required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
@@ -47,13 +54,23 @@ const initialValues = {
 };
 
 const RegisterForm = () => {
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
-  };
 
+  const dispatch = useDispatch();
+
+  
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passworConfirmdVisible, setPasswordConfirmVisible] = useState(false);
+
+  const handleSubmit = ({name, email, password}, { resetForm }) => {
+    dispatch(
+      registerUser({
+        name: name,
+        email: email, 
+        password: password,
+      })
+    );
+    resetForm();
+  };
 
   const handleClickPasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -76,16 +93,20 @@ const RegisterForm = () => {
       onSubmit={handleSubmit}
       validationSchema={registrationValidationSchema}
     >
-      {({ isSubmitting, errors, touched, setFieldValue }) => (
+      {({ isSubmitting, errors, touched, values, setFieldValue }) => (
         <Form autoComplete="off">
           <FormContainer>
             <InputContainer>
               <Title>Registration</Title>
-              <InputWrap>
+              <InputWrap  >
                 <label htmlFor="name" hidden>
                   Name
                 </label>
-                <Input id="name" type="name" name="name" placeholder="Name" />
+                <Input id="name" type="name" name="name" placeholder="Name" className={`${"defoult"}
+${touched.name && !errors.name  && "success"}
+                  ${touched.name && errors.name && "error"}`}
+                
+/>
                 {touched.name && hasFieldError(errors, 'name') && (
                   <CrossIcon
                     type="button"
@@ -122,6 +143,9 @@ const RegisterForm = () => {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  className={`${"defoult"}
+${touched.email && !errors.email  && "success"}
+                  ${touched.email && errors.email && "error"}`}
                 />
                 {touched.email && hasFieldError(errors, 'email') && (
                   <CrossIcon
@@ -159,9 +183,31 @@ const RegisterForm = () => {
                   type={passwordVisible ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
+                  className={`${"defoult"}
+                  ${touched.password && !errors.password  && "success"}
+                                    ${touched.password && errors.password && "error"}`}
+                
                 />
+                 {touched.password && isFieldValid(errors, 'password') && (
+                  <PasswordComnfirIcon>
+                    <SvgIcon
+                      id="icon-check"
+                      color={colors.greenStepSuccessColor}
+                    />
+                  </PasswordComnfirIcon>)}
+                  {touched.password && hasFieldError(errors, 'password') && (
+                  <PasswordCrossIcon
+                    type="button"
+                    onClick={() => clearInput('password', setFieldValue)}
+                  >
+                    <SvgIcon
+                      id={'icon-cross-small'}
+                      color={colors.redErrorColor}
+                    />
+                  </PasswordCrossIcon>
+                )}
                 {passwordVisible ? (
-                  <IconBtn
+                  <IconBtn  
                     type="button"
                     onClick={handleClickPasswordVisibility}
                   >
@@ -175,6 +221,8 @@ const RegisterForm = () => {
                     <SvgIcon id={'icon-eye-closed'} />
                   </IconBtn>
                 )}
+               
+                  
               </InputWrap>
               {touched.password && !errors.password ? (
                 <ConfirmMessage>Password is secure</ConfirmMessage>
@@ -192,7 +240,28 @@ const RegisterForm = () => {
                   type={passworConfirmdVisible ? 'text' : 'password'}
                   name="confirmPassword"
                   placeholder="Confirm password"
+                  className={`${"defoult"}
+                  ${touched.confirmPassword && !errors.confirmPassword  && "success"}
+                                    ${touched.confirmPassword && errors.confirmPassword && "error"}`}
                 />
+                {touched.confirmPassword && isFieldValid(errors, 'confirmPassword') && (
+                  <PasswordComnfirIcon>
+                    <SvgIcon
+                      id="icon-check"
+                      color={colors.greenStepSuccessColor}
+                    />
+                  </PasswordComnfirIcon>)}
+                  {touched.confirmPassword && hasFieldError(errors, 'confirmPassword') && (
+                  <PasswordCrossIcon
+                    type="button"
+                    onClick={() => clearInput('confirmPassword', setFieldValue)}
+                  >
+                    <SvgIcon
+                      id={'icon-cross-small'}
+                      color={colors.redErrorColor}
+                    />
+                  </PasswordCrossIcon>
+                )}
                 {passworConfirmdVisible ? (
                   <IconBtn
                     type="button"

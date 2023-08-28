@@ -4,7 +4,7 @@ import { devices } from '../../../constants/breakpoints';
 import { colors } from '../../../constants/colors';
 
 export const BoxLogOut = styled.div`
-  display: ${props => (props.isMenuOpen ? 'flex' : 'none')};
+  display: ${props => (props.$isopen ? 'flex' : 'none')};
   position: absolute;
   bottom: 20px;
   left: 20px;
@@ -17,7 +17,7 @@ export const BoxLogOut = styled.div`
   }
 
   @media only screen and ${devices.desktop} {
-    display: ${props => (props.isMenuOpen ? 'none' : 'flex')};
+    display: ${props => (props.$isopen ? 'none' : 'flex')};
   }
 `;
 

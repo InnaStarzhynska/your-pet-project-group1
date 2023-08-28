@@ -2,6 +2,7 @@ import { Field } from 'formik';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
+import { colors } from 'constants/colors';
 
 export const FormContainer = styled.div`
   box-sizing: border-box;
@@ -13,7 +14,7 @@ export const FormContainer = styled.div`
   margin-right: auto;
   padding: 40px 12px;
   gap: 26px;
-  background-color: #ffffff;
+  background-color: ${colors.whiteBgColor};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 
   border-radius: 20px;
@@ -40,7 +41,7 @@ export const Title = styled.h2`
   font-weight: 500;
   font-size: 24px;
   line-height: 1.38;
-  color: #111111;
+  color: ${colors.textColor};
   margin-bottom: 20px;
 
   @media screen and (${devices.tablet}) {
@@ -65,6 +66,8 @@ export const InputWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  
 `;
 
 export const BtnContainer = styled.div`
@@ -85,7 +88,17 @@ export const Input = styled(Field)`
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.04em;
-  color: #888888;
+  color: ${colors.inputTextColor};
+  &.default {
+    outline: 1px solid ${colors.blueColor};
+  }
+  &.success {
+    outline: 1px solid ${colors.greenStepSuccessColor};
+  }
+  &.error {
+    outline: 1px solid ${colors.redErrorColor};
+  }
+
 `;
 export const ErrorWrap = styled.div`
   box-sizing: border-box;
@@ -95,8 +108,8 @@ export const ErrorWrap = styled.div`
   align-items: center;
   justify-content: left;
   height: 14px;
-  color: #f43f5e;
-  font-size: 14px;
+  color: ${colors.redErrorColor};
+  font-size: 12px;
   font-weight: 400;
 
   @media screen and (${devices.tablet}) {
@@ -107,8 +120,8 @@ export const Button = styled.button`
   width: 100%;
   padding: 11px 0;
   margin-bottom: 8px;
-  color: #ffffff;
-  background-color: #54adff;
+  color: ${colors.whiteBgColor};
+  background-color: ${colors.blueColor};
   border-radius: 40px;
   border: none;
   outline: none;
@@ -120,8 +133,10 @@ export const Button = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
+    background: ${colors.gradientBlueColor};
   }
+
+  
 
   @media screen and (${devices.tablet}) {
     margin-bottom: 16px;
@@ -133,7 +148,7 @@ export const Text = styled.p`
   line-height: 1.33;
   letter-spacing: 0.04em;
   text-align: center;
-  color: #888888;
+  color: ${colors.inputTextColor};
 `;
 
 export const StyledLink = styled(Link)`
@@ -142,15 +157,15 @@ export const StyledLink = styled(Link)`
   letter-spacing: 0.04em;
   text-decoration: underline;
   display: inline-block;
-  color: #54adff;
+  color: ${colors.blueColor};
 `;
 export const IconBtn = styled.button`
-  width: 70px;
+  width: 40px;
   height: 48px;
   position: absolute;
-  right: 0;
-    padding: 12px 0; 
-  background-color: #ffffff;
+  right: 12px;
+  padding: 12px 0; 
+  background-color: ${colors.whiteBgColor};
   border: none;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -161,10 +176,9 @@ export const CrossIcon = styled.button`
   width: 24px;
   height: 24px;
   position: absolute;
- 
   right: 18px;
  padding: 12px 0;
-  background-color: #ffffff;
+  background-color: ${colors.whiteBgColor};
   border: none;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -176,7 +190,7 @@ export const ConfirmIcon = styled.button`
   position: absolute;
   right: 18px;
  padding: 12px 0;
-  background-color: #ffffff;
+  background-color: ${colors.whiteBgColor};
   border: none;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -187,13 +201,35 @@ export const ConfirmMessage = styled.div`
   width: 100%;
   align-items: center;
   justify-content: left;
-  height: 24px;
+  height: 14px;
   font-size: 12px;
-  color: #00c3ad;
+  color: ${colors.greenStepSuccessColor};
   padding-left: 12px;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   @media screen and (${devices.tablet}) {
     height: 32px;
   }
 `;
+
+export const PasswordComnfirIcon = styled.button`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 60px;
+ padding: 12px 0;
+  background-color: ${colors.whiteBgColor};
+  border: none;
+ 
+`;
+export const PasswordCrossIcon = styled.button`
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 60px;
+ padding: 12px 0;
+  background-color: ${colors.whiteBgColor};
+  border: none;
+ 
+`;
+
