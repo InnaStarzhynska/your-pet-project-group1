@@ -25,20 +25,15 @@ import { colors } from 'constants/colors';
 const emailValid =
   /^([a-zA-Z0-9]{1}[a-zA-Z0-9_\-.]{1,})@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,4})$/;
 
-const passwordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/;
-
 const LoginSchema = Yup.object().shape({
   email: Yup.string()
-    .required('Email field is required')
-    .matches(emailValid, 'Enter a valid Email')
-    .max(70, 'Maximum 70 characters')
-    .min(10, 'Minimum 10 characters')
+    .required('Required')
+    .matches(emailValid, 'Invalid email address')
     .email(),
   password: Yup.string()
-    .matches(passwordValid, 'Please enter min 6 characters and max 16')
-    .max(16, 'Please enter 16 characters or less')
-    .min(6, 'Enter 6 or more characters')
-    .required('Password field is required'),
+    // .max(16, 'Password must be no more than 16 characters')
+    // .min(6, 'Password must be at least 6 characters')
+    .required('Required'),
 });
 
 const LoginForm = () => {
@@ -128,6 +123,11 @@ const LoginForm = () => {
                   type={password ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
+                   className={
+                  (values.password === "" && "default") ||
+                  (touched.password && errors.password && "error") ||
+                  (!errors.password && "success")
+                }
                 />
                 {password ? (
                   <IconBtn type="button" onClick={togglePassword}>
