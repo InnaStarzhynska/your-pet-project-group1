@@ -6,10 +6,11 @@ import AddPetButton from 'components/AddPetButton/AddPetButton';
 import { NoticesContainer, Section } from './NoticesPage.styled';
 import Pagination from 'components/Pagination/Pagination';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNoticesByQuery } from 'redux/operations/fetchNotices';
-import { selectLoadingNotices, selectNoticesTotalPages} from 'redux/selectors';
+import { selectLoadingNotices } from 'redux/selectors';
+import IsLoading from 'components/IsLoading/IsLoading';
 
 export default function NoticesPage() {
   const dispatch = useDispatch();
@@ -17,8 +18,8 @@ export default function NoticesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page') ?? 1);
   const query = searchParams.get('query') ?? '';
-  const totalPages = useSelector(selectNoticesTotalPages);
   const isLoading = useSelector(selectLoadingNotices);
+  
   
   useEffect(() => {
     dispatch(getNoticesByQuery({ category, query, page } ))
@@ -36,17 +37,20 @@ export default function NoticesPage() {
   }
 
   return (
-    <Section>
-      <Container>
-        <NoticesSearch handleSubmit={handleSubmit} value={query} />
-        <NoticesContainer>
-          <NoticesCategoriesNav />
-          <AddPetButton />
-        </NoticesContainer>
-        <NoticesCategoriesList  />
-         <Outlet/>
-        <Pagination changePage={changePage} currentPage={page} totalPages={totalPages}/>
-      </Container>
-    </Section>
+    <>
+      {isLoading ? (<IsLoading isOpen={isLoading} />) :
+        (<Section>
+          <Container>
+            <NoticesSearch handleSubmit={handleSubmit} value={query} />
+            <NoticesContainer>
+              <NoticesCategoriesNav />
+              <AddPetButton />
+            </NoticesContainer>
+            <NoticesCategoriesList />
+            <Outlet />
+            <Pagination changePage={changePage} currentPage={page} />
+          </Container>
+        </Section>)}
+      </>
   );
 }
