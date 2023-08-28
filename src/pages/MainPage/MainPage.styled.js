@@ -58,6 +58,7 @@ position: relative;
 
   @media screen and (${devices.desktop}) {
     padding-top: 188px;
+    padding-bottom: 250px;
   }
 `;
 export const Images = styled.img`
@@ -82,8 +83,9 @@ export const Images = styled.img`
   @media screen and (${devices.desktop}) {
     content: url('${imgDesc1}');
     position: absolute;
+    margin-top: 0;
     right: 0;
-    top: 36px;
+    top: 30px;
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -104,6 +106,7 @@ export const MainTitle = styled.h1`
   }
 
   @media screen and (${devices.desktop}) {
+    line-height: 88.4px;
     font-size: 68px;
     font-weight: 800;
   }

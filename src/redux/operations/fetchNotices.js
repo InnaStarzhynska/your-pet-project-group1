@@ -63,7 +63,38 @@ export const getNoticesAddByUser = createAsyncThunk('notices/getNoticesAddByUser
         Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);
     }
-})
+});
  
+export const getFavoriteNotices = createAsyncThunk('notices/getFavoriteNotices', async (_, thunkAPI) => {
+    try {
+        const responce = await axios.get('/notice/favorites');
+        return responce.data
+    } catch (error) {
+        Notiflix.Notify.failure(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+    }
+});
 
+export const addNoticeToFavorites = createAsyncThunk('notices/addNoticeToFavorites', async (credentials, thunkAPI) => {
+    try {
+        const queryURL = `/notice/add-to-favorites/${credentials._id}`;
+        const responce = axios.patch(queryURL);
+        Notiflix.Notify.success(`The notice added to favorites!`);
+        return responce.data
+    } catch (error) {
+        Notiflix.Notify.failure(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+    }
+});
 
+export const removeNoticeFromFavorites = createAsyncThunk('notices/removeNoticeFromFavorites', async (credentials, thunkAPI) => {
+     try {
+        const queryURL = `/notice/remove-from-favorites/${credentials._id}`;
+        const responce = axios.patch(queryURL);
+        Notiflix.Notify.success(`The notice removed from favorites!`);
+        return responce.data
+     } catch (error) {
+        Notiflix.Notify.failure(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+     }
+})

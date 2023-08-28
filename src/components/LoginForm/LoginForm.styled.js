@@ -118,7 +118,6 @@ export const Button = styled.button`
   line-height: 1.35;
   letter-spacing: 0.04em;
   cursor: pointer;
-  margin-top:60px;
 
   &:hover {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
@@ -150,7 +149,7 @@ export const IconBtn = styled.button`
   height: 48px;
   position: absolute;
   right: 0;
-  padding: 12px 0; 
+    padding: 12px 0; 
   background-color: #ffffff;
   border: none;
   border-top-right-radius: 40px;
@@ -162,8 +161,9 @@ export const CrossIcon = styled.button`
   width: 24px;
   height: 24px;
   position: absolute;
+ 
   right: 18px;
-  padding: 12px 0;
+ padding: 12px 0;
   background-color: #ffffff;
   border: none;
   border-top-right-radius: 40px;
@@ -198,4 +198,3 @@ export const PasswordMessage = styled.div`
     height: 32px;
   }
 `;
-
