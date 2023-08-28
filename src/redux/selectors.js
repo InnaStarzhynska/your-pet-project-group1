@@ -5,4 +5,8 @@ export const selectPets = state => state.user.pets;
 
 export const selectNotices = state => state.notices.notices;
 export const selectLoadingNotices = state => state.notices.isLoading;
-export const selectTotalPages = state => state.notices.totalPages;
+export const selectNoticesTotalPages = state => state.notices.totalPages;
+
+export const selectNews = state => state.news.news;
+export const selectLoadingNews = state => state.news.isLoading;
+export const selectNewsTotalPages = state => state.news.totalPages;

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import {
+  addPet,
+  deletePet,
   getCurrentUser,
   getUserInfo,
   logIn,
@@ -25,9 +27,13 @@ const initialState = {
   isLoading: false,
 };
 
-const handlePending = state => { state.isLoading = true };
+const handlePending = state => {
+  state.isLoading = true;
+};
 
-const handleRejected = state => { state.isLoading = false };
+const handleRejected = state => {
+  state.isLoading = false;
+};
 
 const userSlice = createSlice({
   name: 'user',
@@ -39,7 +45,7 @@ const userSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
-        state.isLoading = false
+        state.isLoading = false;
       })
       .addCase(registerUser.rejected, handleRejected)
       .addCase(logIn.pending, handlePending)
@@ -47,7 +53,7 @@ const userSlice = createSlice({
         state.user = payload.user;
         state.token = payload.token;
         state.isLoggedIn = true;
-        state.isLoading = false
+        state.isLoading = false;
       })
       .addCase(logIn.rejected, handleRejected)
       .addCase(logOut.pending, handlePending)
@@ -70,7 +76,7 @@ const userSlice = createSlice({
       .addCase(getUserInfo.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.pets = payload.pets;
-        state.isLoading = false
+        state.isLoading = false;
       })
       .addCase(getUserInfo.rejected, handleRejected)
       .addCase(getCurrentUser.pending, handlePending)
@@ -83,9 +89,20 @@ const userSlice = createSlice({
       .addCase(updateUserInfo.pending, handlePending)
       .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
         state.user = payload.user;
-        state.isLoading = false
+        state.isLoading = false;
       })
-      .addCase(updateUserInfo.rejected, handleRejected);
+      .addCase(updateUserInfo.rejected, handleRejected)
+      .addCase(addPet.pending, handlePending)
+      .addCase(addPet.fulfilled, (state, { payload }) => {
+        state.pets.push(payload);
+        state.isLoading = false;
+      })
+      .addCase(addPet.rejected, handleRejected)
+      .addCase(deletePet.pending, handlePending)
+      .addCase(deletePet.fulfilled, state => {
+        state.isLoading = false;
+      })
+      .addCase(deletePet.rejected, handleRejected);
   },
 });
 

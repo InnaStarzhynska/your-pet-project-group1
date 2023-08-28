@@ -71,7 +71,7 @@ export const getUserInfo = createAsyncThunk("user/getUserInfo", async (_, thunkA
         Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);
     }
-})
+});
 
 export const updateUserInfo = createAsyncThunk("user/updateUserInfo", async (credentials, thunkAPI) => {
     try {
@@ -80,8 +80,30 @@ export const updateUserInfo = createAsyncThunk("user/updateUserInfo", async (cre
         return responce.data
     }
     catch (error) {
-         Notiflix.Notify.failure(error.response.data.message);
+        Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);
     }
-})
+});
 
+export const addPet = createAsyncThunk('user/addPet', async (credentials, thunkAPI) => {
+    try {
+        const responce = await axios.post('/pets/add-pet', credentials);
+        Notiflix.Notify.success(`Your pet added!`);
+        return responce.data
+    } catch (error) {
+        Notiflix.Notify.failure(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+    }
+});
+
+export const deletePet = createAsyncThunk('user/deletePet', async (credentials, thunkAPI) => {
+try {
+    const queryURL = `/pets/delete-pet/${credentials._id}`;
+    const responce = await axios.delete(queryURL);
+    Notiflix.Notify.success(`Your pet has been successfully deleted`);
+        return responce.data
+} catch (error) {
+    Notiflix.Notify.failure(error.response.data.message);
+        return thunkAPI.rejectWithValue(error.message);
+}
+})

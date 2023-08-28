@@ -10,12 +10,14 @@ import {
 } from 'redux-persist';
 import { userReducer } from './slices/userSlice';
 import { noticesReducer } from './slices/noticesSlice';
+import { newsReducer } from './slices/newsSlice';
 
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    notices: noticesReducer
+    notices: noticesReducer,
+    news: newsReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
