@@ -19,16 +19,13 @@ import { Navigate } from "react-router-dom";
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isUserLoading = useSelector(selectLoadingUser);
-  const isNoticesLoading = useSelector(selectLoadingNotices);
-  const isNewsLoading = useSelector(selectLoadingNews)
 
   useEffect(() => {
     dispatch(getCurrentUser())
 }, [dispatch])
 
   return (
-    !isUserLoading && !isNoticesLoading && !isNewsLoading && <Routes>
+     <Routes>
       <Route path="/" element={<Sharedlayout />}>
         <Route index element={<MainPage />} />
         <Route path="/notices" element={<Navigate to={"/notices/sell"} />} />
