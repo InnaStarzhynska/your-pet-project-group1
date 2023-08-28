@@ -3,7 +3,7 @@ import NoticesCategoriesList from './NoticesCategoriesList';
 import NoticesCategoriesNav from './NoticesCategoriesNav';
 import NoticesSearch from './NoticesSearch';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
-import { NoticesContainer, Section } from './NoticesPage.styled';
+import { NoticesContainer, Section, NoticesCategoryListWrap } from './NoticesPage.styled';
 import Pagination from 'components/Pagination/Pagination';
 import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -46,7 +46,9 @@ export default function NoticesPage() {
               <NoticesCategoriesNav />
               <AddPetButton />
             </NoticesContainer>
+ <NoticesCategoryListWrap>
             <NoticesCategoriesList />
+          </NoticesCategoryListWrap>
             <Outlet />
             <Pagination changePage={changePage} currentPage={page} />
           </Container>
