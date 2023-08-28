@@ -10,7 +10,7 @@ import AddPetPage from 'pages/AddPetPage/AddPetPage';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser } from 'redux/operations/fetchUser';
-import { selectLoadingNotices, selectLoadingUser} from 'redux/selectors';
+import { selectLoadingNews, selectLoadingNotices, selectLoadingUser} from 'redux/selectors';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
 import NewsPage from 'pages/NewsPage/NewsPage';
@@ -21,13 +21,14 @@ export const App = () => {
   const dispatch = useDispatch();
   const isUserLoading = useSelector(selectLoadingUser);
   const isNoticesLoading = useSelector(selectLoadingNotices);
+  const isNewsLoading = useSelector(selectLoadingNews)
 
   useEffect(() => {
     dispatch(getCurrentUser())
 }, [dispatch])
 
   return (
-    !isUserLoading && isNoticesLoading && <Routes>
+    !isUserLoading && !isNoticesLoading && !isNewsLoading && <Routes>
       <Route path="/" element={<Sharedlayout />}>
         <Route index element={<MainPage />} />
         <Route path="/notices" element={<Navigate to={"/notices/sell"} />} />
