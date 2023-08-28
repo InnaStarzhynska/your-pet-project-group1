@@ -5,6 +5,9 @@ import {
   addNotice,
   deleteNotice,
   getNoticesAddByUser,
+  getFavoriteNotices,
+  addNoticeToFavorites,
+  removeNoticeFromFavorites,
 } from 'redux/operations/fetchNotices';
 
 const initialState = {
@@ -53,7 +56,24 @@ const noticesSlice = createSlice({
         state.totalPages = payload.totalPages;
         state.isLoading = false;
       })
-      .addCase(getNoticesAddByUser.rejected, handleRejected);
+      .addCase(getNoticesAddByUser.rejected, handleRejected)
+      .addCase(getFavoriteNotices.pending, handlePending)
+      .addCase(getFavoriteNotices.fulfilled, (state, { payload }) => {
+        state.notices = payload.notices;
+        state.totalPages = payload.totalPages;
+        state.isLoading = false;
+      })
+      .addCase(getFavoriteNotices.rejected, handleRejected)
+      .addCase(addNoticeToFavorites.pending, handlePending)
+      .addCase(addNoticeToFavorites.fulfilled, state => {
+        state.isLoading = false;
+      })
+      .addCase(addNoticeToFavorites.rejected, handleRejected)
+      .addCase(removeNoticeFromFavorites.pending, handlePending)
+      .addCase(removeNoticeFromFavorites.fulfilled, state => {
+        state.isLoading = false;
+      })
+      .addCase(removeNoticeFromFavorites.rejected, handleRejected);
   },
 });
 

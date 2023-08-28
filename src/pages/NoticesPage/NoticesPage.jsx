@@ -9,7 +9,7 @@ import { Outlet, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNoticesByQuery } from 'redux/operations/fetchNotices';
-import { selectTotalPages } from 'redux/selectors';
+import { selectLoadingNotices, selectNoticesTotalPages} from 'redux/selectors';
 
 export default function NoticesPage() {
   const dispatch = useDispatch();
@@ -17,7 +17,8 @@ export default function NoticesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page') ?? 1);
   const query = searchParams.get('query') ?? '';
-  const totalPages = useSelector(selectTotalPages);
+  const totalPages = useSelector(selectNoticesTotalPages);
+  const isLoading = useSelector(selectLoadingNotices);
   
   useEffect(() => {
     dispatch(getNoticesByQuery({ category, query, page } ))
