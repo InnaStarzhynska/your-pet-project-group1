@@ -28,16 +28,16 @@ export default function NoticesPage() {
     setSearchParams({ query, page })
   }
 
-  const changeQuery = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const query = e.target.value.trim();
-    setSearchParams({query, page})
+    const query = e.target.search.value.trim();
+    setSearchParams({ query, page });
   }
 
   return (
     <Section>
       <Container>
-        <NoticesSearch changeQuery={changeQuery} value={query} />
+        <NoticesSearch handleSubmit={handleSubmit} value={query} />
         <NoticesContainer>
           <NoticesCategoriesNav />
           <AddPetButton />

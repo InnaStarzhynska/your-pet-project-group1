@@ -97,12 +97,22 @@ export const NoticesNavList = styled.ul`
 export const NoticesList = styled.div`
   list-style-type: none;
   display: flex;
+  flex-wrap: wrap;
+  gap:24px;
 
   @media screen and (${devices.tablet}) {
-    flex-wrap: wrap;
     gap: 20px;
     padding: 0;
     list-style-type: none;
     display: flex;
   }
 `;
+
+export const SearchButton = styled.button`
+  position: absolute;
+  right: 12px;
+  top: 0;
+  padding: 10px 0 6px;
+  background-color: transparent;
+  border-color: transparent
+`

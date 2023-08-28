@@ -8,7 +8,7 @@ export const getNoticesByQuery = createAsyncThunk(
   'notices/getNoticesByQuery',
     async (credentials, thunkAPI) => {
     try {
-      const queryURL = `/notice?searchQuery=${credentials.query}&category=${credentials.category}&page=${credentials.page}&limit=2`;
+      const queryURL = `/notice?searchQuery=${credentials.query}&category=${credentials.category}&page=${credentials.page}`;
       const response = await axios.get(queryURL);
       return response.data;
     } catch (error) {
@@ -22,7 +22,7 @@ export const getNoticeById = createAsyncThunk(
   'notices/getNoticeById',
   async (credentials, thunkAPI) => {
     try {
-      const queryURL = `/notice/${credentials.id}`;
+      const queryURL = `/notice/${credentials._id}`;
         const response = await axios.get(queryURL);
         return response.data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const addNotice = createAsyncThunk('notices/addNotice', async (credential
 
 export const deleteNotice = createAsyncThunk('notices/deleteNotice', async (credentials, thunkAPI) => {
     try {
-        const queryURL = `/notice/delete/${credentials.id}`;
+        const queryURL = `/notice/delete/${credentials._id}`;
         const response = await axios.delete(queryURL);
         Notiflix.Notify.success(`Your notice has been successfully deleted!`);
         return response.data
