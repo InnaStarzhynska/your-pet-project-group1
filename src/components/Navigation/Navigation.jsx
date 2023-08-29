@@ -57,7 +57,7 @@ export default function Navigation() {
         {isAuth
           ? !isTablet && <UserNav isMenuOpen={isMenuOpen} />
           : !isTablet && <AuthNav />}
-        <Nav isMenuOpen={isMenuOpen} />
+        <Nav isMenuOpen={isMenuOpen} closeMenu={toggleMenu}/>
         {isAuth && <LogOut onClick={() => {}} isMenuOpen={!isMenuOpen} />}
       </BurgerMenu>
     </Wrapper>
