@@ -7,6 +7,10 @@ export const StepperBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 12px;
+
+  @media only screen and ${devices.tablet} {
+    gap: 16px;
+  }
 `;
 
 export const BoxStep = styled.div`
@@ -14,6 +18,7 @@ export const BoxStep = styled.div`
 
   @media only screen and ${devices.tablet} {
     width: 120px;
+  }
 `;
 
 export const NameStep = styled.p`

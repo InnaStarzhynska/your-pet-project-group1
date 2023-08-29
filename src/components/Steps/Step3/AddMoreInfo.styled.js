@@ -4,6 +4,8 @@ import { colors } from '../../../constants/colors';
 import { Field } from 'formik';
 import { ContentBox2, Label2, Input2 } from '../Step2/AddDetails.styled';
 
+
+
 export const ContentBox3 = styled(ContentBox2)`
   @media only screen and ${devices.tablet} {
     flex-direction: row;

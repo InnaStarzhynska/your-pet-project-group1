@@ -3,7 +3,13 @@ import * as Yup from 'yup';
 import { ContentBox, Input, Label } from './ChooseOptions.styled';
 import { Formik, Form, ErrorMessage } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { ErrorText } from 'pages/AddPetPage/AddPetPage.styled';
+import {
+  ButtonBox,
+  ErrorText,
+  Button,
+} from 'pages/AddPetPage/AddPetPage.styled';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
+import { colors } from '../../../constants/colors';
 
 const validationChooseOptions = Yup.object().shape({
   category: Yup.string()
@@ -39,10 +45,16 @@ export default function ChooseOptions(props) {
           <ErrorMessage name="category">
             {msg => <ErrorText>{msg}</ErrorText>}
           </ErrorMessage>
-          <button type="button" onClick={() => navigate(-1)}>
-            Cancel
-          </button>
-          <button type="submit">Next</button>
+          <ButtonBox>
+            <Button type="submit" $primary>
+            Next&nbsp;&nbsp;
+            <SvgIcon id={'icon-pawprint-1'} color={'none'} />
+            </Button>
+            <Button type="button" onClick={() => navigate(-1)}>
+            <SvgIcon id={'icon-arrow-left'} color={colors.blueColor} />
+            &nbsp;&nbsp;Cancel
+            </Button>
+          </ButtonBox>
         </Form>
       )}
     </Formik>

@@ -21,6 +21,7 @@ import {
   ImitationLabel,
   ImgPets,
 } from './AddMoreInfo.styled';
+import { ButtonBox, Button } from 'pages/AddPetPage/AddPetPage.styled';
 import { FieldContainer } from '../Step2/AddDetails.styled';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from '../../../constants/colors';
@@ -292,10 +293,16 @@ export default function AddMoreInfo(props) {
               </StyleContainer2>
             </ContentBox3>
           )}
-          <button type="button" onClick={() => props.back(values)}>
-            Back
-          </button>
-          <button type="submit">Done</button>
+          <ButtonBox>
+            <Button type="submit" $primary>
+              Done&nbsp;&nbsp;
+              <SvgIcon id={'icon-pawprint-1'} color={'none'} />
+            </Button>
+            <Button type="button" onClick={() => props.back(values)}>
+              <SvgIcon id={'icon-arrow-left'} color={colors.blueColor} />
+              &nbsp;&nbsp;Back
+            </Button>
+          </ButtonBox>
         </Form>
       )}
     </Formik>

@@ -36,18 +36,16 @@ export const Label2 = styled.label`
     font-size: 20px;
     line-height: 1.32;
   }
-
-  @media only screen and ${devices.desktop} {
-  }
 `;
 
 export const Input2 = styled(Field)`
   height: ${props => props.$textarea && '92px'};
   width: 100%;
   padding: 8px 16px;
+  font-size: 14px;
   border-radius: ${props => (props.$textarea ? '20px' : '40px')};
   border: 1px solid ${props =>
-    props.isError ? colors.redErrorColor : colors.blueColor};
+    props.error ? colors.redErrorColor : colors.blueColor};
 
   ::placeholder {
     font-size: 14px;
@@ -58,6 +56,7 @@ export const Input2 = styled(Field)`
   @media only screen and ${devices.tablet} {
     height: ${props => props.$textarea && '79px'};
     padding: 12px 16px;
+    font-size: 16px;
 
     ::placeholder {
       font-size: 16px;
@@ -65,5 +64,6 @@ export const Input2 = styled(Field)`
 `;
 
 export const ErrorText = styled.p`
+  margin-top: 4px;
   color: ${colors.redErrorColor};
 `;

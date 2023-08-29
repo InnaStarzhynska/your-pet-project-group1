@@ -20,12 +20,6 @@ export const Label = styled.label`
   line-height: 1.36;
   color: ${colors.blueColor};
   transition: background-color 0.3s ease;
-
-  @media only screen and ${devices.tablet} {
-  }
-
-  @media only screen and ${devices.desktop} {
-  }
 `;
 
 export const Input = styled(Field)`

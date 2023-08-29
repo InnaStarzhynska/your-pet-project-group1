@@ -4,21 +4,36 @@ import { colors } from '../../constants/colors';
 import { Form } from 'formik';
 
 export const Wrapper = styled.div`
-  min-width: 280px;
-  margin-right: auto;
-  margin-left: auto;
+  width: 280px;
+  padding: 20px 8px;
+  margin: 0 auto;
   margin-top: 20px;
   background-color: #ffffff;
   border-radius: 40px;
 
   @media only screen and ${devices.tablet} {
-    max-width: ${props => (props.width ? '704px' : '458px')};
+    width: ${props => (props.width !== 'your pet' && props.step === 2 ? '704px' : '458px')};
     margin-top: 60px;
+    padding: 20px 32px;
   }
 
   @media only screen and ${devices.desktop} {
-    max-width: ${props => (props.width ? '822px' : '458px')};
+    width: ${props => ((props.width !== 'your pet' && props.step === 2) ? '822px' : '458px')};
     margin-top: 40px;
+  }
+`;
+
+export const Title = styled.h1`
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.36;
+  margin-bottom: 24px;
+
+  @media only screen and ${devices.tablet} {
+    font-size: 28px;
+  }
+
+  @media only screen and ${devices.desktop} {
   }
 `;
 
@@ -39,19 +54,7 @@ export const FormContainer = styled(Form)`
   }
 `;
 
-export const Title = styled.h1`
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 1.36;
-  margin-bottom: 24px;
 
-  @media only screen and ${devices.tablet} {
-    font-size: 28px;
-  }
-
-  @media only screen and ${devices.desktop} {
-  }
-`;
 
 export const ButtonBox = styled.div`
   display: flex;
