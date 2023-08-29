@@ -4,9 +4,9 @@ import { StepperBox, NameStep, MarkStep, BoxStep } from './Stepper.styled';
 export default function Stepper({ currentStep }) {
 
   const steps = [
-    { step: 1, label: 'Choose  option' },
-    { step: 2, label: 'Personal details' },
-    { step: 3, label: 'More info' },
+    { step: 0, label: 'Choose  option' },
+    { step: 1, label: 'Personal details' },
+    { step: 2, label: 'More info' },
   ];
   
  

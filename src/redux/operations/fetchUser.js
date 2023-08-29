@@ -87,7 +87,7 @@ export const updateUserInfo = createAsyncThunk("user/updateUserInfo", async (cre
 
 export const addPet = createAsyncThunk('user/addPet', async (credentials, thunkAPI) => {
     try {
-        const responce = await axios.post('/pets/add-pet', credentials);
+        const responce = await axios.post('/pets/add', credentials);
         Notiflix.Notify.success(`Your pet added!`);
         return responce.data
     } catch (error) {
