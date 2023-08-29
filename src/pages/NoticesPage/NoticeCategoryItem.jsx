@@ -1,6 +1,9 @@
 import { formatDistanceStrict } from 'date-fns';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getNoticeById } from 'redux/operations/fetchNotices';
+import { useState } from 'react';
+import {selectUser, selectLoggedIn} from 'redux/selectors';
+  import {addNoticeToFavorites, removeNoticeFromFavorites } from 'redux/operations/fetchNotices';
 import {
   Avatar,
   Card,
@@ -20,11 +23,31 @@ import {
 
 
 
+
 export default function NoticesCategoryItem({item, isModalOpen}) {
   const dispatch = useDispatch();
 
-  const { _id, category, avatar, location, dateOfBirth, sex, title } =
+  const { _id: noticeId, category, avatar, location, dateOfBirth, sex, title, favorite } =
     item;
+
+    const isLoggedIn = useSelector(selectLoggedIn);
+    const {id} = useSelector(selectUser);
+    const [isFavorite] = useState(favorite.includes(id));
+
+    const handleToggleFavorite = (noticeId, isLoggedIn, favorite) => {
+      if (!isLoggedIn) {
+        return;
+      }
+  
+      if (favorite) {
+        dispatch(addNoticeToFavorites({ _id: noticeId }));
+        return;
+      }
+  
+      dispatch(removeNoticeFromFavorites({ _id: noticeId }));
+    };
+  
+
 
   const formatPetsAge = birthDate => {
     return formatDistanceStrict(new Date(), Date.parse(birthDate), {
@@ -51,10 +74,10 @@ export default function NoticesCategoryItem({item, isModalOpen}) {
 
   const noticeTitle = formatNoticeTitle(title);
 
-    // const favourite = isLoggedIn && user.favourite.includes(_id);
+    
 
-
-
+console.log(favorite)
+console.log(id)
   return (
      <Card className="card">
       <Avatar src={avatar} alt={title} />
@@ -80,10 +103,10 @@ export default function NoticesCategoryItem({item, isModalOpen}) {
       </InfoIconsWraper>
       <CardTitle>{noticeTitle}</CardTitle>
       <StyledCategory>{category}</StyledCategory>
-      <AddToFavouriteBtn  type="button">
-        <HeartIcon className='heartIcon'
-          id={'icon-heart'}
-          // className={`${'heartIcon'} ${favourite && 'inFavouriteIcon'}`}
+      <AddToFavouriteBtn  type="button" onClick={()=> handleToggleFavorite(noticeId, isLoggedIn, !favorite.includes(id))}>
+        <HeartIcon 
+          id={'icon-heart'} 
+          className={`heartIcon ${favorite.includes(id)?  'inFavouriteIcon' : ''}`}
         ></HeartIcon>
       </AddToFavouriteBtn>
     
@@ -92,8 +115,8 @@ export default function NoticesCategoryItem({item, isModalOpen}) {
         </DeleteBtn> */}
       
       <LearnMoreBtnWrap>
-          <LearnMoreBtn type="button" className='btn' onClick={() => {
-            dispatch(getNoticeById({ _id }));
+          <LearnMoreBtn type="button" isFavorite={isFavorite} className='btn' onClick={() => {
+            dispatch(getNoticeById({ noticeId }));
           isModalOpen(true);
                 }}>
           Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>
