@@ -12,24 +12,30 @@ export const Wrapper = styled.div`
   border-radius: 40px;
 
   @media only screen and ${devices.tablet} {
-    width: ${props => (props.width !== 'your pet' && props.step === 2 ? '704px' : '458px')};
+    width: ${props =>
+      props.width !== 'your pet' && props.step === 2 ? '704px' : '458px'};
     margin-top: 60px;
     padding: 20px 32px;
   }
 
   @media only screen and ${devices.desktop} {
-    width: ${props => ((props.width !== 'your pet' && props.step === 2) ? '822px' : '458px')};
+    width: ${props =>
+      props.width !== 'your pet' && props.step === 2 ? '822px' : '458px'};
     margin-top: 40px;
   }
 `;
 
 export const Title = styled.h1`
+  margin-bottom: 24px;
+  padding-left: 12px;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.36;
-  margin-bottom: 24px;
 
   @media only screen and ${devices.tablet} {
+    text-align: ${props => 
+      (props.step === 2 && props.category !== 'your pet') && 'center'};
+    padding-left: 0px;
     font-size: 28px;
   }
 
@@ -53,8 +59,6 @@ export const FormContainer = styled(Form)`
     padding: ${props => props.padding && '20px 73px'};
   }
 `;
-
-
 
 export const ButtonBox = styled.div`
   display: flex;

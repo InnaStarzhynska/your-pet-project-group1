@@ -98,15 +98,17 @@ export default function AddPetPage() {
 
   return (
     <Wrapper width={data.category} step={activeStep}>
-      <Title>{activeStep === 0
-              ? 'Add pet'
-              : data.category === 'your pet'
-              ? 'Add pet'
-              : data.category === 'sell'
-              ? 'Add pet for sale'
-              : data.category === 'lost/found'
-              ? 'Add lost pet'
-              : 'Add lost pet'}</Title>
+      <Title step={activeStep} category={data.category}>
+        {activeStep === 0
+          ? 'Add pet'
+          : data.category === 'your pet'
+          ? 'Add pet'
+          : data.category === 'sell'
+          ? 'Add pet for sale'
+          : data.category === 'lost/found'
+          ? 'Add lost pet'
+          : 'Add lost pet'}
+      </Title>
       <Stepper currentStep={activeStep} />
       {steps[activeStep]}
     </Wrapper>
