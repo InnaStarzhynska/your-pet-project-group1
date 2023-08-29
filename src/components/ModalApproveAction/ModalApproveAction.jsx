@@ -1,4 +1,4 @@
-// import { createPortal } from 'react-dom';
+import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 
 import SvgIcon from 'components/SvgIcon/SvgIcon';
@@ -49,7 +49,7 @@ const ModalApproveAction = ({ toggleModal, children }) => {
     toggleModal();
   };
 
-  return (
+  return createPortal (
     <>
       {children && (
         <Backdrop onClick={handleBackdropClick}>
@@ -106,7 +106,7 @@ const ModalApproveAction = ({ toggleModal, children }) => {
           </ModalNone>
         </Background>
       )}
-    </>
+    </>, modalApproveAction
   );
 };
 
