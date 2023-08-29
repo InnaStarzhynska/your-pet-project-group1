@@ -11,8 +11,11 @@ export const Section = styled.section`
 `;
 export const NoticesContainer = styled.div`
   display: flex;
+  padding-top: 20px;
   @media screen and (${devices.tablet}) {
     justify-content: space-between;
+    padding-top: 40px;
+    height: 82px;
   }
 `;
 export const NoticesSearchContainer = styled.div`
@@ -80,14 +83,15 @@ export const NoticesNavbtn = styled(Link)`
 
 export const NoticesNavList = styled.ul`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   width: 200px;
   gap: 8px;
   list-style: none;
-  margin-top: 20px;
+ 
   @media screen and (${devices.tablet}) {
     width: 319px;
-    margin-top: 40px;
+   
   }
   @media screen and (${devices.desktop}) {
     width: 100%;
@@ -124,7 +128,7 @@ padding: 24px 0 40px;
   padding: 40px 0 60px;
 }
 
-@media screen and (${devices.tablet}) {
+/* @media screen and (${devices.tablet}) {
   padding: 42px 0 68px;
-}
+} */
 `

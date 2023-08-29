@@ -48,7 +48,7 @@ margin: 20px;
 
 export const InfoIconsWraper = styled.div`
 display: flex;
-padding: 0 12px;
+padding: 0 8px;
 position: absolute;
 bottom: 180px;
   gap: 12px;
@@ -189,7 +189,7 @@ font-weight: 500;
 line-height: 19px;
 letter-spacing: 0em;
 text-align: center;
-padding: 11px 17px;
+padding: 11px ;
 border: none;
 display: flex;
 align-items: center;

@@ -36,8 +36,8 @@ export default function NoticesCategoryItem({item, isModalOpen}) {
   const petsAge = formatPetsAge(dateOfBirth);
 
   function formatNoticeTitle(noticeTitle) {
-    if (noticeTitle && noticeTitle.length > 32) {
-      return noticeTitle.slice(0, 32) + '...';
+    if (noticeTitle && noticeTitle.length > 29) {
+      return noticeTitle.slice(0, 29) + '...';
     } else return noticeTitle;
   }
 
