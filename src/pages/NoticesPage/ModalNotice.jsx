@@ -40,7 +40,7 @@ const ModalNotice = ({
   toggleModal,
   isFavorite,
   isDisabledBtn,
-  isOpenModal
+  isModalOpen
 }) => {
   const dispatch = useDispatch();
   const notice = useSelector(selectNoticeById);
@@ -69,7 +69,7 @@ const ModalNotice = ({
       <Modal>
      <ModalNoticeBox> 
       <ModalNoticeWrap>
-        <Image src={notice.fileUrl} alt={notice.name} />
+        <Image src={notice.avatar} alt={notice.name} />
         <Category>
           {notice.category === "for-free" ? "in good hands" : notice.category}
         </Category>
@@ -82,7 +82,7 @@ const ModalNotice = ({
             </ModelItemInfo>
             <ModelItemInfo>
               <Key>Birthday:</Key>
-              <Value>{formatDate(notice.date)}</Value>
+              <Value>{formatDate(notice.dateOfBirth)}</Value>
             </ModelItemInfo>
             <ModelItemInfo>
               <Key>Type:</Key>
@@ -110,7 +110,7 @@ const ModalNotice = ({
       <Comments>
         <CommentsBold>Comments: </CommentsBold> {notice.comments}
       </Comments>
-      <CloseBtn type="button" onClick={isOpenModal}>
+      <CloseBtn type="button" onClick={isModalOpen}>
         <SvgIcon id={'icon-cross-small'} color={colors.blueColor} />
       </CloseBtn>
       <div>
