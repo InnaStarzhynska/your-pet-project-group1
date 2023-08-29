@@ -19,11 +19,26 @@ export default function NoticesPage() {
   const page = Number(searchParams.get('page') ?? 1);
   const query = searchParams.get('query') ?? '';
   const isLoading = useSelector(selectLoadingNotices);
-  
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   
   useEffect(() => {
-    dispatch(getNoticesByQuery({ category, query, page } ))
-  }, [dispatch, category, query, page])
+    const handleResize = () => {
+      const windowWidth = window.innerWidth;
+      setIsMobile(windowWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  useEffect(() => {
+    dispatch(getNoticesByQuery({ category, query, page }))
+  }, [dispatch, category, query, page]);
+
+
 
   const changePage = (e) => {
     const page = e.target.textContent;
@@ -44,7 +59,7 @@ export default function NoticesPage() {
             <NoticesSearch handleSubmit={handleSubmit} value={query} />
             <NoticesContainer>
               <NoticesCategoriesNav />
-              <AddPetButton />
+              {!isMobile && <AddPetButton />}
             </NoticesContainer>
  <NoticesCategoryListWrap>
             <NoticesCategoriesList />
