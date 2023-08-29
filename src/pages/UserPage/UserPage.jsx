@@ -1,18 +1,18 @@
 import UserData from '../../components/UserPage/UserData/UserData';
 import PetsData from '../../components/UserPage/PetsData/PetsData';
 import {
-  UserPageWrapper,
   UserPageContainer,
   UserTitle,
   UserContainer,
+  Section,
 } from './UserPage.styled';
 import Logout from '../../components/UserPage/Logout/Logout';
 import { Container } from 'components/Sharedlayout/Sharedlayout.styled';
 
 export const UserPage = () => {
   return (
+    <Section>
     <Container>
-      <UserPageWrapper>
         <UserPageContainer>
           <div>
             <UserTitle>My information:</UserTitle>
@@ -23,8 +23,8 @@ export const UserPage = () => {
           </div>
           <PetsData />
         </UserPageContainer>
-      </UserPageWrapper>
     </Container>
+    </Section>
   );
 };
 
