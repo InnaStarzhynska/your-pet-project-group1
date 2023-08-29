@@ -8,7 +8,7 @@ export const getNoticesByQuery = createAsyncThunk(
   'notices/getNoticesByQuery',
     async (credentials, thunkAPI) => {
     try {
-      const queryURL = `/notice?searchQuery=${credentials.query}&category=${credentials.category}&page=${credentials.page}`;
+      const queryURL = `/notice?searchQuery=${credentials.query}&category=${credentials.category}&page=${credentials.page}&limit=8`;
       const response = await axios.get(queryURL);
       return response.data;
     } catch (error) {
@@ -34,7 +34,7 @@ export const getNoticeById = createAsyncThunk(
 
 export const addNotice = createAsyncThunk('notices/addNotice', async (credentials, thunkAPI) => {
     try {
-        const response = await axios.post('notice/addNotice', credentials);
+        const response = await axios.post('notice/add-notice', credentials);
         return response.data;
     } catch (error) {
         Notiflix.Notify.failure(error.response.data.message);

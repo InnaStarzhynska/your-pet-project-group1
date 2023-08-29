@@ -4,7 +4,7 @@ import NewsItem from './NewsItem';
 import { selectNews } from 'redux/selectors';
 
 export const NewsList = () => {
-  const news = useSelector(selectNews)
+  const news = useSelector(selectNews);
   return (
     <List>
       {news.map(article => (
