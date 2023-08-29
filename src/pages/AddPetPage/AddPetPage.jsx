@@ -47,8 +47,8 @@ export default function AddPetPage() {
   });
   const [activeStep, setActiveStep] = useState(0);
 
-  const sendDataPets = (data) => {
-    console.log("Submitted", data)
+  const sendDataPets = data => {
+    console.log('Submitted', data);
 
     const formData = new FormData();
 
@@ -59,7 +59,7 @@ export default function AddPetPage() {
       formData.append('petAvatar', data.imagesPets);
       formData.append('comments', data.comments);
 
-      dispatch(addPet(formData))
+      dispatch(addPet(formData));
       for (const pair of formData.entries()) {
         console.log(`${pair[0]}, ${pair[1]}`);
       }
@@ -78,21 +78,21 @@ export default function AddPetPage() {
       formData.append('location', data.location);
       formData.append('price', data.price);
 
-      dispatch(addNotice(formData))
+      dispatch(addNotice(formData));
       for (const pair of formData.entries()) {
         console.log(`${pair[0]}, ${pair[1]}`);
       }
 
       return;
     }
-  }
+  };
 
   const handleNextStep = (newData, final = false) => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
       sendDataPets(newData);
-      return
+      return;
     }
 
     setActiveStep(prevState => prevState + 1);
@@ -110,12 +110,14 @@ export default function AddPetPage() {
     <AddMoreInfo next={handleNextStep} back={handlePrevStep} data={data} />,
   ];
 
-  console.log(data)
+  console.log(data);
 
-  return <Wrapper>
-    <Stepper currentStep={activeStep}/>
-    {steps[activeStep]}
-    </Wrapper>;
+  return (
+    <Wrapper>
+      <Stepper currentStep={activeStep} />
+      {steps[activeStep]}
+    </Wrapper>
+  );
 }
 
 // import AddPetForm from 'components/AddPetForm/AddPetForm';
