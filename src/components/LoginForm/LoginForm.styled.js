@@ -2,6 +2,7 @@ import { Field } from 'formik';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
+import { colors } from 'constants/colors';
 
 export const FormContainer = styled.div`
   box-sizing: border-box;
@@ -13,7 +14,7 @@ export const FormContainer = styled.div`
   margin-right: auto;
   padding: 40px 12px;
   gap: 26px;
-  background-color: #ffffff;
+  background-color: ${colors.whiteBgColor};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 
   border-radius: 20px;
