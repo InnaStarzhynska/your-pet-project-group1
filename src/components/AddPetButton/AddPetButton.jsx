@@ -20,7 +20,6 @@ export default function AddPetButton() {
     };
   }, []);
   return (
-    <AddPetContainer>
       <AddPetBtn to={`/add-pet`} state={{ from: location }}>
         Add pet
         {isMobile ? (
@@ -29,6 +28,6 @@ export default function AddPetButton() {
           <SvgIcon id={'icon-plus-small'} color="#fff" />
         )}
       </AddPetBtn>
-    </AddPetContainer>
+    
   );
 }
