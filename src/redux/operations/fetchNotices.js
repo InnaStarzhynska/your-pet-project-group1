@@ -8,7 +8,7 @@ export const getNoticesByQuery = createAsyncThunk(
   'notices/getNoticesByQuery',
     async (credentials, thunkAPI) => {
     try {
-      const queryURL = `/notice?searchQuery=${credentials.query}&category=${credentials.category}&page=${credentials.page}&limit=8`;
+      const queryURL = `/notice/search?searchQuery=${credentials.query}&category=${credentials.category}&page=${credentials.page}&limit=8`;
       const response = await axios.get(queryURL);
       return response.data;
     } catch (error) {
@@ -34,7 +34,7 @@ export const getNoticeById = createAsyncThunk(
 
 export const addNotice = createAsyncThunk('notices/addNotice', async (credentials, thunkAPI) => {
     try {
-        const response = await axios.post('notice/add-notice', credentials);
+        const response = await axios.post('notice/add', credentials);
         return response.data;
     } catch (error) {
         Notiflix.Notify.failure(error.response.data.message);
@@ -67,7 +67,7 @@ export const getNoticesAddByUser = createAsyncThunk('notices/getNoticesAddByUser
  
 export const getFavoriteNotices = createAsyncThunk('notices/getFavoriteNotices', async (_, thunkAPI) => {
     try {
-        const responce = await axios.get('/notice/favorites');
+        const responce = await axios.get('/notice/marked');
         return responce.data
     } catch (error) {
         Notiflix.Notify.failure(error.response.data.message);
@@ -77,7 +77,7 @@ export const getFavoriteNotices = createAsyncThunk('notices/getFavoriteNotices',
 
 export const addNoticeToFavorites = createAsyncThunk('notices/addNoticeToFavorites', async (credentials, thunkAPI) => {
     try {
-        const queryURL = `/notice/add-to-favorites/${credentials._id}`;
+        const queryURL = `/notice/mark/${credentials._id}`;
         const responce = axios.patch(queryURL);
         Notiflix.Notify.success(`The notice added to favorites!`);
         return responce.data
@@ -89,7 +89,7 @@ export const addNoticeToFavorites = createAsyncThunk('notices/addNoticeToFavorit
 
 export const removeNoticeFromFavorites = createAsyncThunk('notices/removeNoticeFromFavorites', async (credentials, thunkAPI) => {
      try {
-        const queryURL = `/notice/remove-from-favorites/${credentials._id}`;
+        const queryURL = `/notice/unmark/${credentials._id}`;
         const responce = axios.patch(queryURL);
         Notiflix.Notify.success(`The notice removed from favorites!`);
         return responce.data
