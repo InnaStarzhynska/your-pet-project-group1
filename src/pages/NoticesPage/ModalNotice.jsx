@@ -22,6 +22,8 @@ import {
 } from "./ModalNotice.styled";
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
+import { selectNoticeById } from "redux/selectors";
+import Modal from "components/Modal/Modal";
 
 
 function formatDate(inputDate) {
@@ -38,9 +40,10 @@ const ModalNotice = ({
   toggleModal,
   isFavorite,
   isDisabledBtn,
+  isOpenModal
 }) => {
   const dispatch = useDispatch();
-  const notice = useSelector(getNoticeById);
+  const notice = useSelector(selectNoticeById);
   const [email, setEmail] = useState(notice.owner?.email || "unknown");
   const [phone, setPhone] = useState(notice.owner?.phone || "unknown");
 
@@ -63,7 +66,7 @@ const ModalNotice = ({
 //   };
 
     return (
-      // <Modal>
+      <Modal>
      <ModalNoticeBox> 
       <ModalNoticeWrap>
         <Image src={notice.fileUrl} alt={notice.name} />
@@ -107,7 +110,7 @@ const ModalNotice = ({
       <Comments>
         <CommentsBold>Comments: </CommentsBold> {notice.comments}
       </Comments>
-      <CloseBtn type="button" onClick={toggleModal}>
+      <CloseBtn type="button" onClick={isOpenModal}>
         <SvgIcon id={'icon-cross-small'} color={colors.blueColor} />
       </CloseBtn>
       <div>

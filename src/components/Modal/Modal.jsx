@@ -8,7 +8,7 @@
 
 import { useEffect } from 'react';
 import { BackDrop, Button, Content } from './Modal.styled';
-import { createPortal } from 'react-dom';
+// import { createPortal } from 'react-dom';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 
@@ -38,7 +38,7 @@ const Modal = ({ closeModal, children }) => {
     }
   };
 
-  return createPortal(
+  return (
     <BackDrop onClick={handleBackDropClick}>
       <Content>
         {children}
@@ -51,8 +51,7 @@ const Modal = ({ closeModal, children }) => {
        
         </Button>
       </Content>
-    </BackDrop>,
-    modalWindow
+    </BackDrop>
   );
 };
 

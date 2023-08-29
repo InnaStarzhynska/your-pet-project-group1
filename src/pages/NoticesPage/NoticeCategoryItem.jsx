@@ -20,7 +20,7 @@ import {
 
 
 
-export default function NoticesCategoryItem({item}) {
+export default function NoticesCategoryItem({item, isModalOpen}) {
   const dispatch = useDispatch();
 
   const { _id, category, avatar, location, dateOfBirth, sex, title } =
@@ -53,10 +53,10 @@ export default function NoticesCategoryItem({item}) {
 
     // const favourite = isLoggedIn && user.favourite.includes(_id);
 
-  
+
 
   return (
-    <Card className="card">
+     <Card className="card">
       <Avatar src={avatar} alt={title} />
       <InfoIconsWraper>
         <LocateLink
@@ -92,12 +92,12 @@ export default function NoticesCategoryItem({item}) {
         </DeleteBtn> */}
       
       <LearnMoreBtnWrap>
-        <LearnMoreBtn type="button" className='btn'  onClick={() => {
-                  dispatch(getNoticeById(_id));
+          <LearnMoreBtn type="button" className='btn' onClick={() => {
+            dispatch(getNoticeById({ _id }));
+          isModalOpen(true);
                 }}>
           Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>
         </LearnMoreBtn>
       </LearnMoreBtnWrap>
-    </Card>
-  );
+    </Card>)
 }

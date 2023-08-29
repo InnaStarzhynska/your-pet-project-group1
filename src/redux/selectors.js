@@ -6,6 +6,7 @@ export const selectPets = state => state.user.pets;
 export const selectNotices = state => state.notices.notices;
 export const selectLoadingNotices = state => state.notices.isLoading;
 export const selectNoticesTotalPages = state => state.notices.totalPages;
+export const selectNoticeById = state => state.notices.noticeById;
 
 export const selectNews = state => state.news.news;
 export const selectLoadingNews = state => state.news.isLoading;

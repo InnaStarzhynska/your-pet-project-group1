@@ -43,7 +43,10 @@ export default function NewsPage() {
     {isLoading ? (<IsLoading/>) : ( <Container>
       <NewsContainer>
         <NewsTitle>News</NewsTitle>
-       <NewsSearch handleSubmit={handleSubmit} value={query}/>
+       <NewsSearchForm onSubmit={handleSubmit}>
+            <NewsSearch  value={query} type="text" name="search" placeholder="Search" />
+          <SearchButton type='submit'><SvgIcon id={'icon-search'} /></SearchButton>
+        </NewsSearchForm>
         <NewsList />
         </NewsContainer>
         <Pagination changePage={changePage} currentPage={page} />
