@@ -1,5 +1,5 @@
 import SvgIcon from 'components/SvgIcon/SvgIcon';
-import { AddPetBtn, AddPetContainer } from './AddPetButton.styled';
+import { AddPetBtn } from './AddPetButton.styled';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 

@@ -2,15 +2,12 @@ import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
 import { Link } from 'react-router-dom';
 
-export const AddPetContainer = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  position: relative;
-`;
+
 
 export const AddPetBtn = styled(Link)`
-  position: absolute;
-  top: 160px;
+  position: fixed;
+    top: 460px;
+    right: 20px;
 
   display: flex;
   flex-direction: column-reverse;
@@ -34,14 +31,21 @@ export const AddPetBtn = styled(Link)`
   }
 
   @media screen and (${devices.tablet}) {
-    border-radius: 40px;
+    width: 129px;
+height: 40px;
+
+
+padding: 8px 16px;
+border-radius: 40px;
+
+
+   
     flex-direction: row;
     top: 0;
-    height: auto;
-    padding-top: 9px;
-    padding-bottom: 9px;
+    
+    
     position: relative;
     text-decoration: none;
-    width: 129px;
+    
   }
 `;
