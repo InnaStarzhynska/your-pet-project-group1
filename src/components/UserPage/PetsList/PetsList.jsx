@@ -1,27 +1,20 @@
-import PetsItem from '../PetsItem/PetsItem';
-import React, { useState } from 'react';
-import UserDefaultAvatar from '../../../images/Photo_default@2x.jpg';
+import React from 'react';
 import { PetsCardContainer } from './PetsList.styled';
 import PetsItemDefault from '../PetsItem/PetsItemDefault/PetsItemDefault';
+import { useSelector } from 'react-redux';
 
 export const PetsList = () => {
-  const [pets] = useState([]);
+  const pets = useSelector(state => state.user.pets);
 
-  const defaultPet = [
-    {
-      id: 1,
-      name: 'Your pet name',
-      birthday: 'DD-MM-YYYY',
-      photoUrl: UserDefaultAvatar,
-      type: 'Type of your pet',
-      comments: 'The best pets',
-    },
-  ];
+  console.log(pets);
+
   return (
     <>
-      {pets?.length === 0 ? (
-        <PetsCardContainer style={{ position: 'relative' }}>
-          {defaultPet.map(pet => (
+      <PetsCardContainer style={{ position: 'relative' }}>
+        {!pets.length === 0 ? (
+          <h4>Pets not found</h4>
+        ) : (
+          pets.map(pet => (
             <PetsItemDefault
               key={pet.id}
               name={pet.name}
@@ -31,23 +24,9 @@ export const PetsList = () => {
               comments={pet.comments}
               id={pet.id}
             />
-          ))}
-        </PetsCardContainer>
-      ) : (
-        <PetsCardContainer>
-          {pets.map(({ id, name, birthday, photoUrl, type, comments }) => (
-            <PetsItem
-              key={id}
-              name={name}
-              birthday={birthday}
-              photoUrl={photoUrl}
-              type={type}
-              comments={comments}
-              id={id}
-            />
-          ))}
-        </PetsCardContainer>
-      )}
+          ))
+        )}
+      </PetsCardContainer>
     </>
   );
 };

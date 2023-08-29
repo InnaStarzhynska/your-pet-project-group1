@@ -35,7 +35,7 @@ export const PetsContainer = styled.div`
     width: 704px;
     gap: 20px;
   }
-  $@media screen and (min-width: 1280px) {
+   @media screen and (min-width: 1280px) {
     width: 821px;
     gap: 24px;
   }

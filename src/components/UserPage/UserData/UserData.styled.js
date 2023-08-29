@@ -16,11 +16,11 @@ export const ButtonEditUserInfo = styled.button`
   border: none;
   border-radius: 50%;
   cursor: pointer;
-  transition: background-color 250ms cubic-bezier(0.21, 0.65, 0.66, 0.12);
+  /* transition: background-color 250ms cubic-bezier(0.21, 0.65, 0.66, 0.12); */
+
   &:hover,
   &:focus {
-    box-shadow: 7px 13px 14px 0px #74b1e83d;
-    background-color: #cce4fb;
+    /* box-shadow: 7px 13px 14px 0px #74b1e83d; */
   }
   @media screen and (min-width: 767px) {
     top: 10px;
@@ -28,6 +28,40 @@ export const ButtonEditUserInfo = styled.button`
   }
   @media screen and (min-width: 1280px) {
   }
+`;
+
+export const SaveProfile = styled.button`
+  border-radius: 40px;
+  background-color: rgb(84, 173, 255);
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  height: 31px;
+  width: 72%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    background: linear-gradient(290.46deg, #9bd0ff 0%, #419ef1 107.89%);
+    color: #fff;
+  }
+
+  @media screen and (min-width: 767px) {
+    font-size: 16px;
+    height: 32px;
+  }
+  @media screen and (min-width: 1280px) {
+    height: 34px;
+  }
+`;
+
+export const SaveProfileWrapper = styled.div`
+  display: flex;
+  justify-content: right;
 `;
 
 export const StyledUserDataForm = styled.div`
@@ -91,12 +125,6 @@ export const UserAvatarUserDataThumb = styled.div`
   margin: 0 auto 9px auto;
   overflow: hidden;
 `;
-
-// export const UserAvatarUserData = styled.img`
-//   height: 182px;
-//   width: 182px;
-//   object-fit: cover;
-// `;
 
 export const Avatar = styled.img`
   width: 182px;

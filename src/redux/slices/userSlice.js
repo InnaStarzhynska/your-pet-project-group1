@@ -19,7 +19,16 @@ const initialState = {
     phone: null,
     city: null,
   },
-  pets: [],
+  pets: [
+    {
+      id: 1,
+      name: 'Your pet name',
+      birthday: 'DD-MM-YYYY',
+      photoUrl: '',
+      type: 'Type of your pet',
+      comments: 'The best pets',
+    },
+  ],
   token: null,
   isLoggedIn: false,
   isLoading: false,
