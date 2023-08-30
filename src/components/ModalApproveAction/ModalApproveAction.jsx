@@ -49,7 +49,7 @@ const ModalApproveAction = ({ toggleModal, children }) => {
     toggleModal();
   };
 
-  return createPortal(
+  return createPortal (
     <>
       {children && (
         <Backdrop onClick={handleBackdropClick}>
@@ -106,8 +106,7 @@ const ModalApproveAction = ({ toggleModal, children }) => {
           </ModalNone>
         </Background>
       )}
-    </>,
-    modalApproveAction
+    </>, modalApproveAction
   );
 };
 

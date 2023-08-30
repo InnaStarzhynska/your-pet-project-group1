@@ -26,7 +26,7 @@ export const registerUser = createAsyncThunk("user/registerUser", async (credent
 
 export const logIn = createAsyncThunk("user/logIn", async (credentials, thunkAPI) => {
     try {
-        const responce = await axios.post('user/login', credentials);
+        const responce = await axios.post('auth/login', credentials);
          Notiflix.Notify.success(`Welcome, ${responce.data.user.name}!`);
         setAuthHeader(responce.data.token);
         return responce.data
@@ -65,7 +65,7 @@ export const getCurrentUser = createAsyncThunk("user/getCurrentUser", async (_, 
 
 export const getUserInfo = createAsyncThunk("user/getUserInfo", async (_, thunkAPI) => {
     try {
-        const responce = await axios.get('/userInfo');
+        const responce = await axios.get('/profile');
         return responce.data
     } catch (error) {
         Notiflix.Notify.failure(error.response.data.message);
@@ -75,7 +75,7 @@ export const getUserInfo = createAsyncThunk("user/getUserInfo", async (_, thunkA
 
 export const updateUserInfo = createAsyncThunk("user/updateUserInfo", async (credentials, thunkAPI) => {
     try {
-        const responce = await axios.put('/updateUser', credentials);
+        const responce = await axios.put('/update', credentials);
         Notiflix.Notify.success(`Information changed successfully`);
         return responce.data
     }
@@ -98,7 +98,7 @@ export const addPet = createAsyncThunk('user/addPet', async (credentials, thunkA
 
 export const deletePet = createAsyncThunk('user/deletePet', async (credentials, thunkAPI) => {
 try {
-    const queryURL = `/pets/delete-pet/${credentials._id}`;
+    const queryURL = `/pets/delete/${credentials._id}`;
     const responce = await axios.delete(queryURL);
     Notiflix.Notify.success(`Your pet has been successfully deleted`);
         return responce.data

@@ -11,8 +11,11 @@ export const Section = styled.section`
 `;
 export const NoticesContainer = styled.div`
   display: flex;
+  padding-top: 20px;
   @media screen and (${devices.tablet}) {
     justify-content: space-between;
+    padding-top: 40px;
+    height: 82px;
   }
 `;
 export const NoticesSearchContainer = styled.div`
@@ -80,14 +83,15 @@ export const NoticesNavbtn = styled(Link)`
 
 export const NoticesNavList = styled.ul`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   width: 200px;
   gap: 8px;
   list-style: none;
-  margin-top: 20px;
+ 
   @media screen and (${devices.tablet}) {
     width: 319px;
-    margin-top: 40px;
+   
   }
   @media screen and (${devices.desktop}) {
     width: 100%;
@@ -98,10 +102,11 @@ export const NoticesList = styled.div`
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  gap:24px;
+  gap: 24px 32px;
 
   @media screen and (${devices.tablet}) {
-    gap: 20px;
+    grid-template-columns: 24px;
+    grid-template-rows: 32px;
     padding: 0;
     list-style-type: none;
     display: flex;
@@ -115,4 +120,15 @@ export const SearchButton = styled.button`
   padding: 10px 0 6px;
   background-color: transparent;
   border-color: transparent
+`
+export const NoticesCategoryListWrap = styled.div`
+padding: 24px 0 40px;
+
+@media screen and (${devices.tablet}) {
+  padding: 40px 0 60px;
+}
+
+/* @media screen and (${devices.tablet}) {
+  padding: 42px 0 68px;
+} */
 `

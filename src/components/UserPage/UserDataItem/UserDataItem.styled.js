@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
-// import SvgIcon from 'components/SvgIcon/SvgIcon';
 
 export const FormItem = styled.div`
     position: relative;
@@ -20,42 +19,6 @@ export const FormWrapper = styled.div`
 
 export const FormLabel = styled.label``;
 
-// export const EditIc = styled(EditIcon)`
-//     stroke: #54ADFF;
-//     fill: #54ADFF;
-//     width: 20px;
-//     height: 20px;
-//     @media screen and (min-width: 768px) {
-//         width: 24px;
-//         height: 24px;
-//     }
-// `;
-
-// export const ConfirmIcon = styled(CheckIcon)`
-//     color: #00c3ad;
-//     width: 20px;
-//     height: 20px;
-
-//     @media screen and (min-width: 768px) {
-//         width: 24px;
-//         height: 24px;
-//     }
-// `;
-
-// export const EditInpuButton = styled.button`
-//     position: absolute;
-//     overflow: visible;
-//     right: 12px;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     padding: 0;
-//     margin: 0;
-//     background: transparent;
-//     border: none;
-
-//     // confirm icon
-// `;
 
 export const FormInput = styled(Field)`
     width: 190px;
@@ -78,9 +41,6 @@ export const FormInput = styled(Field)`
         height: 32px
     };
     
-
-   
-
     &::-webkit-calendar-picker-indicator {
         color: #111111;
         font-size: 15px;
@@ -104,13 +64,3 @@ export const InputName = styled.span`
     }
 `;
 
-// export const ErrorContainer = styled.div`
-//     position: absolute;
-//     display: block;
-//     color: #f43f5e;
-//     margin-left: 110px;
-//     margin-top: -30px;
-//     background-color: #fdf7f2;
-//     font-family: Manrope-Regular;
-//     font-size: 12px;
-// `;

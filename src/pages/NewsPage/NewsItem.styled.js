@@ -41,8 +41,10 @@ export const ImageNews = styled.img`
   object-fit: cover;
   border-radius: 20px;
   @media screen and (${devices.tablet}) {
+    height: 252px;
   }
-  @media screen and (${devices.tablet}) {
+
+  @media screen and (${devices.desktop}) {
   }
 `;
 export const Content = styled.div`
@@ -68,15 +70,33 @@ export const TextNews = styled.p`
   line-height: 22px;
   margin-top: 16px;
   text-align: left;
+  overflow: none;
+  height: 110px;
+   @media screen and (${devices.tablet}) {
+    overflow: hidden;
+
+    height: 132px;
+  };
+
+  @media screen and (${devices.desktop}) {
+  }
+`
+export const ReadMoreButton = styled.button`
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
 `;
 export const ContainerInfo = styled.div`
-  display: flex;
-  justify-content: space-between;
-
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  top: 545px;
+  @media screen and (${devices.tablet}) {
+    top: 525px;
+  }
+
+  @media screen and (${devices.tablet}) {
+    top: 503px;
+  }
 `;
 export const Date = styled.span`
   line-height: 22px;
@@ -87,4 +107,12 @@ export const LinkReadMore = styled.a`
   font-size: 16px;
   line-height: 22px;
   color: rgba(84, 173, 255, 1);
+  margin-left: 90px;
+  @media screen and (${devices.tablet}) {
+    margin-left: 140px;
+  }
+
+  @media screen and (${devices.desktop}) {
+    margin-left: 190px;
+  }
 `;

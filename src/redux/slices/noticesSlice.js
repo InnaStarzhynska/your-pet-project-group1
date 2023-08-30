@@ -11,9 +11,10 @@ import {
 } from 'redux/operations/fetchNotices';
 
 const initialState = {
-  notices: [],
+    notices: [],
+    noticeById: {},
   isLoading: false,
-  totalPages: 1,
+  totalPages: 1
 };
 
 const handlePending = state => {
@@ -36,7 +37,8 @@ const noticesSlice = createSlice({
       })
       .addCase(getNoticesByQuery.rejected, handleRejected)
       .addCase(getNoticeById.pending, handlePending)
-      .addCase(getNoticeById.fulfilled, state => {
+        .addCase(getNoticeById.fulfilled, (state, {payload}) => {
+            state.noticeById = payload;
         state.isLoading = false;
       })
       .addCase(getNoticeById.rejected, handleRejected)

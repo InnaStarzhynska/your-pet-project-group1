@@ -6,6 +6,8 @@ import {
   StyledUserDataForm,
   InputContainer,
   UserInfoContainer,
+  SaveProfile,
+  SaveProfileWrapper,
 } from './UserData.styled';
 import {
   AvatarContainer,
@@ -22,72 +24,54 @@ import {
   StyledLabel,
   UserAvatar,
   UserAvatarThumb,
-} from '../UserDataForm/UserDataForm.styled';
-// import { useDispatch } from 'react-redux';
+} from './UserDataForm.styled';
+
 import { colors } from 'constants/colors';
 import { Formik } from 'formik';
-import { getValidationSchema } from '../UserDataForm/utils/SchemaValidateUserForm';
-import Button from '../Button/Button';
+import { getValidationSchema } from './utils/SchemaValidateUserForm';
+import Notiflix from 'notiflix';
+import { useSelector } from 'react-redux';
 
 export const UserData = () => {
-  // const dispatch = useDispatch();
   const validationSchema = getValidationSchema();
-  const [formDisabled, setFormDisabled] = useState(false);
+  const [formDisabled, setFormDisabled] = useState(true);
   const imgRef = useRef(null);
-  // const submitButtonRef = useRef();
   const [imgUrl, setImgUrl] = useState();
   const [isAvatarUpdated, setIsAvatarUpdated] = useState(false);
   const [errorImg, setErrorImg] = useState('');
   const [setIsAvatarSelected] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const user = useSelector(state => state.user.user);
 
   const handleChangeFormStatus = () => {
     setFormDisabled(!formDisabled);
   };
 
-  const user = {
-    avatar: 'avatar_url',
-    userInfo: {
-      name: 'Anna',
-      email: 'Anna77@gmail.com',
-      birthday: '01-01-1990',
-      phone: '+38097-000-00-00',
-      city: 'Kyiv',
-    },
-  };
-
-  const isBirthdayValid = value => {
-    if (value === 'Invalid date') {
-      value = null;
-      return value;
-    }
-    return value;
-  };
-
   const initialValues = {
-    name: user.userInfo.name,
-    email: user.userInfo.email,
-    birthday: user.userInfo.birthday,
-    phone: user.userInfo.phone,
-    city: user.userInfo.city,
+    name: user?.name,
+    email: user?.email,
+    birthday: user.birthday,
+    phone: user?.phone,
+    city: user?.city,
   };
 
-  const handleAvatarPick = event => {
+  const handleAvatarPick = () => {
     imgRef.current.click();
   };
 
   const handleAvatarPreview = event => {
     setErrorImg('');
-    setSelectedAvatar(event.target.files[0]);
-    setImgUrl(URL.createObjectURL(event.target.files[0]));
-    setIsAvatarUpdated(true);
+    if (event.target.files[0]) {
+      setSelectedAvatar(event.target.files[0]);
+      setImgUrl(URL.createObjectURL(event.target.files[0]));
+      setIsAvatarUpdated(true);
+    }
   };
 
   const handleAvatarUpload = () => {
     console.log('selected', selectedAvatar);
     if (!selectedAvatar) {
-      alert('Please select a file!');
-      return;
+      Notiflix.Notify.failure('Please select a file!');
     }
     if (selectedAvatar?.size > 3145728) {
       setErrorImg('Image is too big please select image below 3 MB');
@@ -119,7 +103,8 @@ export const UserData = () => {
             <AvatarContainer>
               <UserAvatarThumb>
                 <UserAvatar
-                  src={!imgUrl ? UserDefaultAvatar : imgUrl}
+                  src={imgUrl ? imgUrl : UserDefaultAvatar}
+                  // src={UserDefaultAvatar}
                   width="182"
                   height="182"
                   alt="User avatar"
@@ -192,69 +177,53 @@ export const UserData = () => {
                 </ErrorMessageContainer>
               </InputContainer>
 
-              {!isBirthdayValid(user.userInfo.birthday) &&
-              formDisabled ? null : (
-                <StyledInput name="birthday">
-                  {({ field }) => (
-                    <InputContainer>
-                      <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
-                      <ErrorMessageContainer>
-                        <StyledInputMask
-                          {...field}
-                          mask="99-99-9999"
-                          maskplaceholder="11-11-1970"
-                          type="text"
-                          disabled={formDisabled}
-                        />
-                        <StyledErrorMessage component="div" name="birthday" />
-                      </ErrorMessageContainer>
-                    </InputContainer>
-                  )}
-                </StyledInput>
-              )}
+              <StyledInput name="birthday">
+                {({ field }) => (
+                  <InputContainer>
+                    <StyledLabel htmlFor="birthday">Birthday:</StyledLabel>
+                    <ErrorMessageContainer>
+                      <StyledInputMask
+                        {...field}
+                        mask="99-99-9999"
+                        maskplaceholder="11-11-1970"
+                        type="text"
+                        disabled={formDisabled}
+                      />
+                      <StyledErrorMessage component="div" name="birthday" />
+                    </ErrorMessageContainer>
+                  </InputContainer>
+                )}
+              </StyledInput>
 
-              {!user.userInfo.phone && formDisabled ? null : (
-                <InputContainer>
-                  <StyledLabel htmlFor="phone">Phone:</StyledLabel>
-                  <ErrorMessageContainer>
-                    <StyledInput
-                      name="phone"
-                      type="tel"
-                      disabled={formDisabled}
-                      placeholder="+380000000000"
-                    />
-                    <StyledErrorMessage component="div" name="phone" />
-                  </ErrorMessageContainer>
-                </InputContainer>
-              )}
+              <InputContainer>
+                <StyledLabel htmlFor="phone">Phone:</StyledLabel>
+                <ErrorMessageContainer>
+                  <StyledInput
+                    name="phone"
+                    type="tel"
+                    disabled={formDisabled}
+                    placeholder="+380000000000"
+                  />
+                  <StyledErrorMessage component="div" name="phone" />
+                </ErrorMessageContainer>
+              </InputContainer>
 
-              {!user.userInfo.city && formDisabled ? null : (
-                <InputContainer>
-                  <StyledLabel htmlFor="city">City:</StyledLabel>
-                  <ErrorMessageContainer>
-                    <StyledInput
-                      name="city"
-                      type="text"
-                      disabled={formDisabled}
-                      placeholder="City"
-                    />
-                    <StyledErrorMessage component="p" name="city" />
-                  </ErrorMessageContainer>
-                </InputContainer>
-              )}
+              <InputContainer>
+                <StyledLabel htmlFor="city">City:</StyledLabel>
+                <ErrorMessageContainer>
+                  <StyledInput
+                    name="city"
+                    type="text"
+                    disabled={formDisabled}
+                    placeholder="City"
+                  />
+                  <StyledErrorMessage component="p" name="city" />
+                </ErrorMessageContainer>
+              </InputContainer>
               {!formDisabled && (
-                <Button
-                  style={{
-                    marginLeft: 'auto',
-                    marginButton: '10px',
-                    width: '255px',
-                    background: '#54ADFF',
-                    color: '#FEF9F9',
-                  }}
-                  type="submit"
-                  $content="Save"
-                  $darkType
-                />
+                <SaveProfileWrapper>
+                  <SaveProfile type="submit">Save</SaveProfile>
+                </SaveProfileWrapper>
               )}
             </UserInfoContainer>
           </StyledForm>

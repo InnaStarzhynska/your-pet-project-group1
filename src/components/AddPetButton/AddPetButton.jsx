@@ -1,5 +1,5 @@
 import SvgIcon from 'components/SvgIcon/SvgIcon';
-import { AddPetBtn, AddPetContainer } from './AddPetButton.styled';
+import { AddPetBtn } from './AddPetButton.styled';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -20,7 +20,6 @@ export default function AddPetButton() {
     };
   }, []);
   return (
-    <AddPetContainer>
       <AddPetBtn to={`/add-pet`} state={{ from: location }}>
         Add pet
         {isMobile ? (
@@ -29,6 +28,6 @@ export default function AddPetButton() {
           <SvgIcon id={'icon-plus-small'} color="#fff" />
         )}
       </AddPetBtn>
-    </AddPetContainer>
+    
   );
 }

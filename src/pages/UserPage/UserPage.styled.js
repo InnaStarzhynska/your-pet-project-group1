@@ -1,19 +1,18 @@
 import styled from 'styled-components';
 
-export const UserPageWrapper = styled.div`
-  padding: 0px 20px;
-  width: 100%;
-  height: 100%;
+export const Section = styled.section`
+ padding-top: 40px;
 
-  @media screen and (min-width: 768px) {
-    width: 768px;
-    padding: 0px 32px;
+ @media screen and (min-width: 767px) {
+  
+    padding-top: 60px;
+    
   }
   @media screen and (min-width: 1280px) {
-    width: 1280px;
-    padding: 0px 16px;
+    padding-top: 62px;
+    
   }
-`;
+`
 
 export const UserPageContainer = styled.div`
   width: 100%;
@@ -21,7 +20,6 @@ export const UserPageContainer = styled.div`
   flex-direction: column;
   gap: 46px;
   margin: 0 auto;
-  padding-top: 40px;
   padding-bottom: 137px;
   @media screen and (min-width: 480px) {
     width: 280px;
@@ -30,14 +28,12 @@ export const UserPageContainer = styled.div`
   @media screen and (min-width: 767px) {
     width: 768px;
     gap: 40px;
-    padding-top: 60px;
     padding-bottom: 121px;
   }
   @media screen and (min-width: 1280px) {
     width: 1248px;
     flex-direction: row;
     gap: 32px;
-    padding-top: 62px;
     padding-bottom: 121px;
   }
 `;
@@ -67,7 +63,6 @@ export const UserContainer = styled.div`
   gap: 25px;
 
   width: 280px;
-  /* height: 517px; */
   padding-top: 20px;
   padding-right: 8px;
   padding-bottom: 25px;

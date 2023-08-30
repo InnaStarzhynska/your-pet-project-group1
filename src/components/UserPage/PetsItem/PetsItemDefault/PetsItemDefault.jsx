@@ -4,12 +4,14 @@ import {
   PetsInfoContainer,
   PetsInfoTitle,
   PetsInfoText,
-  ButtonDeletePet,
 } from '../PetsItem.styled';
 import UserDefaultAvatar from '../../../../images/Photo_default@2x.jpg';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
+// import { useState } from 'react';
+import DeletePetsModal from '../DeletePetsModal/DeletePetsModal';
 
 export const PetsItemDefault = ({ name, birthday, type, comments, id }) => {
+  // const [petsModal, setPetsModal] = useState(false);
+
   return (
     <>
       <PetsCard style={{ position: 'relative' }}>
@@ -52,9 +54,7 @@ export const PetsItemDefault = ({ name, birthday, type, comments, id }) => {
             </PetsInfoText>
           )}
         </PetsInfoContainer>
-        <ButtonDeletePet type="button">
-          <SvgIcon id={'icon-trash-2'} className={'icon-trash-2'} />
-        </ButtonDeletePet>
+        <DeletePetsModal />
       </PetsCard>
     </>
   );

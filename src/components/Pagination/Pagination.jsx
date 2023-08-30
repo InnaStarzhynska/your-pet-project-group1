@@ -1,10 +1,12 @@
 import SvgIcon from "components/SvgIcon/SvgIcon";
 import { Button, PaginationContainer, Wrapper } from "./Pagination.styled";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectNoticesTotalPages } from "redux/selectors";
 
-export default function Pagination({ currentPage: page, totalPages, changePage }) {
+export default function Pagination({ currentPage: page, changePage }) {
     const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-
+ const totalPages = useSelector(selectNoticesTotalPages);
 
   useEffect(() => {
     const handleResize = () => {

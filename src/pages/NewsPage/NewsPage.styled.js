@@ -53,3 +53,12 @@ export const NewsSearch = styled.input`
   @media screen and (${devices.desktop}) {
   }
 `;
+
+export const SearchButton = styled.button`
+  position: absolute;
+  right: 12px;
+  top: 0;
+  padding: 10px 0 6px;
+  background-color: transparent;
+  border-color: transparent
+`
