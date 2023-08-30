@@ -3,10 +3,13 @@ import { Button, PaginationContainer, Wrapper } from "./Pagination.styled";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectNoticesTotalPages } from "redux/selectors";
+import { useSearchParams } from "react-router-dom";
 
 export default function Pagination({ currentPage: page, changePage }) {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
- const totalPages = useSelector(selectNoticesTotalPages);
+const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const totalPages = useSelector(selectNoticesTotalPages);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get('query') ?? '';
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,16 +62,28 @@ export default function Pagination({ currentPage: page, changePage }) {
     }
     const pages = items(page, totalPages);
 
+    const handleClickPageBack = () => {
+        setSearchParams({query, page: page-1})
+    }
+
+    const handleClickPageForward = () => {
+        setSearchParams({query, page: page+1})
+    }
+
+    const currentPage = (item) => {
+        return item ===page ? "current" : ""
+    }
+
   return (
     <PaginationContainer>
-          <Button>
-              <SvgIcon id={'icon-arrow-left'} />
+          <Button onClick={handleClickPageBack} disabled={page === 1} className="buttonArrow">
+              <SvgIcon id={'icon-arrow-right'} className="iconArrowLeft"/> 
       </Button>
           <Wrapper>
-              {pages.map(item => <Button onClick={changePage} key={item}>{item}</Button>)}
+              {pages.map(item => <Button className={currentPage(item)} onClick={changePage} key={item}>{item}</Button>)}
       </Wrapper>
-          <Button>
-              <SvgIcon id={'icon-arrow-right'}/>
+          <Button  onClick={handleClickPageForward} disabled={page===totalPages} className="buttonArrow">
+              <SvgIcon id={'icon-arrow-right'} className="iconArrow"/>
       </Button>
     </PaginationContainer>
   );

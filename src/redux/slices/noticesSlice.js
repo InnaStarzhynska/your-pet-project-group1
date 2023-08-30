@@ -33,7 +33,8 @@ const noticesSlice = createSlice({
       .addCase(getNoticesByQuery.fulfilled, (state, { payload }) => {
         state.notices = payload.notices;
         state.isLoading = false;
-        state.totalPages = payload.totalPages;
+          state.totalPages = payload.totalPages;
+          state.noticeById = {}
       })
       .addCase(getNoticesByQuery.rejected, handleRejected)
       .addCase(getNoticeById.pending, handlePending)
@@ -54,16 +55,18 @@ const noticesSlice = createSlice({
       .addCase(deleteNotice.rejected, handleRejected)
       .addCase(getNoticesAddByUser.pending, handlePending)
       .addCase(getNoticesAddByUser.fulfilled, (state, { payload }) => {
-        state.notices = payload.notices;
+        state.notices = payload;
         state.totalPages = payload.totalPages;
-        state.isLoading = false;
+          state.isLoading = false;
+          state.noticeById = {}
       })
       .addCase(getNoticesAddByUser.rejected, handleRejected)
       .addCase(getFavoriteNotices.pending, handlePending)
       .addCase(getFavoriteNotices.fulfilled, (state, { payload }) => {
         state.notices = payload.notices;
-        state.totalPages = payload.totalPages;
         state.isLoading = false;
+        state.totalPages = payload.totalPages ?? 1
+        state.noticeById = {}
       })
       .addCase(getFavoriteNotices.rejected, handleRejected)
       .addCase(addNoticeToFavorites.pending, handlePending)

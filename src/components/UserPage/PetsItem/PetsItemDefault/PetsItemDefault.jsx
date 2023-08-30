@@ -9,7 +9,7 @@ import UserDefaultAvatar from '../../../../images/Photo_default@2x.jpg';
 // import { useState } from 'react';
 import DeletePetsModal from '../DeletePetsModal/DeletePetsModal';
 
-export const PetsItemDefault = ({ name, birthday, type, comments, id }) => {
+export const PetsItemDefault = ({ name, birthday, type, comments, _id, avatar }) => {
   // const [petsModal, setPetsModal] = useState(false);
 
   return (
@@ -27,7 +27,7 @@ export const PetsItemDefault = ({ name, birthday, type, comments, id }) => {
           }}
         ></div>
         <PetsImg
-          src={UserDefaultAvatar}
+          src={avatar}
           alt={`Pets avatar ${name}`}
           loading="lazy"
         />

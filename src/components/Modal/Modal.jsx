@@ -42,14 +42,14 @@ const Modal = ({ closeModal, children }) => {
     <BackDrop onClick={handleBackDropClick}>
       <Content>
         {children}
-        <Button onClick={closeModal}>
+        {/* <Button onClick={closeModal}>
         
              <SvgIcon
                       id={'icon-cross-small'}
                       color={colors.blueColor}
           />
        
-        </Button>
+        </Button> */}
       </Content>
     </BackDrop>
   );

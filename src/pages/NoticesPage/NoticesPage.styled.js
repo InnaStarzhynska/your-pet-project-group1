@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 
 export const Section = styled.section`
   padding-top: 40px;
+  padding-bottom: 117px;
 
   @media screen and (${devices.tablet}) {
     padding-top: 80px;
+    padding-bottom: 209px;
   }
+ @media screen and (${devices.desktop}) {
+    padding-bottom: 112px;
+  }
+
 `;
 export const NoticesContainer = styled.div`
   display: flex;

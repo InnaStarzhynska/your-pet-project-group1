@@ -30,7 +30,9 @@ import { colors } from 'constants/colors';
 import { Formik } from 'formik';
 import { getValidationSchema } from './utils/SchemaValidateUserForm';
 import Notiflix from 'notiflix';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from 'redux/selectors';
+import { updateUserInfo } from 'redux/operations/fetchUser';
 
 export const UserData = () => {
   const validationSchema = getValidationSchema();
@@ -39,20 +41,23 @@ export const UserData = () => {
   const [imgUrl, setImgUrl] = useState();
   const [isAvatarUpdated, setIsAvatarUpdated] = useState(false);
   const [errorImg, setErrorImg] = useState('');
-  const [setIsAvatarSelected] = useState(false);
+  const [isAvatarSelected, setIsAvatarSelected] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
-  const user = useSelector(state => state.user.user);
+  const [file, setFile] = useState('');
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const handleChangeFormStatus = () => {
     setFormDisabled(!formDisabled);
   };
 
   const initialValues = {
-    name: user?.name,
-    email: user?.email,
-    birthday: user.birthday,
-    phone: user?.phone,
-    city: user?.city,
+    name: user.name,
+    email: user.email,
+    birthday: user.birthday ?? new Date().toLocaleDateString(),
+    phone: user.phone,
+    city: user.city,
+    avatar: user.avatar
   };
 
   const handleAvatarPick = () => {
@@ -78,19 +83,23 @@ export const UserData = () => {
       return;
     }
     setIsAvatarSelected(true);
-
     setIsAvatarUpdated(false);
   };
 
   const cancelAvatarUpload = () => {
     setImgUrl('');
-
+    setFile('');
     setIsAvatarUpdated(false);
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-  };
+    const updateValues = { ...values, avatar: selectedAvatar };
+    const updateInfo = new FormData();
+    for (const [key, value] of Object.entries(updateValues)) {
+      updateInfo.append(`${key}`, `${value}`)
+    }
+     dispatch(updateUserInfo(updateInfo))
+  }
   return (
     <>
       <StyledUserDataForm>
@@ -104,7 +113,6 @@ export const UserData = () => {
               <UserAvatarThumb>
                 <UserAvatar
                   src={imgUrl ? imgUrl : UserDefaultAvatar}
-                  // src={UserDefaultAvatar}
                   width="182"
                   height="182"
                   alt="User avatar"
@@ -147,7 +155,7 @@ export const UserData = () => {
                 name="file"
                 type="file"
                 ref={imgRef}
-                accept="image/jpeg, image/jpg, image/png"
+                accept="image/*"
                 onChange={handleAvatarPreview}
                 hidden
               />

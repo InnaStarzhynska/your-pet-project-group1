@@ -16,3 +16,18 @@
 .inFavouriteIcon{
   fill: #54ADFF;
 }
+
+.buttonArrow:hover .iconArrow  {
+  stroke: #fff;
+ 
+}
+
+.iconArrowLeft{
+  transform: rotate(180deg)
+}
+
+.buttonArrow:hover .iconArrow, .buttonArrow:hover .iconArrowLeft  {
+  stroke: #fff;
+}
+
+

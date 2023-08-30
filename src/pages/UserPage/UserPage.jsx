@@ -8,24 +8,43 @@ import {
 } from './UserPage.styled';
 import Logout from '../../components/UserPage/Logout/Logout';
 import { Container } from 'components/Sharedlayout/Sharedlayout.styled';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo } from 'redux/operations/fetchUser';
+import { selectLoadingUser } from 'redux/selectors';
+import IsLoading from 'components/IsLoading/IsLoading';
 
 export const UserPage = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingUser);
+
+  useEffect(() => {
+    dispatch(getUserInfo())
+  }, [dispatch])
+
   return (
-    <Section>
-    <Container>
-        <UserPageContainer>
-          <div>
-            <UserTitle>My information:</UserTitle>
-            <UserContainer>
-              <UserData />
-              <Logout />
-            </UserContainer>
-          </div>
-          <PetsData />
-        </UserPageContainer>
-    </Container>
-    </Section>
-  );
-};
+    <>
+      {isLoading ? (
+        <IsLoading isOpen={isLoading} />
+      ) : (
+        <Section>
+          <Container>
+            <UserPageContainer>
+              <div>
+                <UserTitle>My information:</UserTitle>
+                <UserContainer>
+                  <UserData />
+                  <Logout />
+                </UserContainer>
+              </div>
+              <PetsData />
+            </UserPageContainer>
+          </Container>
+        </Section>
+      )
+      }
+    </>
+  )
+}
 
 export default UserPage;

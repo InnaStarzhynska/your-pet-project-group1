@@ -8,6 +8,7 @@ import {
 } from './PetsData.styled';
 
 export const PetsData = () => {
+  
   return (
     <PetsContainer>
       <PetsHeaderContainer>
