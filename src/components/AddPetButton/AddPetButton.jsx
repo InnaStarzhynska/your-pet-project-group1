@@ -1,11 +1,16 @@
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { AddPetBtn } from './AddPetButton.styled';
-import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectLoggedIn } from '../../redux/selectors';
+import ModalAtention from '../ModalAtention/ModalAtention';
 
 export default function AddPetButton() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const location = useLocation();
+  const [isShownModal, setIsShownModal] = useState(false);
+  const isLoggedIn = useSelector(selectLoggedIn);
+
+  console.log('modalClose->', isShownModal);
 
   useEffect(() => {
     const handleResize = () => {
@@ -19,15 +24,34 @@ export default function AddPetButton() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const toggleModal = () => {
+    setIsShownModal(prevState => !prevState);
+    return;
+  };
+
   return (
-      <AddPetBtn to={`/add-pet`} state={{ from: location }}>
-        Add pet
-        {isMobile ? (
-          <SvgIcon id={'icon-plus'} color="#fff" />
-        ) : (
-          <SvgIcon id={'icon-plus-small'} color="#fff" />
-        )}
-      </AddPetBtn>
-    
+    <>
+      {isLoggedIn ? (
+        <AddPetBtn to={`/add-pet`}>
+          Add pet
+          {isMobile ? (
+            <SvgIcon id={'icon-plus'} color="#fff" />
+          ) : (
+            <SvgIcon id={'icon-plus-small'} color="#fff" />
+          )}
+        </AddPetBtn>
+      ) : (
+        <AddPetBtn onClick={toggleModal}>
+          Add pet
+          {isMobile ? (
+            <SvgIcon id={'icon-plus'} color="#fff" />
+          ) : (
+            <SvgIcon id={'icon-plus-small'} color="#fff" />
+          )}
+        </AddPetBtn>
+      )}
+      {isShownModal && <ModalAtention toggleModal={toggleModal}></ModalAtention>}
+    </>
   );
 }
