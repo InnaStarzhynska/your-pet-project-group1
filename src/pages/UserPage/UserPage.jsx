@@ -1,31 +1,50 @@
 import UserData from '../../components/UserPage/UserData/UserData';
 import PetsData from '../../components/UserPage/PetsData/PetsData';
 import {
-    UserPageWrapper,
-    MainContent,
-    TitleWrap,
-    Title,
-    Card,
+  UserPageContainer,
+  UserTitle,
+  UserContainer,
+  Section,
 } from './UserPage.styled';
+import Logout from '../../components/UserPage/Logout/Logout';
+import { Container } from 'components/Sharedlayout/Sharedlayout.styled';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo } from 'redux/operations/fetchUser';
+import { selectLoadingUser } from 'redux/selectors';
+import IsLoading from 'components/IsLoading/IsLoading';
 
 export const UserPage = () => {
-    return (
-        <UserPageWrapper>
-            <MainContent>
-                <div>
-                    <TitleWrap>
-                        <Title>My information:</Title>
-                    </TitleWrap>
-                    <Card>
-                        <UserData/>
-                    </Card>
-                </div>
-                <div style={{ position: 'relative', width: '100%' }}>
-                  <PetsData />
-                </div>
-            </MainContent>
-        </UserPageWrapper>
-    );
-};
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingUser);
+
+  useEffect(() => {
+    dispatch(getUserInfo())
+  }, [dispatch])
+
+  return (
+    <>
+      {isLoading ? (
+        <IsLoading isOpen={isLoading} />
+      ) : (
+        <Section>
+          <Container>
+            <UserPageContainer>
+              <div>
+                <UserTitle>My information:</UserTitle>
+                <UserContainer>
+                  <UserData />
+                  <Logout />
+                </UserContainer>
+              </div>
+              <PetsData />
+            </UserPageContainer>
+          </Container>
+        </Section>
+      )
+      }
+    </>
+  )
+}
 
 export default UserPage;

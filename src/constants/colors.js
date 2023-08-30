@@ -9,5 +9,7 @@ export const colors = {
     redErrorColor: "#F43F5E",
     greenStepSuccessColor: "#00C3AD",
     blackColor: "#000000",
-    textButtonColor: "#FEF9F9"
+    textButtonColor: "#FEF9F9",
+    inputTextColor: "#888888",
+    whiteBgColor: "#FFFFFF",
 }

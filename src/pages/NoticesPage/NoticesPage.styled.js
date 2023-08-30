@@ -1,19 +1,37 @@
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
+import { Link } from 'react-router-dom';
+
+export const Section = styled.section`
+  padding-top: 40px;
+  padding-bottom: 117px;
+
+  @media screen and (${devices.tablet}) {
+    padding-top: 80px;
+    padding-bottom: 209px;
+  }
+ @media screen and (${devices.desktop}) {
+    padding-bottom: 112px;
+  }
+
+`;
 export const NoticesContainer = styled.div`
-  padding-top: 88px;
+  display: flex;
+  padding-top: 20px;
+  @media screen and (${devices.tablet}) {
+    justify-content: space-between;
+    padding-top: 40px;
+    height: 82px;
+  }
+`;
+export const NoticesSearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  @media screen and (${devices.tablet}) {
-  }
-  @media screen and (${devices.desktop}) {
-  }
 `;
 
-export const NoticesTitle = styled.h1`
+export const NoticesTitle = styled.h2`
   font-size: 24px;
   font-weight: 700;
   line-height: 33px;
@@ -56,7 +74,7 @@ export const Search = styled.input`
   }
 `;
 
-export const Button = styled.button`
+export const NoticesNavbtn = styled(Link)`
   background-color: #cce4fb;
   color: #54adff;
   border: none;
@@ -64,33 +82,59 @@ export const Button = styled.button`
   padding: 8px 16px;
   &:hover,
   &:focus {
-    background-color: #54adff;
+    background: rgba(84, 173, 255, 1);
     color: #fff;
-  }
-  @media screen and (${devices.tablet}) {
-  }
-  @media screen and (${devices.desktop}) {
   }
 `;
 
 export const NoticesNavList = styled.ul`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   width: 200px;
   gap: 8px;
   list-style: none;
-  margin-top: 20px;
+ 
   @media screen and (${devices.tablet}) {
     width: 319px;
-    margin-top: 40px;
+   
   }
   @media screen and (${devices.desktop}) {
     width: 100%;
   }
 `;
 
-export const NoticesList = styled.div``;
+export const NoticesList = styled.div`
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 32px;
+
+  @media screen and (${devices.tablet}) {
+    grid-template-columns: 24px;
+    grid-template-rows: 32px;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+  }
+`;
+
+export const SearchButton = styled.button`
+  position: absolute;
+  right: 12px;
+  top: 0;
+  padding: 10px 0 6px;
+  background-color: transparent;
+  border-color: transparent
+`
+export const NoticesCategoryListWrap = styled.div`
+padding: 24px 0 40px;
+
+@media screen and (${devices.tablet}) {
+  padding: 40px 0 60px;
+}
+
+/* @media screen and (${devices.tablet}) {
+  padding: 42px 0 68px;
+} */
+`

@@ -8,7 +8,7 @@ export default function Nav({closeMenu, isMenuOpen = false}) {
         <MainNavLink to="/news" onClick={() => closeMenu()}>News</MainNavLink>
       </MenuItem>
       <MenuItem>
-        <MainNavLink to="/notices/:sell" onClick={() => closeMenu()}>Find pet</MainNavLink>
+        <MainNavLink to="/notices" onClick={() => closeMenu()}>Find pet</MainNavLink>
       </MenuItem>
       <MenuItem>
         <MainNavLink to="/friends" onClick={() => closeMenu()}>Our friends</MainNavLink>

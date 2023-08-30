@@ -16,6 +16,7 @@ export default function LogOut({ isMenuOpen }) {
     <>
       {modalClose ? (
         <ModalApproveAction modalClose={toggleModal}>
+          
           <Text>Already leaving?</Text>
         </ModalApproveAction>
       ) : (

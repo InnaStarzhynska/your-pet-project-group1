@@ -2,6 +2,7 @@ import { Field } from 'formik';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
+import { colors } from 'constants/colors';
 
 export const FormContainer = styled.div`
   box-sizing: border-box;
@@ -13,7 +14,7 @@ export const FormContainer = styled.div`
   margin-right: auto;
   padding: 40px 12px;
   gap: 26px;
-  background-color: #ffffff;
+  background-color: ${colors.whiteBgColor};
   box-shadow: 3px 8px 14px rgba(136, 198, 253, 0.19);
 
   border-radius: 20px;
@@ -118,7 +119,6 @@ export const Button = styled.button`
   line-height: 1.35;
   letter-spacing: 0.04em;
   cursor: pointer;
-  margin-top:60px;
 
   &:hover {
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
@@ -150,7 +150,7 @@ export const IconBtn = styled.button`
   height: 48px;
   position: absolute;
   right: 0;
-  padding: 12px 0; 
+    padding: 12px 0; 
   background-color: #ffffff;
   border: none;
   border-top-right-radius: 40px;
@@ -162,8 +162,9 @@ export const CrossIcon = styled.button`
   width: 24px;
   height: 24px;
   position: absolute;
+ 
   right: 18px;
-  padding: 12px 0;
+ padding: 12px 0;
   background-color: #ffffff;
   border: none;
   border-top-right-radius: 40px;
@@ -198,4 +199,3 @@ export const PasswordMessage = styled.div`
     height: 32px;
   }
 `;
-

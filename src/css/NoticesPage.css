@@ -1,6 +1,33 @@
 
-.svg{
-    position: absolute;
-  right: 10px;
-  transform: translateY(40%);
+.card:hover .btn{
+  background-image: linear-gradient(to left, #419EF1, #9BD0FF);
+  color: white;
+  svg{display: block};
 }
+.card:hover svg{
+  display: block;
+} 
+
+
+.card:hover .heartIcon{
+  fill: #54ADFF;
+}
+
+.inFavouriteIcon{
+  fill: #54ADFF;
+}
+
+.buttonArrow:hover .iconArrow  {
+  stroke: #fff;
+ 
+}
+
+.iconArrowLeft{
+  transform: rotate(180deg)
+}
+
+.buttonArrow:hover .iconArrow, .buttonArrow:hover .iconArrowLeft  {
+  stroke: #fff;
+}
+
+

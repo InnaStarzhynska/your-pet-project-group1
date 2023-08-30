@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
+import { Link } from 'react-router-dom';
 
-export const AddPetContainer = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-`;
 
-export const AddPetBtn = styled.a`
+
+export const AddPetBtn = styled(Link)`
+  position: fixed;
+    top: 460px;
+    right: 20px;
+
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   justify-content: center;
   border-radius: 40px;
-  background-color: #cce4fb;
-  color: rgba(65, 158, 241, 1);
+  background-color: rgb(84, 173, 255);
   border: none;
   width: 80px;
   height: 80px;
@@ -25,18 +26,26 @@ export const AddPetBtn = styled.a`
 
   &:hover,
   &:focus {
-    background-color: #54adff;
+    background: linear-gradient(290.46deg, #9bd0ff 0%, #419ef1 107.89%);
     color: #fff;
   }
 
   @media screen and (${devices.tablet}) {
-    border-radius: 40px;
-    flex-direction: row;
+    width: 129px;
+height: 40px;
 
-    height: auto;
-    padding: 8px 15px;
+
+padding: 8px 16px;
+border-radius: 40px;
+
+
+   
+    flex-direction: row;
+    top: 0;
+    
+    
     position: relative;
     text-decoration: none;
-    width: 129px;
+    
   }
 `;
