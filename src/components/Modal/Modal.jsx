@@ -1,5 +1,3 @@
-
-
 // export default function Modal() {
 //   return (
 //     <div>Modal</div>
@@ -15,7 +13,6 @@ import { colors } from 'constants/colors';
 const modalWindow = document.getElementById('modal');
 
 const Modal = ({ closeModal, children }) => {
-  
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     const handlePressESC = e => {
@@ -40,17 +37,7 @@ const Modal = ({ closeModal, children }) => {
 
   return (
     <BackDrop onClick={handleBackDropClick}>
-      <Content>
-        {children}
-        {/* <Button onClick={closeModal}>
-        
-             <SvgIcon
-                      id={'icon-cross-small'}
-                      color={colors.blueColor}
-          />
-       
-        </Button> */}
-      </Content>
+      <Content>{children}</Content>
     </BackDrop>
   );
 };

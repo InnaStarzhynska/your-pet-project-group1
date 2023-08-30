@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
 import { colors } from 'constants/colors';
 
@@ -16,16 +16,32 @@ export const ModalNoticeBox = styled.div`
 
   @media (max-width: 767px) {
     width: 280px;
-    height: auto;
+    max-height: 600px;
     border-radius: 20px;
     padding: 44px 20px 16px 20px;
+    overflow: auto;
+  }
+`;
+
+export const ImageContainer = styled.div`
+  width: 240px;
+  height: auto;
+  border-radius: 0px 0px 40px 40px;
+  background: lightgray 0px -14.355px / 100% 150.131% no-repeat;
+
+  @media screen and (${devices.tablet}) {
+    width: 262px;
+    height: 298px;
+
+    border-radius: 0px 0px 40px 40px;
+    background: lightgray 0px -4.16px / 100% 131.822% no-repeat;
   }
 `;
 
 export const Image = styled.img`
-  // display: block;
-  width: 262px;
-  height: 298px;
+  width: auto;
+  height: auto;
+  object-fit: cover;
 
   border-radius: 0px 0px 40px 40px;
   background: lightgray 0px -4.16px / 100% 131.822% no-repeat;
@@ -50,7 +66,7 @@ export const Category = styled.p`
   align-items: center;
 
   border-radius: 0px 16px 16px 0px;
-  background:${colors.lightBlueColor};
+  background: ${colors.lightBlueColor};
 
   color: ${colors.textColor};
   text-align: center;
@@ -60,10 +76,11 @@ export const Category = styled.p`
 
 export const ModalNoticeWrap = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 24px;
   margin-bottom: 28px;
 
-   @media screen and (${devices.tablet}) {
+  @media screen and (${devices.tablet}) {
     flex-flow: row wrap;
     gap: 12px;
     margin-bottom: 13px;
@@ -85,7 +102,7 @@ export const CloseBtn = styled.button`
   height: 24px;
   padding: 0;
 
-    @media (max-width: 767px){
+  @media (max-width: 767px) {
     top: 12px;
     right: 12px;
   }
@@ -100,7 +117,7 @@ export const Title = styled.h1`
   width: 321px;
   margin-bottom: 20px;
 
-  color:${colors.blackColor};
+  color: ${colors.blackColor};
 
   font-size: 28px;
   font-style: normal;
@@ -108,13 +125,13 @@ export const Title = styled.h1`
   line-height: normal;
   letter-spacing: -0.28px;
 
-  @media (max-width: 767px)){
+  @media (max-width: 767px){
     width: 100%;
     font-size: 24px;
     letter-spacing: -0.24px;
     margin-bottom: 22px;
   }
-`;
+`
 
 export const ModalNoticeInfoList = styled.ul`
   padding: 0px;
@@ -196,12 +213,12 @@ export const AddBtn = styled.button`
     border: 2px solid #54adff;
   }
 
-//   :hover,
-//   :focus {
-//     border: transparent;
-//     color: ${colors.whiteBgColor};
-//     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
-//   }
+  //   :hover,
+  //   :focus {
+  //     border: transparent;
+  //     color: ${colors.whiteBgColor};
+  //     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+  //   }
 `;
 
 export const ContactLink = styled.a`
@@ -265,7 +282,7 @@ export const AddressLink = styled.a`
 export const ModelItemInfo = styled.li`
   display: flex;
   gap: 70px;
-  color:${colors.blackColor};
+  color: ${colors.blackColor};
 
   font-size: 16px;
   font-style: normal;
@@ -285,6 +302,3 @@ export const Key = styled.p`
 export const Value = styled.p`
   /* width: 61px; */
 `;
-
-
-
