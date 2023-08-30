@@ -2,12 +2,12 @@ import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import {
-  Background,
-  ModalContent,
-  BtnClose,
-  Congrats,
+  Backdrop,
+  Modal,
+ButtonClose,
+  Banner,
   Text,
-  ToGoProfile,
+  ApproveButton,
 } from './ModalCongrats.styled';
 
 const modalApproveAction = document.querySelector('#modal_approveAction');
@@ -32,19 +32,19 @@ const ModalCongrats = ({ closeModal }) => {
   };
 
   return createPortal(
-    <Background onClick={handleBackdropClick}>
-      <ModalContent>
-        <BtnClose type="button" onClick={handleBackdropClick}>
+    <Backdrop onClick={handleBackdropClick}>
+      <Modal>
+        <ButtonClose type="button" onClick={handleBackdropClick}>
           <SvgIcon id={'icon-cross-small'} />
-        </BtnClose>
-        <Congrats>Congrats!</Congrats>
+        </ButtonClose>
+        <Banner>Congrats!</Banner>
         <Text>Youre registration is success</Text>
-        <ToGoProfile type="button" onClick={handleBackdropClick}>
+        <ApproveButton type="button" onClick={handleBackdropClick}>
           Go to profile
-          <SvgIcon id={'icon-pawprint-1'} />
-        </ToGoProfile>
-      </ModalContent>
-    </Background>,
+          <SvgIcon id={'icon-pawprint-1'} color={"none"} />
+        </ApproveButton>
+      </Modal>
+    </Backdrop>,
     modalApproveAction
   );
 };
