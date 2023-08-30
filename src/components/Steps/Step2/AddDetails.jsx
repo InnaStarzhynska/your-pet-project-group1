@@ -125,8 +125,8 @@ export default function AddDetails(props) {
               />
             </ContentBox2>
           )}
-          <ButtonBox>
-            <Button type="submit" $primary>
+          <ButtonBox $step2 category={choosedCategory}>
+            <Button type="submit" $primary >
               Next&nbsp;&nbsp;
               <SvgIcon id={'icon-pawprint-1'} color={'none'} />
             </Button>
