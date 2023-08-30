@@ -71,15 +71,16 @@ export const TextNews = styled.p`
   margin-top: 16px;
   text-align: left;
   overflow: none;
-  heights: 110px @media screen and (${devices.tablet}) {
+  height: 110px;
+   @media screen and (${devices.tablet}) {
     overflow: hidden;
 
     height: 132px;
-  }
+  };
 
   @media screen and (${devices.desktop}) {
   }
-`;
+`
 export const ReadMoreButton = styled.button`
   background: none;
   border: none;

@@ -125,13 +125,13 @@ export const Title = styled.h1`
   line-height: normal;
   letter-spacing: -0.28px;
 
-  @media (max-width: 767px) ) {
+  @media (max-width: 767px){
     width: 100%;
     font-size: 24px;
     letter-spacing: -0.24px;
     margin-bottom: 22px;
   }
-`;
+`
 
 export const ModalNoticeInfoList = styled.ul`
   padding: 0px;
