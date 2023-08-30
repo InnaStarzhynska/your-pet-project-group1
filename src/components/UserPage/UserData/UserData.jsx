@@ -93,12 +93,13 @@ export const UserData = () => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    const updateValues = { ...values, avatar: selectedAvatar };
+    const updateValues = { ...values, birthday: values.birthday.replaceAll("-", '.'), avatar: selectedAvatar };
     const updateInfo = new FormData();
     for (const [key, value] of Object.entries(updateValues)) {
-      updateInfo.append(`${key}`, `${value}`)
+      updateInfo.append(key, value)
     }
-     dispatch(updateUserInfo(updateInfo))
+    dispatch(updateUserInfo(updateInfo));
+    resetForm()
   }
   return (
     <>
@@ -112,7 +113,7 @@ export const UserData = () => {
             <AvatarContainer>
               <UserAvatarThumb>
                 <UserAvatar
-                  src={imgUrl ? imgUrl : UserDefaultAvatar}
+                  src={imgUrl ? imgUrl : user.avatar}
                   width="182"
                   height="182"
                   alt="User avatar"

@@ -33,8 +33,8 @@ export const Title = styled.h1`
   line-height: 1.36;
 
   @media only screen and ${devices.tablet} {
-    text-align: ${props => 
-      (props.step === 2 && props.category !== 'your pet') && 'center'};
+    text-align: ${props =>
+      props.step === 2 && props.category !== 'your pet' && 'center'};
     padding-left: 0px;
     font-size: 28px;
   }
@@ -64,10 +64,26 @@ export const ButtonBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 17px;
+  margin-top: ${props =>
+    props.$step1
+      ? '91px'
+      : props.$step2 && props.category === 'your pet'
+      ? '44px'
+      : '24px'};
 
   @media only screen and ${devices.tablet} {
     flex-direction: row-reverse;
+    justify-content: ${props => (props.$step3 && props.category) !== 'your pet' && 'center'};
+    margin-top: ${props =>
+      props.$step1
+        ? '137px'
+        : props.$step2 && props.category === 'your pet'
+        ? '40px'
+        : props.$step2 && props.category !== 'your pet'
+        ? '32px'
+        : props.$step3 && props.category === 'your pet'
+        ? '17px'
+        : '60px'};
     gap: 24px;
   }
 

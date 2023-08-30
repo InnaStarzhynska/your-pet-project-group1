@@ -13,16 +13,16 @@ export const PetsList = () => {
         {pets.length === 0 ? (
           <h4>Add information about your pet</h4>
         ) : (
-          pets.map(pet => (
-            <PetsItemDefault
-              key={pet._id}
-              name={pet.name}
-              birthday={pet.birthday}
-              avatar={pet.avatar}
-              type={pet.type}
-              comments={pet.comments}
-            />
-          ))
+            pets.map((pet, index) => {
+               return  < PetsItemDefault
+              key = { index }
+              name = { pet.name }
+              birthday = { pet.birthday }
+              avatar = { pet.avatar }
+              type = { pet.type }
+              comments = { pet.comments }
+                />
+            })
         )}
       </PetsCardContainer>
     </>

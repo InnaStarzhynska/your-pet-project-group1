@@ -43,12 +43,15 @@ export default function NoticesPage() {
   }, []);
 
   useEffect(() => {
+    console.log(category)
     if (category === 'favorite-ads') {
       dispatch(getFavoriteNotices());
+      console.log("favorite")
       return;
     }
     if (category === 'my-ads') {
-      dispatch(getNoticesAddByUser());
+       console.log("adds")
+      dispatch(getNoticesAddByUser({page}));
       return;
     }
     dispatch(getNoticesByQuery({ category, query, page }));

@@ -1,6 +1,6 @@
 import { formatDistanceStrict } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNoticeById } from 'redux/operations/fetchNotices';
+import { getFavoriteNotices, getNoticeById } from 'redux/operations/fetchNotices';
 import { useState } from 'react';
 import { selectUser, selectLoggedIn } from 'redux/selectors';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
@@ -48,13 +48,14 @@ setIsModalDeleteOpen(prevState => !prevState)
   
       if (favorite) {
         dispatch(addNoticeToFavorites({ _id: noticeId }));
+ 
         return;
       }
   
       dispatch(removeNoticeFromFavorites({ _id: noticeId }));
+   
     };
   
-
 
   const formatPetsAge = birthDate => {
     return formatDistanceStrict(new Date(), Date.parse(birthDate), {
@@ -82,9 +83,6 @@ setIsModalDeleteOpen(prevState => !prevState)
   const noticeTitle = formatNoticeTitle(title);
 
     
-
-console.log(favorite)
-console.log(id)
   return (
      <Card className="card">
       <Avatar src={avatar} alt={title} />
@@ -137,7 +135,7 @@ console.log(id)
 
       <LearnMoreBtnWrap>
           <LearnMoreBtn type="button" isFavorite={isFavorite} className='btn' onClick={() => {
-            dispatch(getNoticeById({ noticeId }));
+            dispatch(getNoticeById({ _id: noticeId }));
           isModalOpen(true);
                 }}>
           Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>

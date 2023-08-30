@@ -45,7 +45,7 @@ export default function ChooseOptions(props) {
           <ErrorMessage name="category">
             {msg => <ErrorText>{msg}</ErrorText>}
           </ErrorMessage>
-          <ButtonBox>
+          <ButtonBox $step1>
             <Button type="submit" $primary>
             Next&nbsp;&nbsp;
             <SvgIcon id={'icon-pawprint-1'} color={'none'} />
