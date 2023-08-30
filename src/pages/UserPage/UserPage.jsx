@@ -19,13 +19,13 @@ export const UserPage = () => {
   const isLoading = useSelector(selectLoadingUser);
 
   useEffect(() => {
-    dispatch(getUserInfo())
+    
   }, [dispatch])
 
   return (
     <>
       {isLoading ? (
-        <IsLoading isOpen={isLoading} />
+        <IsLoading />
       ) : (
         <Section>
           <Container>

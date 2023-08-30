@@ -3,7 +3,7 @@ import * as yup from 'yup';
 const phoneRegExp = /^\+380\d{9}$/;
 
 const birthdayRegExp =
-  /^(0[1-9]|1\d|2\d|3[01])-(0[1-9]|1[0-2])-(19[0-9]\d|20[0-6]\d)$/;
+  /^(0[1-9]|1\d|2\d|3[01]).(0[1-9]|1[0-2]).(19[0-9]\d|20[0-6]\d)$/;
 const nameRegExp = /^[\p{Lu}]{1}[\p{Ll}'`]{1,16}$/u;
 const cityRegExp = /^[\p{Lu}]{1}[\p{Ll}'`]{1,31}$/u;
 
