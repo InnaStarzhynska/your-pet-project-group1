@@ -2,7 +2,9 @@ import { formatDistanceStrict } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNoticeById } from 'redux/operations/fetchNotices';
 import { useState } from 'react';
-import {selectUser, selectLoggedIn} from 'redux/selectors';
+import { selectUser, selectLoggedIn } from 'redux/selectors';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
+import ModalDeleteAds from 'components/Modals/ModalDeleteAds';
   import {addNoticeToFavorites, removeNoticeFromFavorites } from 'redux/operations/fetchNotices';
 import {
   Avatar,
@@ -15,7 +17,7 @@ import {
   LearnMoreBtnWrap,
   AddToFavouriteBtn,
   StyledCategory,
-  // DeleteBtn,
+  DeleteBtn,
   HeartIcon,
   InfoIcon,
   PawIcon,
@@ -27,12 +29,17 @@ import {
 export default function NoticesCategoryItem({item, isModalOpen}) {
   const dispatch = useDispatch();
 
-  const { _id: noticeId, category, avatar, location, dateOfBirth, sex, title, favorite } =
+  const { _id: noticeId, category, avatar, location, dateOfBirth, sex, title, favorite, owner } =
     item;
 
     const isLoggedIn = useSelector(selectLoggedIn);
     const {id} = useSelector(selectUser);
-    const [isFavorite] = useState(favorite.includes(id));
+  const [isFavorite] = useState(favorite.includes(id));
+  const [modalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+
+  const toggleDeleteModal = () => {
+setIsModalDeleteOpen(prevState => !prevState)
+  };
 
     const handleToggleFavorite = (noticeId, isLoggedIn, favorite) => {
       if (!isLoggedIn) {
@@ -110,10 +117,24 @@ console.log(id)
         ></HeartIcon>
       </AddToFavouriteBtn>
     
-        {/* <DeleteBtn type="button">
+      {id === owner ? (
+        <DeleteBtn
+          type="button"
+          onClick={() => {
+            toggleDeleteModal()
+
+          }}
+        >
           <SvgIcon id={'icon-trash-2'}></SvgIcon>
-        </DeleteBtn> */}
+        </DeleteBtn>
+        
+      ) : (
+        ''
+      )}
       
+      {(modalDeleteOpen ? <ModalDeleteAds modalClose={toggleDeleteModal} _id = {noticeId} title={title} /> : "") }
+
+
       <LearnMoreBtnWrap>
           <LearnMoreBtn type="button" isFavorite={isFavorite} className='btn' onClick={() => {
             dispatch(getNoticeById({ noticeId }));

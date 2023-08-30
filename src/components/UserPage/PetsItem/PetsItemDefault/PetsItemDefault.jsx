@@ -23,7 +23,7 @@ export const PetsItemDefault = ({ name, birthday, type, comments, _id, avatar })
             height: '100%',
             width: '100%',
             borderRadius: '40px',
-            zIndex: '10',
+            // zIndex: '10',
           }}
         ></div>
         <PetsImg
