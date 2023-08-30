@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { devices } from '../../../constants/breakpoints';
 import { colors } from '../../../constants/colors';
 import { Field} from 'formik';
 

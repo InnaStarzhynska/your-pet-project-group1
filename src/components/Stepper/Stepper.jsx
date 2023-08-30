@@ -14,14 +14,14 @@ export default function Stepper({ currentStep }) {
   const addStyle = step => {
     if (currentStep === step.step) {
       return (
-        <BoxStep>
+        <BoxStep key={step.label}>
           <NameStep $activeStep>{step.label}</NameStep>
           <MarkStep $activeStep></MarkStep>
         </BoxStep>
       );
     } else if (currentStep > step.step) {
       return (
-        <BoxStep>
+        <BoxStep key={step.label}>
           <NameStep $successStep>{step.label}</NameStep>
           <MarkStep $successStep></MarkStep>
         </BoxStep>
@@ -29,7 +29,7 @@ export default function Stepper({ currentStep }) {
     }
 
     return (
-      <BoxStep>
+      <BoxStep key={step.label}>
         <NameStep>{step.label}</NameStep>
         <MarkStep></MarkStep>
       </BoxStep>

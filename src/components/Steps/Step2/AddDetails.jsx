@@ -140,28 +140,3 @@ export default function AddDetails(props) {
     </Formik>
   );
 }
-
-// export default function AddDetails() {
-//   const { dataPets } = useContext(FormContext);
-//   const choosedCategory = dataPets.category;
-
-//   return (
-//     <>
-//       {choosedCategory === 'your pet' && (
-//         <ContentBox2>
-//           <Input type="text" name="namePets" label="Pet’s name" placeholder="Type name pet"/>
-//           <Input type="date" name="dateOfBirth" label="Date of birth" placeholder="Type date of birth"/>
-//           <Input type="text" name="typePets" label="Type" placeholder="Type of pet"/>
-//         </ContentBox2>
-//       )}
-//       {choosedCategory !== 'your pet' && (
-//         <ContentBox2>
-//           <Input type="text" name="title" label="Pet’s name" placeholder="Title of add"/>
-//           <Input type="text" name="namePets" label="Pet’s name" placeholder="Type name pet"/>
-//           <Input type="date" name="dateOfBirth" label="Date of birth" placeholder="Type date of birth"/>
-//           <Input type="text" name="typePets" label="Type" placeholder="Type of pet"/>
-//         </ContentBox2>
-//       )}
-//     </>
-//   );
-// }

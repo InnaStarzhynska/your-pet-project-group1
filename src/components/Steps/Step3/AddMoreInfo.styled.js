@@ -4,8 +4,6 @@ import { colors } from '../../../constants/colors';
 import { Field } from 'formik';
 import { ContentBox2, Label2, Input2 } from '../Step2/AddDetails.styled';
 
-
-
 export const ContentBox3 = styled(ContentBox2)`
   @media only screen and ${devices.tablet} {
     flex-direction: row;
@@ -51,6 +49,25 @@ export const DecorBox = styled.div`
 export const RadioContainer = styled.div`
   display: flex;
   gap: 16px;
+`;
+
+export const LabelRadio = styled.label`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px;
+  border-radius: 40px;
+  background-color: ${props => props.checked ? colors.blueColor : 'transparent'};
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: ${props => props.checked ? colors.textButtonColor : "#888888"};
+  transition: background-color 0.3s ease;
+`;
+
+export const InputRadio = styled(Field)`
+  position: absolute;
+  left: -150%;
 `;
 
 export const BoxFieldImg2 = styled(BoxFieldImg)`
@@ -146,6 +163,11 @@ export const TitleRadio = styled.p`
   font-size: 14px;
   line-height: 1.36;
   color: ${colors.textColor};
+
+  @media only screen and ${devices.tablet} {
+    font-size: 20px;
+    line-height: 1.32;
+  }
 `;
 
 export const ErrorText = styled.p`
