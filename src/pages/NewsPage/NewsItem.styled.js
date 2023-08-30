@@ -10,7 +10,7 @@ export const ItemNews = styled.li`
   &:before {
     position: absolute;
     content: '';
-    top: -20px;
+    top: -18px;
     display: block;
     height: 8px;
     width: 100%;
@@ -23,7 +23,7 @@ export const ItemNews = styled.li`
     flex-basis: calc((100% - 32px) / 2);
 
     &:before {
-      top: -22px;
+      top: -19px;
     }
   }
 
@@ -40,8 +40,9 @@ export const ImageNews = styled.img`
   width: 100%;
   object-fit: cover;
   border-radius: 20px;
+  height: 252px;
+
   @media screen and (${devices.tablet}) {
-    height: 252px;
   }
 
   @media screen and (${devices.desktop}) {
@@ -72,15 +73,15 @@ export const TextNews = styled.p`
   text-align: left;
   overflow: none;
   height: 110px;
-   @media screen and (${devices.tablet}) {
+  @media screen and (${devices.tablet}) {
     overflow: hidden;
 
     height: 132px;
-  };
+  }
 
   @media screen and (${devices.desktop}) {
   }
-`
+`;
 export const ReadMoreButton = styled.button`
   background: none;
   border: none;
@@ -91,10 +92,10 @@ export const ContainerInfo = styled.div`
   position: absolute;
   top: 545px;
   @media screen and (${devices.tablet}) {
-    top: 525px;
+    top: 527px;
   }
 
-  @media screen and (${devices.tablet}) {
+  @media screen and (${devices.desktop}) {
     top: 503px;
   }
 `;
@@ -114,5 +115,15 @@ export const LinkReadMore = styled.a`
 
   @media screen and (${devices.desktop}) {
     margin-left: 190px;
+  }
+`;
+export const ButtonRead = styled.a`
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(84, 173, 255, 1);
+  @media screen and (${devices.tablet}) {
+  }
+
+  @media screen and (${devices.desktop}) {
   }
 `;

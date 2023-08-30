@@ -60,5 +60,5 @@ export const SearchButton = styled.button`
   top: 0;
   padding: 10px 0 6px;
   background-color: transparent;
-  border-color: transparent
-`
+  border-color: transparent;
+`;
