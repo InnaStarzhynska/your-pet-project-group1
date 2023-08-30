@@ -24,8 +24,15 @@ export const AuthItem = styled.li`
   cursor: pointer;
   border: ${props =>
     props.$register ? `2px solid ${colors.accentColor}` : 'none'};
-  background-color: ${props =>
+  background: ${props =>
     props.$register ? 'transparent' : colors.accentColor};
+
+  &:hover,
+  &:focus {
+    color: ${colors.accentColor};
+    transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    background: ${props => props.$register ? "linear-gradient(to right, #FDF7F2, #FFF5DB)" : "linear-gradient(to left, #FFC107, #FFD54F)"}
+  }
 
   @media only screen and ${devices.tablet} {
   }

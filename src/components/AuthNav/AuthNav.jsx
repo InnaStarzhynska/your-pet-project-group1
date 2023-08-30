@@ -1,7 +1,6 @@
 import React from 'react';
 import { AuthList, AuthLink, AuthItem } from './AuthNav.styled';
 import SvgIcon from '../SvgIcon/SvgIcon';
-import styled from 'styled-components';
 
 export default function AuthNav() {
   return (

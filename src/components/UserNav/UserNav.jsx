@@ -3,6 +3,8 @@ import React from 'react';
 import {
   Wrapper,
   BoxUser,
+  BoxAvatar,
+  ImgAvatar,
   LinkUser,
 } from './UserNav.styled';
 import LogOut from "./LogOut/LogOut"
@@ -18,7 +20,7 @@ export default function UserNav({isMenuOpen = false}) {
     <Wrapper $isopen={isMenuOpen}>
       <LogOut onClick={() => {}} isMenuOpen={isMenuOpen}/>
       <BoxUser $isopen={isMenuOpen}>
-        <SvgIcon id={'icon-user-1'} color={colors.accentColor}/>
+        {avatar ? <BoxAvatar><ImgAvatar src={avatar} alt="avatar" /></BoxAvatar> : <SvgIcon id={'icon-user-1'} color={colors.accentColor}/>}
         <LinkUser to="user" $isopen={isMenuOpen}>{name}</LinkUser>
       </BoxUser>
     </Wrapper>
