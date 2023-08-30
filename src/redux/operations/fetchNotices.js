@@ -36,8 +36,10 @@ export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post('notice/add', credentials);
-      return response.data;
+
+        const response = await axios.post('notice/add', credentials);
+        return response.data
+
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
