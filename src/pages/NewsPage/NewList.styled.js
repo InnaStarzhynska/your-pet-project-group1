@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import { devices } from '../../constants/breakpoints';
 export const List = styled.ul`
-padding: 24px 0 40px;
+  padding: 24px 0 40px;
   width: 100%;
-  gap: 24px;
+  gap: 27px;
 
   list-style: none;
   display: flex;
@@ -21,8 +21,6 @@ padding: 24px 0 40px;
   @media screen and (${devices.desktop}) {
     max-width: 1200px;
     padding: 60px 0 68px;
-    column-gap: 31px;
-    row-gap: 24px;
+    gap: 30px;
   }
-  
 `;

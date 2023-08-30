@@ -10,17 +10,15 @@ import {
   LinkReadMore,
   TextNews,
   TitleNews,
-  ReadMoreButton,
+  ButtonRead,
 } from './NewsItem.styled';
 
 export default function NewsItem({ article }) {
   const { url = '', text, title, imgUrl, date } = article;
   const formatedDate = moment(date).format('L');
 
-  const [showFullText, setShowFullText] = useState(false);
-  const handleReadMoreClick = () => {
-    setShowFullText(true);
-  };
+  const [showFullText] = useState(false);
+
   return (
     <ItemNews>
       <ImageNews src={imgUrl} alt="news" />
@@ -28,12 +26,11 @@ export default function NewsItem({ article }) {
       <Content>
         <TitleNews>{title}</TitleNews>
         <TextNews>
-          {showFullText ? text : text.split(' ').slice(0, 15).join(' ')}
+          {showFullText ? text : text.split(' ').slice(0, 23).join(' ')}
           {!showFullText && text.split(' ').length > 20 && (
-            <>
-              {' '}
-              <ReadMoreButton onClick={handleReadMoreClick}>...</ReadMoreButton>
-            </>
+            <ButtonRead href={url} target="_blank">
+              {'...'}
+            </ButtonRead>
           )}
         </TextNews>
 
