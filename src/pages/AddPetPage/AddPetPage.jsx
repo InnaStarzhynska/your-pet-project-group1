@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import {
   Wrapper,
   Title,
@@ -14,6 +15,7 @@ import { addNotice } from 'redux/operations/fetchNotices';
 
 export default function AddPetPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     category: '',
@@ -29,7 +31,7 @@ export default function AddPetPage() {
   });
   const [activeStep, setActiveStep] = useState(0);
 
-  const sendDataPets = data => {
+  const sendDataPets = ( data ) => {
     const formData = new FormData();
 
     if (data.category === 'your pet') {
@@ -39,11 +41,16 @@ export default function AddPetPage() {
       formData.append('petAvatar', data.imagesPets);
       formData.append('comments', data.comments);
 
-      dispatch(addPet(formData));
+      dispatch(addPet(formData)).then(response => {
+        if (!response.error) {
+          navigate('/user');
+          return;
+        }
+      });
       return;
     }
 
-    if (data.category === 'sell') {
+    if (data.category !== 'your pet') {
       formData.append('category', data.category);
       formData.append('name', data.namePets);
       formData.append('dateOfBirth', data.dateOfBirth);
@@ -55,8 +62,13 @@ export default function AddPetPage() {
       formData.append('location', data.location);
       formData.append('price', data.price);
 
-      dispatch(addNotice(formData));
 
+      dispatch(addNotice(formData)).then(response => {
+        if (!response.error) {
+          navigate(`/notices/${data.category}`);
+          return;
+        }
+      });
       return;
     }
   };
