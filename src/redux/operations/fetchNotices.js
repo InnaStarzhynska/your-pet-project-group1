@@ -66,7 +66,7 @@ export const getNoticesAddByUser = createAsyncThunk(
   'notices/getNoticesAddByUser',
   async (credentials, thunkAPI) => {
     try {
-      const queryURL = `/added?${credentials.page}`;
+      const queryURL = `/notice/added?page=${credentials.page}`;
       const response = await axios.get(queryURL);
       return response.data;
     } catch (error) {
