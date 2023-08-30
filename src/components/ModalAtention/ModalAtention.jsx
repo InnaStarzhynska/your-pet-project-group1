@@ -17,13 +17,20 @@ import {
 const modalApproveAction = document.querySelector('#modal_approveAction');
 
 const ModalAtention = ({ toggleModal }) => {
+  
   useEffect(() => {
-    window.addEventListener('keydown', e => {
+    const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        handleClickClose();
+        toggleModal();
       }
-    });
-  });
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [toggleModal]);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
@@ -38,7 +45,7 @@ const ModalAtention = ({ toggleModal }) => {
   return createPortal(
     <Background onClick={handleBackdropClick}>
       <AtentionModal>
-        <BtnClose>
+        <BtnClose onClick={handleClickClose}>
           <SvgIcon type="button" id={'icon-cross-small'} />
         </BtnClose>
         <Attention>Attention</Attention>
