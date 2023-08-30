@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as Yup from 'yup';
-import { ErrorMessage, useField } from 'formik';
-import { ContentBox2, Label2, Input2 } from '../Step2/AddDetails.styled';
+import { ErrorMessage, useField, Formik, Form } from 'formik';
+import { ContentBox2, Label2, Input2, FieldContainer } from '../Step2/AddDetails.styled';
 import {
   ContentBox3,
   BoxFieldImg,
@@ -20,10 +20,8 @@ import {
   InputRadio,
 } from './AddMoreInfo.styled';
 import { ButtonBox, Button } from 'pages/AddPetPage/AddPetPage.styled';
-import { FieldContainer } from '../Step2/AddDetails.styled';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from '../../../constants/colors';
-import { Formik, Form } from 'formik';
 
 const validationAddMoreInfo = data => {
   if (data.category === 'your pet') {
@@ -95,14 +93,11 @@ export default function AddMoreInfo(props) {
   const [file, setFile] = useState('');
 
   const addFile = e => {
-    console.log(e.target.files[0]);
-
     const file = e.target.files[0];
     setFile(file);
+
     const objectURL = window.URL.createObjectURL(file);
     setUrlImg(objectURL);
-
-    console.log('objectURL->', objectURL);
   };
 
   const deleteFile = () => {
@@ -110,9 +105,7 @@ export default function AddMoreInfo(props) {
   };
 
   const handleSubmit = values => {
-    console.log('values->', values);
     const updateValues = { ...values, imagesPets: file };
-    console.log('updateValues->', updateValues);
     props.next(updateValues, true);
   };
 
@@ -355,7 +348,7 @@ export default function AddMoreInfo(props) {
               </StyleContainer2>
             </ContentBox3>
           )}
-          <ButtonBox>
+          <ButtonBox $step3 category={choosedCategory}>
             <Button type="submit" $primary>
               Done&nbsp;&nbsp;
               <SvgIcon id={'icon-pawprint-1'} color={'none'} />
