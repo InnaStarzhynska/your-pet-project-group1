@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { colors } from 'constants/colors';
 import { devices } from 'constants/breakpoints';
 
-//  general
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
@@ -13,14 +12,14 @@ export const Backdrop = styled.div`
   backdrop-filter: blur(4px);
 `;
 
-// modal with children
 export const Modal = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
   width: 280px;
-  height: 389px;
+//   height: 389px;
+height: 320px;
   border-radius: 20px;
   background-color: #ffffff;
   padding: 12px 12px 0;
@@ -43,47 +42,11 @@ export const ButtonClose = styled.button`
   padding: 0;
   margin-bottom: 24px;
   margin-left: auto;
+  cursor: pointer; 
 
   @media screen and ${devices.tablet} {
     margin-bottom: 12px;
   }
-`;
-
-export const Banner = styled.h3`
-  margin: auto;
-  margin-bottom: 14px;
-  color: ${colors.textColor};
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.96px;
-
-  @media screen and ${devices.tablet} {
-    margin-bottom: 40px;
-    color: ${colors.blackColor};
-    font-size: 28px;
-    letter-spacing: -0.28px;
-  }
-`;
-
-export const Text = styled.p`
-  // width: 240px;
-  // margin: auto;
-  color: ${colors.textColor};
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: -0.14px;
-
-  @media screen and ${devices.tablet} {
-    // width: 393px;
-    color: ${colors.blackColor};
-    font-size: 36px;
-    letter-spacing: -0.16px;
-    padding-top: 40px;
-  }
-`;
-
-export const TextSpan = styled(Text)`
-  font-weight: 700;
 `;
 
 export const WrapperButtons = styled.div`
@@ -112,6 +75,7 @@ export const Button = styled.button`
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.64px;
+  cursor: pointer; 
   background-color: transparent;
 
   @media screen and ${devices.tablet} {
@@ -127,40 +91,4 @@ export const ApproveButton = styled(Button)`
   border-color: transparent;
   color: ${colors.textButtonColor};
   background-color: ${colors.blueColor};
-`;
-
-// modal without children
-export const Background = styled(Backdrop)`
-  @media screen and ${devices.tablet} {
-    background: rgba(43, 43, 43, 0.6);
-    backdrop-filter: none;
-  }
-`;
-
-export const ModalNone = styled(Modal)`
-  height: 302px;
-
-  @media screen and ${devices.tablet} {
-    height: 354px;
-    box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-  }
-`;
-
-export const BtnClose = styled(ButtonClose)`
-  margin-bottom: 41px;
-
-  @media screen and ${devices.tablet} {
-    margin-bottom: 60px;
-  }
-`;
-
-export const Head = styled(Banner)`
-  font-weight: 500;
-
-  @media screen and ${devices.tablet} {
-    margin-bottom: 48px;
-    color: ${colors.blackColor};
-    font-size: 36px;
-    letter-spacing: 1.44px;
-  }
 `;

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import SvgIcon from '../../SvgIcon/SvgIcon';
 import { LinkLogOut, BoxLogOut } from './LogOut.styled';
 import { colors } from 'constants/colors';
-import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
+// import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
+import ModalLogout from 'components/Modals/ModalLogout';
 import { Text } from 'components/ModalApproveAction/ModalApproveAction.styled';
 
 export default function LogOut({ isMenuOpen }) {
@@ -15,10 +16,10 @@ export default function LogOut({ isMenuOpen }) {
   return (
     <>
       {modalClose ? (
-        <ModalApproveAction modalClose={toggleModal}>
+        <ModalLogout modalClose={toggleModal}>
           
           <Text>Already leaving?</Text>
-        </ModalApproveAction>
+        </ModalLogout>
       ) : (
         <BoxLogOut $isopen={isMenuOpen} onClick={toggleModal}>
           <LinkLogOut>
