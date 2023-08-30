@@ -54,7 +54,7 @@ const ModalAtention = ({ toggleModal }) => {
             <SvgIcon
               type="button"
               id={'icon-pawprint-1'}
-              color={colors.accentColor}
+              color={"none"}
             />
           </BtnLogin>
           <BtnReg type="button" to="/register">
