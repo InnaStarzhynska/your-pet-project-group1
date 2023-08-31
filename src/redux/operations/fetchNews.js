@@ -4,7 +4,7 @@ import Notiflix from 'notiflix';
 
 export const getNewsByQuery = createAsyncThunk('news/getNewsByQuery', async (credentials, thunkAPI) => {
     try {
-        const queryURL = `/news?searchQuery=${credentials.query}&page=${credentials.page}&limit=8`;
+        const queryURL = `/news?searchQuery=${credentials.query}&page=${credentials.page}&limit=9`;
       const response = await axios.get(queryURL);
       return response.data;
     } catch (error) {

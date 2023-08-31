@@ -9,7 +9,7 @@ import {
   SearchButton,
 } from './NewsPage.styled';
 import { Container } from 'components/Sharedlayout/Sharedlayout.styled';
-import { selectLoadingNews } from 'redux/selectors';
+import { selectLoadingNews, selectNewsTotalPages } from 'redux/selectors';
 import IsLoading from 'components/IsLoading/IsLoading';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNewsByQuery } from 'redux/operations/fetchNews';
@@ -21,6 +21,7 @@ export default function NewsPage() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page') ?? 1);
+  const totalPages = useSelector(selectNewsTotalPages);
   const query = searchParams.get('query') ?? '';
   const isLoading = useSelector(selectLoadingNews);
 
@@ -50,7 +51,7 @@ export default function NewsPage() {
         </NewsSearchForm>
         <NewsList />
         </NewsContainer>
-        <Pagination changePage={changePage} currentPage={page} />
+        <Pagination changePage={changePage} currentPage={page} totalPages={totalPages} />
     </Container>
   )}</>
   )

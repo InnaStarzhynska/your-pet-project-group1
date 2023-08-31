@@ -19,13 +19,14 @@ import { Navigate } from "react-router-dom";
 
 export const App = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectLoadingUser)
 
   useEffect(() => {
     dispatch(getCurrentUser())
 }, [dispatch])
 
   return (
-     <Routes>
+     !isLoading && <Routes>
       <Route path="/" element={<Sharedlayout />}>
         <Route index element={<MainPage />} />
         <Route path="/notices" element={<Navigate to={"/notices/sell"} />} />
