@@ -13,10 +13,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo } from 'redux/operations/fetchUser';
 import { selectLoadingUser } from 'redux/selectors';
 import IsLoading from 'components/IsLoading/IsLoading';
+import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
 
 export const UserPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoadingUser);
+
+  const {isNewUser}  = useSelector(state => state.user);
+  console.log('isNewUser->', isNewUser)
 
   useEffect(() => {
     
@@ -24,6 +28,7 @@ export const UserPage = () => {
 
   return (
     <>
+    {isNewUser && <ModalCongrats></ModalCongrats>}
       {isLoading ? (
         <IsLoading />
       ) : (
