@@ -13,7 +13,7 @@ export default function NoticesSearch({ handleSubmit, query }) {
     <NoticesSearchContainer>
       <NoticesTitle>Find your favorite pet</NoticesTitle>
       <SearchForm onSubmit={handleSubmit}>
-        <Search type="text" value={ query} name="search" placeholder="Search" />
+        <Search type="text" defaultValue={query} name="search" placeholder="Search" />
         <SearchButton type='submit'><SvgIcon id={'icon-search'} /></SearchButton>
       </SearchForm>
     </NoticesSearchContainer>
