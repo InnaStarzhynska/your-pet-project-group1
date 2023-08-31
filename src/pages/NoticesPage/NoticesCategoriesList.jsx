@@ -24,16 +24,25 @@ export default function NoticesCategoriesList() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  
-   const toggleModal = () => {
+
+  const toggleModal = () => {
     setModalOpen(prevState => !prevState);
   };
   return (
-    <><NoticesList>
-      {isModalOpen ? (<ModalNotice isModalOpen={toggleModal}/>) : ( notices.map(item => {
-        return <NoticesCategoryItem isModalOpen={setModalOpen} item={item} key={item._id} />
-      }))}
-      {isMobile && <AddPetButton/>}
-      </NoticesList >
-      </>)
+    <>
+      <NoticesList>
+        {notices.map(item => {
+          return (
+            <NoticesCategoryItem
+              isModalOpen={setModalOpen}
+              item={item}
+              key={item._id}
+            />
+          );
+        })}
+        {isModalOpen && <ModalNotice isModalOpen={toggleModal} />}
+        {isMobile && <AddPetButton />}
+      </NoticesList>
+    </>
+  );
 }
