@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import UserDefaultAvatar from '../../../images/Photo_default@2x.jpg';
+import Notiflix from 'notiflix';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import {
   ButtonEditUserInfo,
@@ -29,11 +29,10 @@ import {
 import { colors } from 'constants/colors';
 import { Formik } from 'formik';
 import { getValidationSchema } from './utils/SchemaValidateUserForm';
-import Notiflix from 'notiflix';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { updateUserInfo } from 'redux/operations/fetchUser';
-import moment from "moment";
+import moment from 'moment';
 
 export const UserData = () => {
   const validationSchema = getValidationSchema();
@@ -42,23 +41,20 @@ export const UserData = () => {
   const [imgUrl, setImgUrl] = useState();
   const [isAvatarUpdated, setIsAvatarUpdated] = useState(false);
   const [errorImg, setErrorImg] = useState('');
-  const [isAvatarSelected, setIsAvatarSelected] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
-  const [file, setFile] = useState('');
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
 
   const handleChangeFormStatus = () => {
     setFormDisabled(!formDisabled);
   };
 
-const  formateDate = (parsedDate) => {
-
-    const formatedDate = moment(parsedDate).format("DD-MM-YYYY").replaceAll('-', '.');
-    return formatedDate
-}
-
+  const formateDate = parsedDate => {
+    const formatedDate = moment(parsedDate)
+      .format('DD-MM-YYYY')
+      .replaceAll('-', '.');
+    return formatedDate;
+  };
 
   const initialValues = {
     name: user.name,
@@ -66,7 +62,7 @@ const  formateDate = (parsedDate) => {
     birthday: formateDate(user.birthday),
     phone: user.phone,
     city: user.city,
-    avatar: user.avatar
+    avatar: user.avatar,
   };
 
   const handleAvatarPick = () => {
@@ -91,34 +87,44 @@ const  formateDate = (parsedDate) => {
       setErrorImg('Image is too big please select image below 3 MB');
       return;
     }
-    setIsAvatarSelected(true);
     setIsAvatarUpdated(false);
   };
 
   const cancelAvatarUpload = () => {
     setImgUrl('');
-    setFile('');
     setIsAvatarUpdated(false);
   };
- 
 
-  const handleSubmit = ({name, email, birthday,
-    phone, city}, { resetForm }) => {
+  const handleSubmit = (
+    { name, email, birthday, phone, city },
+    { resetForm }
+  ) => {
     let updateValues = null;
     if (selectedAvatar) {
-      updateValues = { name, email, birthday: birthday.replaceAll("-", '.'), phone, city, avatar: selectedAvatar};
-      
+      updateValues = {
+        name,
+        email,
+        birthday: birthday.replaceAll('-', '.'),
+        phone,
+        city,
+        avatar: selectedAvatar,
+      };
     } else {
-      updateValues = { name, email, phone, city, birthday: birthday.replaceAll("-", '.')};
-     
+      updateValues = {
+        name,
+        email,
+        phone,
+        city,
+        birthday: birthday.replaceAll('-', '.'),
+      };
     }
     const updateInfo = new FormData();
     for (const [key, value] of Object.entries(updateValues)) {
-      updateInfo.append(key, value)
+      updateInfo.append(key, value);
     }
     dispatch(updateUserInfo(updateInfo));
-    resetForm()
-  }
+    resetForm();
+  };
 
   return (
     <>
@@ -205,7 +211,6 @@ const  formateDate = (parsedDate) => {
                 </ErrorMessageContainer>
               </InputContainer>
 
-            
               <StyledInput name="birthday">
                 {({ field }) => (
                   <InputContainer>
@@ -217,7 +222,6 @@ const  formateDate = (parsedDate) => {
                         //  maskplaceholder="00.00.0000"
                         placeholder="00.00.0000"
                         type="text"
-                     
                         disabled={formDisabled}
                       />
                       <StyledErrorMessage component="div" name="birthday" />
@@ -258,13 +262,15 @@ const  formateDate = (parsedDate) => {
             </UserInfoContainer>
           </StyledForm>
         </Formik>
-        {formDisabled ? ( 
+        {formDisabled ? (
           <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
-          <SvgIcon id={'icon-edit-2'} />
-        </ButtonEditUserInfo>
-        ) : <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
-        <SvgIcon id={'icon-cross-small'} />
-        </ButtonEditUserInfo>}
+            <SvgIcon id={'icon-edit-2'} />
+          </ButtonEditUserInfo>
+        ) : (
+          <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
+            <SvgIcon id={'icon-cross-small'} />
+          </ButtonEditUserInfo>
+        )}
       </StyledUserDataForm>
     </>
   );
