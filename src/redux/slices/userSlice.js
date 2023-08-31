@@ -33,6 +33,7 @@ const initialState = {
   ],
   token: null,
   isLoggedIn: false,
+  isNewUser: false,
   isLoading: false,
 };
 
@@ -47,6 +48,11 @@ const handleRejected = state => {
 const userSlice = createSlice({
   name: 'user',
   initialState,
+  reduser: {
+    statusNewUser(state, payload) {
+      state.isNewUser = payload
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(registerUser.pending, handlePending)
@@ -55,6 +61,7 @@ const userSlice = createSlice({
         state.token = payload.token;
         state.isLoggedIn = true;
         state.isLoading = false;
+        state.isNewUser = true;
       })
       .addCase(registerUser.rejected, handleRejected)
       .addCase(logIn.pending, handlePending)
@@ -111,7 +118,7 @@ const userSlice = createSlice({
       .addCase(deletePet.fulfilled, state => {
         state.isLoading = false;
       })
-      .addCase(deletePet.rejected, handleRejected);
+      .addCase(deletePet.rejected, handleRejected)
   },
 });
 
