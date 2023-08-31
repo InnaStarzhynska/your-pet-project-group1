@@ -3,6 +3,7 @@ import { PetsCardContainer } from './PetsList.styled';
 import PetsItemDefault from '../PetsItem/PetsItemDefault/PetsItemDefault';
 import { useSelector } from 'react-redux';
 import { selectPets } from 'redux/selectors';
+import PetsItem from '../PetsItem/PetsItem';
 
 export const PetsList = () => {
   const pets = useSelector(selectPets);
@@ -14,7 +15,7 @@ export const PetsList = () => {
           <h4>Add information about your pet</h4>
         ) : (
             pets.map((pet, index) => {
-               return  < PetsItemDefault
+               return  < PetsItem
               key = { index }
               name = { pet.name }
               birthday = { pet.birthday }

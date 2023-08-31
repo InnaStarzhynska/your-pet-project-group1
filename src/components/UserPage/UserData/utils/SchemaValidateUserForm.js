@@ -24,7 +24,7 @@ export const getValidationSchema = () => {
       .string()
       .matches(
         birthdayRegExp,
-        'Birthday has invalid date format. The format should be DD-MM-YYYY.'
+        'Birthday has invalid date format. The format should be DD.MM.YYYY.'
       )
       .required('Birthday is a required field'),
     phone: yup

@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getNewsByQuery } from 'redux/operations/fetchNews';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from 'components/Pagination/Pagination';
+import { formateDate } from 'utils/formatedDate';
 
 export default function NewsPage() {
   const dispatch = useDispatch();

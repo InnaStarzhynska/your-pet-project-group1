@@ -33,6 +33,7 @@ import Notiflix from 'notiflix';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { updateUserInfo } from 'redux/operations/fetchUser';
+import { formateDate } from 'utils/formatedDate';
 
 export const UserData = () => {
   const validationSchema = getValidationSchema();
@@ -47,6 +48,7 @@ export const UserData = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
+
   const handleChangeFormStatus = () => {
     setFormDisabled(!formDisabled);
   };
@@ -54,7 +56,7 @@ export const UserData = () => {
   const initialValues = {
     name: user.name,
     email: user.email,
-    birthday: user.birthday ?? new Date().toLocaleDateString(),
+    birthday: formateDate(user.birthday) ?? new Date().toLocaleDateString().replaceAll("-", '.'),
     phone: user.phone,
     city: user.city,
     avatar: user.avatar
@@ -92,8 +94,14 @@ export const UserData = () => {
     setIsAvatarUpdated(false);
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    const updateValues = { ...values, birthday: values.birthday.replaceAll("-", '.'), avatar: selectedAvatar };
+  const handleSubmit = ({name, email, birthday,
+    phone, city}, { resetForm }) => {
+    let updateValues = null;
+    if (selectedAvatar) {
+      updateValues = { name, email, birthday, phone, city, birthday: birthday.replaceAll("-", '.'), avatar: selectedAvatar};
+    } else {
+      updateValues = { name, email, phone, city, birthday: birthday.replaceAll("-", '.')};
+    }
     const updateInfo = new FormData();
     for (const [key, value] of Object.entries(updateValues)) {
       updateInfo.append(key, value)
