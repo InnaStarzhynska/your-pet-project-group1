@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { devices } from 'constants/breakpoints';
 
 export const Img = styled.img`
 position: absolute;

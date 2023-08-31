@@ -10,7 +10,7 @@ import AddPetPage from 'pages/AddPetPage/AddPetPage';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser } from 'redux/operations/fetchUser';
-import { selectLoadingNews, selectLoadingNotices, selectLoadingUser} from 'redux/selectors';
+import { selectLoadingUser} from 'redux/selectors';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
 import NewsPage from 'pages/NewsPage/NewsPage';
@@ -19,7 +19,6 @@ import { Navigate } from "react-router-dom";
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoadingUser)
 
   useEffect(() => {
     dispatch(getCurrentUser())

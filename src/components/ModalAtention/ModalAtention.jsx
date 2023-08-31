@@ -1,7 +1,6 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
-import { colors } from 'constants/colors';
 
 import {
   Background,

@@ -1,16 +1,7 @@
-// export default function Modal() {
-//   return (
-//     <div>Modal</div>
-//   )
-// }
 
 import { useEffect } from 'react';
-import { BackDrop, Button, Content } from './Modal.styled';
-// import { createPortal } from 'react-dom';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
-import { colors } from 'constants/colors';
+import { BackDrop, Content } from './Modal.styled';
 
-const modalWindow = document.getElementById('modal');
 
 const Modal = ({ closeModal, children }) => {
   useEffect(() => {
