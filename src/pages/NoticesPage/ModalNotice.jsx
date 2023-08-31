@@ -102,6 +102,12 @@ const ModalNotice = ({
                 <Key>The sex:</Key>
                 <Value>{notice.sex}</Value>
               </ModelItemInfo>
+              {notice.price && (
+                <ModelItemInfo>
+                  <Key>Price:</Key>
+                  <Value>{notice.price}</Value>
+                </ModelItemInfo>
+              )}
               <ModelItemInfo>
                 <Key>Email:</Key>
                 <AddressLink href={`mailto:${email}`}>{email}</AddressLink>
