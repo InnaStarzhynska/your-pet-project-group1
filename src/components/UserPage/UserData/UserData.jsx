@@ -33,7 +33,7 @@ import Notiflix from 'notiflix';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { updateUserInfo } from 'redux/operations/fetchUser';
-import { formateDate } from 'utils/formatedDate';
+import moment from "moment";
 
 export const UserData = () => {
   const validationSchema = getValidationSchema();
@@ -53,10 +53,17 @@ export const UserData = () => {
     setFormDisabled(!formDisabled);
   };
 
+const  formateDate = (parsedDate) => {
+
+    const formatedDate = moment(parsedDate).format("DD-MM-YYYY").replaceAll('-', '.');
+    return formatedDate
+}
+
+
   const initialValues = {
     name: user.name,
     email: user.email,
-    birthday: formateDate(user.birthday) ?? new Date().toLocaleDateString().replaceAll("-", '.'),
+    birthday: formateDate(user.birthday),
     phone: user.phone,
     city: user.city,
     avatar: user.avatar
@@ -93,14 +100,17 @@ export const UserData = () => {
     setFile('');
     setIsAvatarUpdated(false);
   };
+ 
 
   const handleSubmit = ({name, email, birthday,
     phone, city}, { resetForm }) => {
     let updateValues = null;
     if (selectedAvatar) {
-      updateValues = { name, email, birthday, phone, city, birthday: birthday.replaceAll("-", '.'), avatar: selectedAvatar};
+      updateValues = { name, email, birthday: birthday.replaceAll("-", '.'), phone, city, avatar: selectedAvatar};
+      
     } else {
       updateValues = { name, email, phone, city, birthday: birthday.replaceAll("-", '.')};
+     
     }
     const updateInfo = new FormData();
     for (const [key, value] of Object.entries(updateValues)) {
@@ -109,6 +119,7 @@ export const UserData = () => {
     dispatch(updateUserInfo(updateInfo));
     resetForm()
   }
+
   return (
     <>
       <StyledUserDataForm>
@@ -194,6 +205,7 @@ export const UserData = () => {
                 </ErrorMessageContainer>
               </InputContainer>
 
+            
               <StyledInput name="birthday">
                 {({ field }) => (
                   <InputContainer>
@@ -201,9 +213,11 @@ export const UserData = () => {
                     <ErrorMessageContainer>
                       <StyledInputMask
                         {...field}
-                        mask="99-99-9999"
-                        maskplaceholder="11-11-1970"
+                        //   mask="00.00.0000"
+                        //  maskplaceholder="00.00.0000"
+                        placeholder="00.00.0000"
                         type="text"
+                     
                         disabled={formDisabled}
                       />
                       <StyledErrorMessage component="div" name="birthday" />
@@ -211,7 +225,6 @@ export const UserData = () => {
                   </InputContainer>
                 )}
               </StyledInput>
-
               <InputContainer>
                 <StyledLabel htmlFor="phone">Phone:</StyledLabel>
                 <ErrorMessageContainer>
@@ -245,10 +258,13 @@ export const UserData = () => {
             </UserInfoContainer>
           </StyledForm>
         </Formik>
-
-        <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
+        {formDisabled ? ( 
+          <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
           <SvgIcon id={'icon-edit-2'} />
         </ButtonEditUserInfo>
+        ) : <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
+        <SvgIcon id={'icon-cross-small'} />
+        </ButtonEditUserInfo>}
       </StyledUserDataForm>
     </>
   );

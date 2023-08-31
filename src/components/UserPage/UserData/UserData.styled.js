@@ -67,6 +67,7 @@ export const SaveProfileWrapper = styled.div`
 export const StyledUserDataForm = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 59px;
 
   @media screen and (min-width: 767px) {

@@ -4,6 +4,7 @@ import ReactInputMask from 'react-input-mask';
 
 export const StyledForm = styled(Form)`
   display: flex;
+  
   flex-direction: column;
   gap: 21px;
 
