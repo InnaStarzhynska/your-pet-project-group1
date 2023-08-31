@@ -7,11 +7,11 @@ import {
 } from './PetsItem.styled';
 import avatarDefault2x from '../../../images/Photo_default@2x.jpg';
 
-export const PetsItem = ({ name, birthday, type, comments, id }) => {
+export const PetsItem = ({ name, birthday, avatar,type, comments }) => {
   return (
     <>
       <PetsCard>
-        <PetsImg src={avatarDefault2x} alt={`Pets avatar`} loading="lazy" />
+        <PetsImg src={avatar} alt={`Pets avatar`} loading="lazy" />
         <PetsInfoContainer>
           <PetsInfoText>
             <PetsInfoTitle> Name: </PetsInfoTitle>
@@ -19,6 +19,7 @@ export const PetsItem = ({ name, birthday, type, comments, id }) => {
           </PetsInfoText>
           <PetsInfoText>
             <PetsInfoTitle>Date of birth: </PetsInfoTitle>
+            {birthday}
           </PetsInfoText>
           <PetsInfoText>
             <PetsInfoTitle>Type:</PetsInfoTitle>
