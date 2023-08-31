@@ -72,11 +72,13 @@ const noticesSlice = createSlice({
       .addCase(addNoticeToFavorites.pending, handlePending)
       .addCase(addNoticeToFavorites.fulfilled, state => {
         state.isLoading = false;
+        state.noticeById = {}
       })
       .addCase(addNoticeToFavorites.rejected, handleRejected)
       .addCase(removeNoticeFromFavorites.pending, handlePending)
       .addCase(removeNoticeFromFavorites.fulfilled, state => {
         state.isLoading = false;
+        state.noticeById = {}
       })
       .addCase(removeNoticeFromFavorites.rejected, handleRejected);
   },
