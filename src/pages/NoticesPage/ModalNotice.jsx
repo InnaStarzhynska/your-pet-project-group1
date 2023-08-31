@@ -147,7 +147,8 @@ const ModalNotice = ({
               <span>Add to</span>
             )}
 
-            <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} />
+            <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} className={"modalHeartIcon"}
+/>
           </AddBtn>
         </div>
       </ModalNoticeBox>
