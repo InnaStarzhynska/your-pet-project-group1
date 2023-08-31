@@ -25,33 +25,23 @@ export const ModalNoticeBox = styled.div`
 
 export const ImageContainer = styled.div`
   width: 240px;
-  height: auto;
+  height: 160px;
   border-radius: 0px 0px 40px 40px;
   background: lightgray 0px -14.355px / 100% 150.131% no-repeat;
 
   @media screen and (${devices.tablet}) {
     width: 262px;
     height: 298px;
-
     border-radius: 0px 0px 40px 40px;
     background: lightgray 0px -4.16px / 100% 131.822% no-repeat;
   }
 `;
 
 export const Image = styled.img`
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-
   border-radius: 0px 0px 40px 40px;
-  background: lightgray 0px -4.16px / 100% 131.822% no-repeat;
-
-  @media (max-width: 767px) {
-    width: 240px;
-    height: auto;
-    border-radius: 0px 0px 40px 40px;
-    background: lightgray 0px -14.355px / 100% 150.131% no-repeat;
-  }
 `;
 
 export const Category = styled.p`
@@ -125,13 +115,13 @@ export const Title = styled.h1`
   line-height: normal;
   letter-spacing: -0.28px;
 
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     width: 100%;
     font-size: 24px;
     letter-spacing: -0.24px;
     margin-bottom: 22px;
   }
-`
+`;
 
 export const ModalNoticeInfoList = styled.ul`
   padding: 0px;
