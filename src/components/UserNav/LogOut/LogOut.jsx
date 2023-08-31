@@ -6,10 +6,11 @@ import { colors } from 'constants/colors';
 import ModalLogout from 'components/Modals/ModalLogout';
 import { Text } from 'components/ModalApproveAction/ModalApproveAction.styled';
 
-export default function LogOut({ isMenuOpen }) {
+export default function LogOut({ isMenuOpen, closeMenu }) {
   const [modalClose, setModalClose] = useState(false);
 
   const toggleModal = () => {
+    closeMenu()
     setModalClose(prevState => !prevState);
   };
 

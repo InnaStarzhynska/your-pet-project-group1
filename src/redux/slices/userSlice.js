@@ -48,9 +48,9 @@ const handleRejected = state => {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reduser: {
+  reducers: {
     statusNewUser(state, payload) {
-      state.isNewUser = payload
+      state.isNewUser = payload.payload;
     }
   },
   extraReducers: builder => {
@@ -129,3 +129,4 @@ const persistConfig = {
 };
 
 export const userReducer = persistReducer(persistConfig, userSlice.reducer);
+export const { statusNewUser } = userSlice.actions;

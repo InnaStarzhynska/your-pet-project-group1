@@ -9,17 +9,27 @@ ButtonClose,
   Text,
   ApproveButton,
 } from './ModalCongrats.styled';
+import { useDispatch } from 'react-redux';
+import { statusNewUser } from '../../redux/slices/userSlice';
 
 const modalApproveAction = document.querySelector('#modal_approveAction');
 
 const ModalCongrats = ({ closeModal }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    window.addEventListener('keydown', e => {
+    const handleKeyDown = e => {
       if (e.code === 'Escape') {
         handleClickClose();
       }
-    });
-  });
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
@@ -28,13 +38,13 @@ const ModalCongrats = ({ closeModal }) => {
   };
 
   const handleClickClose = () => {
-    closeModal();
+    dispatch(statusNewUser(false));
   };
 
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal>
-        <ButtonClose type="button" onClick={handleBackdropClick}>
+        <ButtonClose type="button" onClick={handleClickClose}>
           <SvgIcon id={'icon-cross-small'} />
         </ButtonClose>
         <Banner>Congrats!</Banner>

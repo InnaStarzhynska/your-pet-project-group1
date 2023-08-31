@@ -50,7 +50,7 @@ export default function Navigation() {
     <Wrapper>
       <Nav />
       {isAuth
-        ? !isMobile && <UserNav isMenuOpen={isMenuOpen} />
+        ? !isMobile && <UserNav isMenuOpen={isMenuOpen} closeMenu={toggleMenu}/>
         : !isMobile && <AuthNav />}
       <BurgerIcon onClick={toggleMenu}>{toggleIcon(isMenuOpen)}</BurgerIcon>
       <BurgerMenu isOpen={isMenuOpen} onClose={toggleMenu}>
@@ -58,7 +58,7 @@ export default function Navigation() {
           ? !isTablet && <UserNav isMenuOpen={isMenuOpen} />
           : !isTablet && <AuthNav />}
         <Nav isMenuOpen={isMenuOpen} closeMenu={toggleMenu}/>
-        {isAuth && <LogOut onClick={() => {}} isMenuOpen={!isMenuOpen} />}
+        {isAuth && <LogOut  isMenuOpen={!isMenuOpen} />}
       </BurgerMenu>
     </Wrapper>
   );

@@ -2,30 +2,45 @@ import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
 import { colors } from 'constants/colors';
 
+
 export const ModalNoticeBox = styled.div`
   position: absolute;
 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 681px;
-  height: 540px;
-  padding: 24px 31px;
-  border-radius: 40px;
+  width: 280px;
+  max-height: 600px;
+  border-radius: 20px;
+  padding: 44px 20px 16px 20px;
+  overflow: auto;
   background: ${colors.whiteBgColor};
 
-  @media (max-width: 767px) {
-    width: 280px;
-    max-height: 600px;
-    border-radius: 20px;
-    padding: 44px 20px 16px 20px;
-    overflow: auto;
+  @media only screen and ${devices.tablet} {
+    width: 681px;
+    height: 540px;
+    padding: 32px 32px 24px 32px;
+    border-radius: 40px;
+  }
+`;
+
+export const ModalNoticeWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  @media screen and (${devices.tablet}) {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 28px;
   }
 `;
 
 export const ImageContainer = styled.div`
   width: 240px;
-  height: 160px;
+  height: 240px;
   border-radius: 0px 0px 40px 40px;
   background: lightgray 0px -14.355px / 100% 150.131% no-repeat;
 
@@ -64,19 +79,6 @@ export const Category = styled.p`
   font-weight: 500;
 `;
 
-export const ModalNoticeWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-bottom: 28px;
-
-  @media screen and (${devices.tablet}) {
-    flex-flow: row wrap;
-    gap: 12px;
-    margin-bottom: 13px;
-  }
-`;
-
 export const CloseBtn = styled.button`
   display: flex;
   justify-content: center;
@@ -87,6 +89,7 @@ export const CloseBtn = styled.button`
   background-color: transparent;
   border: transparent;
   stroke: ${colors.blueColor};
+  cursor: pointer;
 
   width: 24px;
   height: 24px;
@@ -119,18 +122,64 @@ export const Title = styled.h1`
     width: 100%;
     font-size: 24px;
     letter-spacing: -0.24px;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
   }
 `;
 
 export const ModalNoticeInfoList = styled.ul`
-  padding: 0px;
-  margin: 0px;
-  list-style: none;
-
   display: flex;
   flex-direction: column;
   gap: 8px;
+`;
+
+export const ModelItemInfo = styled.li`
+  display: flex;
+  gap: 70px;
+
+  @media (max-width: 767px) {
+    width: 100%;
+    gap: 20px;
+  }
+`;
+
+export const Key = styled.p`
+  width: 70px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: ${colors.blackColor};
+
+  @media only screen and ${devices.tablet} {
+    font-size: 16px;
+  }
+`;
+export const Value = styled(Key)`
+  font-size: 12px;
+  font-weight: 500;
+
+  @media only screen and ${devices.tablet} {
+    font-size: 16px;
+  }
+`;
+
+export const AddressLink = styled.a`
+  color: ${colors.accentColor};
+
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration-line: underline;
+
+  :hover,
+  :focus {
+    color: rgb(84, 173, 255);
+  }
+
+  @media only screen and ${devices.tablet} {
+    font-size: 16px;
+  }
 `;
 
 export const Comments = styled.p`
@@ -171,16 +220,16 @@ export const CommentsBold = styled.span`
 
 export const AddBtn = styled.button`
   display: flex;
-  width: 129px;
+  width: 100%;
   height: 40px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
+  margin-top: 8px;
   border-radius: 40px;
   background: ${colors.blueColor};
   border: 2px solid #54adff;
-
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
   color: ${colors.textButtonColor};
 
   font-size: 16px;
@@ -189,106 +238,52 @@ export const AddBtn = styled.button`
   line-height: normal;
   letter-spacing: 0.64px;
 
-  @media (min-width: 768px) {
+  &:hover,
+  &:focus {
+    border: none;
+    color: ${colors.whiteBgColor};
+    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
+  }
+
+  @media only screen and ${devices.tablet} {
     position: absolute;
     right: 177px;
     bottom: 24px;
+    width: 129px;
   }
-
-  @media (max-width: 767px) {
-    width: 100%;
-    height: 40px;
-    // padding: 8px 20px;
-    border-radius: 40px;
-    border: 2px solid #54adff;
-  }
-
-  //   :hover,
-  //   :focus {
-  //     border: transparent;
-  //     color: ${colors.whiteBgColor};
-  //     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
-  //   }
 `;
 
 export const ContactLink = styled.a`
   display: flex;
-  width: 129px;
-  height: 40px;
+  width: 100%;
+  height: auto;
   padding: 8px 20px;
+  border-radius: 40px;
+  border: 2px solid ${colors.blueColor};
+  margin-bottom: 8px;
   justify-content: center;
   align-items: center;
   gap: 8px;
   margin: 0;
-
-  border-radius: 40px;
-  border: 2px solid ${colors.blueColor};
   color: ${colors.blueColor};
-
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.64px;
 
-  @media (min-width: 768px) {
+  &:hover,
+  &:focus {
+    background-image: ${colors.gradientBlueColor};
+    color: ${colors.whiteColor};
+    border: none;
+  }
+
+  @media only screen and ${devices.tablet} {
     position: absolute;
     right: 31px;
     bottom: 24px;
+    width: 129px;
+    height: 40px;
   }
-
-  @media (max-width: 767px) {
-    width: 100%;
-    height: auto;
-    padding: 8px 20px;
-    border-radius: 40px;
-    border: 2px solid ${colors.blueColor};
-    margin-bottom: 8px;
-  }
-
-  :hover,
-  :focus {
-    border: transparent;
-    color: ${colors.whiteBgColor};
-    background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
-  }
-`;
-
-export const AddressLink = styled.a`
-  color: ${colors.accentColor};
-
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  text-decoration-line: underline;
-
-  :hover,
-  :focus {
-    color: rgb(84, 173, 255);
-  }
-`;
-
-export const ModelItemInfo = styled.li`
-  display: flex;
-  gap: 70px;
-  color: ${colors.blackColor};
-
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-
-  @media (max-width: 767px) {
-    width: 100%;
-    font-size: 14px;
-    gap: 20px;
-  }
-`;
-
-export const Key = styled.p`
-  width: 70px;
-`;
-export const Value = styled.p`
-  /* width: 61px; */
 `;
