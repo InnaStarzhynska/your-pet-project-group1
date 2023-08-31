@@ -126,15 +126,17 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
       <AddToFavouriteBtn
         type="button"
         onClick={() =>
-          handleToggleFavorite(noticeId, isLoggedIn, !favorite.includes(id))
-        }
+          handleToggleFavorite(noticeId, isLoggedIn, !favorite.includes(id))}      
       >
-        <HeartIcon
+      
+        { !favorite.includes(id) ?  (<HeartIcon
           id={'icon-heart'}
-          className={`heartIcon ${
-            favorite.includes(id) ? 'inFavouriteIcon' : ''
-          }`}
-        ></HeartIcon>
+       className={"heartIcon"}
+        ></HeartIcon>) :  (<HeartIcon
+        id={'icon-heart-2'}
+     
+      ></HeartIcon>)}
+       
       </AddToFavouriteBtn>
 
       {id === owner ? (
