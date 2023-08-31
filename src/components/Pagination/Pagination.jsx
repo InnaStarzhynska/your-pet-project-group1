@@ -1,8 +1,6 @@
 import SvgIcon from "components/SvgIcon/SvgIcon";
 import { Button, PaginationContainer, Wrapper } from "./Pagination.styled";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectNoticesTotalPages } from "redux/selectors";
 import { useSearchParams } from "react-router-dom";
 
 export default function Pagination({ currentPage: page, changePage, totalPages }) {

@@ -70,7 +70,7 @@ export default function NoticesPage() {
   return (
     <>
       {isLoading ? (
-        <IsLoading isOpen={isLoading} />
+        <IsLoading />
       ) : (
         <Section>
           <Container>
