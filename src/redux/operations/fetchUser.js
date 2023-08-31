@@ -77,11 +77,9 @@ export const updateUserInfo = createAsyncThunk("user/updateUserInfo", async (cre
     try {
         const responce = await axios.put('/auth/update', credentials);
         Notiflix.Notify.success(`Information changed successfully`);
-        console.log(responce)
         return responce.data
     }
     catch (error) {
-        console.log(error)
         Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);
     }

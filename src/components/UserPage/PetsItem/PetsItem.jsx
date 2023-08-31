@@ -4,14 +4,27 @@ import {
   PetsInfoContainer,
   PetsInfoTitle,
   PetsInfoText,
+  ButtonDeletePet,
 } from './PetsItem.styled';
-import avatarDefault2x from '../../../images/Photo_default@2x.jpg';
+import { useState } from 'react';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
+import ModalDeleteAds from 'components/Modals/ModalDeleteAds';
 
-export const PetsItem = ({ name, birthday, avatar,type, comments }) => {
+export default function PetsItem ({ name, dateOfBirth, type, comments, id, avatar }) {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+
+  const toggleModal = () => {
+    setModalOpen(prevState => !prevState)
+  }
   return (
     <>
-      <PetsCard>
-        <PetsImg src={avatar} alt={`Pets avatar`} loading="lazy" />
+      <PetsCard style={{ position: 'relative' }}>
+        <PetsImg
+          src={avatar}
+          alt={`Pets avatar ${name}`}
+          loading="lazy"
+        />
         <PetsInfoContainer>
           <PetsInfoText>
             <PetsInfoTitle> Name: </PetsInfoTitle>
@@ -19,10 +32,10 @@ export const PetsItem = ({ name, birthday, avatar,type, comments }) => {
           </PetsInfoText>
           <PetsInfoText>
             <PetsInfoTitle>Date of birth: </PetsInfoTitle>
-            {birthday}
+            {dateOfBirth}
           </PetsInfoText>
           <PetsInfoText>
-            <PetsInfoTitle>Type:</PetsInfoTitle>
+            <PetsInfoTitle>Type: </PetsInfoTitle>
             {type}
           </PetsInfoText>
           {comments && (
@@ -32,9 +45,11 @@ export const PetsItem = ({ name, birthday, avatar,type, comments }) => {
             </PetsInfoText>
           )}
         </PetsInfoContainer>
+        <ButtonDeletePet type="button" onClick={()=> {setModalOpen(true)}}>
+          <SvgIcon id={'icon-trash-2'} className={'icon-trash-2'} />
+        </ButtonDeletePet>
+        {isModalOpen && <ModalDeleteAds modalClose={toggleModal} _id={id} title={name} type={'pet'} />}
       </PetsCard>
     </>
   );
 };
-
-export default PetsItem;

@@ -21,16 +21,7 @@ const initialState = {
     phone: null,
     city: null,
   },
-  pets: [
-    {
-      id: 1,
-      name: 'Your pet name',
-      birthday: 'DD-MM-YYYY',
-      photoUrl: '',
-      type: 'Type of your pet',
-      comments: 'The best pets',
-    },
-  ],
+  pets: [],
   token: null,
   isLoggedIn: false,
   isNewUser: false,
@@ -95,13 +86,13 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getUserInfo.rejected, handleRejected)
-      .addCase(getCurrentUser.pending, handlePending)
+      // .addCase(getCurrentUser.pending, handlePending)
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(getCurrentUser.rejected, handleRejected)
+      // .addCase(getCurrentUser.rejected, handleRejected)
       .addCase(updateUserInfo.pending, handlePending)
       .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
         state.user = payload;

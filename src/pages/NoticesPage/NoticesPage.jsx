@@ -44,10 +44,8 @@ export default function NoticesPage() {
   }, []);
 
   useEffect(() => {
-    console.log(category)
     if (category === 'favorite-ads') {
       dispatch(getFavoriteNotices());
-      console.log("favorite")
       return;
     }
     if (category === 'my-ads') {

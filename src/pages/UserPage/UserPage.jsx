@@ -23,8 +23,8 @@ export const UserPage = () => {
   console.log('isNewUser->', isNewUser)
 
   useEffect(() => {
-    
-  }, [dispatch])
+    dispatch(getUserInfo())
+  }, [])
 
   return (
     <>
