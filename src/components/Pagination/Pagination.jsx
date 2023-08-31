@@ -5,9 +5,8 @@ import { useSelector } from "react-redux";
 import { selectNoticesTotalPages } from "redux/selectors";
 import { useSearchParams } from "react-router-dom";
 
-export default function Pagination({ currentPage: page, changePage }) {
+export default function Pagination({ currentPage: page, changePage, totalPages }) {
 const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-    const totalPages = useSelector(selectNoticesTotalPages);
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get('query') ?? '';
 
