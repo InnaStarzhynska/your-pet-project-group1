@@ -24,7 +24,7 @@ export const UserPage = () => {
 
   useEffect(() => {
     dispatch(getUserInfo())
-  }, [])
+  }, [dispatch])
 
   return (
     <>

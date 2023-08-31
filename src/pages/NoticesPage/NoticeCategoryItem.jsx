@@ -1,6 +1,6 @@
 import { formatDistanceStrict } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFavoriteNotices, getNoticeById } from 'redux/operations/fetchNotices';
+import { getNoticeById } from 'redux/operations/fetchNotices';
 import { useState } from 'react';
 import { selectUser, selectLoggedIn } from 'redux/selectors';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
