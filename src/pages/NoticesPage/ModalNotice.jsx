@@ -5,7 +5,7 @@ import {
   addNoticeToFavorites,
   removeNoticeFromFavorites,
 } from '../../redux/operations/fetchNotices';
-// import Modal from "components/Modal/Modal";
+import Modal from "components/Modal/Modal";
 import {
   ModalNoticeBox,
   Image,
@@ -27,7 +27,7 @@ import {
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 import { selectNoticeById, selectLoggedIn } from 'redux/selectors';
-import Modal from 'components/Modal/Modal';
+import { createPortal } from 'react-dom';
 
 function formatDate(inputDate) {
   const dateObj = new Date(inputDate);
@@ -37,6 +37,8 @@ function formatDate(inputDate) {
 
   return `${day}.${month}.${year}`;
 }
+
+const modalApproveAction = document.querySelector('#modal_approveAction');
 
 const ModalNotice = ({
   // handleClickHeart,
@@ -69,8 +71,8 @@ const ModalNotice = ({
     dispatch(removeNoticeFromFavorites({ _id: noticeId }));
   };
 
-  return (
-    <Modal closeModal={isModalOpen}>
+  return createPortal (
+   <><Modal closeModal={isModalOpen}>
       <ModalNoticeBox>
         <ModalNoticeWrap>
           <ImageContainer>
@@ -151,6 +153,7 @@ const ModalNotice = ({
         </div>
       </ModalNoticeBox>
     </Modal>
+      </>, modalApproveAction
   );
 };
 
