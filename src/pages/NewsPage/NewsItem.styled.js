@@ -10,7 +10,7 @@ export const ItemNews = styled.li`
   &:before {
     position: absolute;
     content: '';
-    top: -18px;
+    top: -20px;
     display: block;
     height: 8px;
     width: 100%;
@@ -31,8 +31,6 @@ export const ItemNews = styled.li`
     height: 534px;
     flex-basis: calc((100% - 62px) / 3);
   }
-
-  cursor: pointer;
 `;
 
 export const ImageNews = styled.img`
