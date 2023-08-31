@@ -5,7 +5,10 @@ import { useState } from 'react';
 import { selectUser, selectLoggedIn } from 'redux/selectors';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import ModalDeleteAds from 'components/Modals/ModalDeleteAds';
-  import {addNoticeToFavorites, removeNoticeFromFavorites } from 'redux/operations/fetchNotices';
+import {
+  addNoticeToFavorites,
+  removeNoticeFromFavorites,
+} from 'redux/operations/fetchNotices';
 import {
   Avatar,
   Card,
@@ -22,40 +25,45 @@ import {
   InfoIcon,
   PawIcon,
 } from './NoticeCategoryItem.styled';
+import defaultImg from '../../images/errorImg.jpg';
 
-
-
-
-export default function NoticesCategoryItem({item, isModalOpen}) {
+export default function NoticesCategoryItem({ item, isModalOpen }) {
   const dispatch = useDispatch();
 
-  const { _id: noticeId, category, avatar, location, dateOfBirth, sex, title, favorite, owner } =
-    item;
+  const {
+    _id: noticeId,
+    category,
+    avatar,
+    location,
+    dateOfBirth,
+    sex,
+    title,
+    favorite,
+    owner,
+  } = item;
 
-    const isLoggedIn = useSelector(selectLoggedIn);
-    const {id} = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectLoggedIn);
+  const { id } = useSelector(selectUser);
   const [isFavorite] = useState(favorite.includes(id));
   const [modalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   const toggleDeleteModal = () => {
-setIsModalDeleteOpen(prevState => !prevState)
+    setIsModalDeleteOpen(prevState => !prevState);
   };
 
-    const handleToggleFavorite = (noticeId, isLoggedIn, favorite) => {
-      if (!isLoggedIn) {
-        return;
-      }
-  
-      if (favorite) {
-        dispatch(addNoticeToFavorites({ _id: noticeId }));
- 
-        return;
-      }
-  
-      dispatch(removeNoticeFromFavorites({ _id: noticeId }));
-   
-    };
-  
+  const handleToggleFavorite = (noticeId, isLoggedIn, favorite) => {
+    if (!isLoggedIn) {
+      return;
+    }
+
+    if (favorite) {
+      dispatch(addNoticeToFavorites({ _id: noticeId }));
+
+      return;
+    }
+
+    dispatch(removeNoticeFromFavorites({ _id: noticeId }));
+  };
 
   const formatPetsAge = birthDate => {
     return formatDistanceStrict(new Date(), Date.parse(birthDate), {
@@ -82,14 +90,21 @@ setIsModalDeleteOpen(prevState => !prevState)
 
   const noticeTitle = formatNoticeTitle(title);
 
-    
   return (
-     <Card className="card">
-      <Avatar src={avatar} alt={title} />
+    <Card className="card">
+      <Avatar
+        src={avatar}
+        alt={title}
+        onError={event => {
+          event.target.src = defaultImg;
+          event.onerror = null;
+        }}
+      />
       <InfoIconsWraper>
         <LocateLink
-        target="_blank"
-        href={`https://www.google.com/maps/place/${location}`}>
+          target="_blank"
+          href={`https://www.google.com/maps/place/${location}`}
+        >
           <InfoIcon id={'icon-location-1'}></InfoIcon>
           {formatNoticeLocation}
         </LocateLink>
@@ -108,38 +123,56 @@ setIsModalDeleteOpen(prevState => !prevState)
       </InfoIconsWraper>
       <CardTitle>{noticeTitle}</CardTitle>
       <StyledCategory>{category}</StyledCategory>
-      <AddToFavouriteBtn  type="button" onClick={()=> handleToggleFavorite(noticeId, isLoggedIn, !favorite.includes(id))}>
-        <HeartIcon 
-          id={'icon-heart'} 
-          className={`heartIcon ${favorite.includes(id)?  'inFavouriteIcon' : ''}`}
+      <AddToFavouriteBtn
+        type="button"
+        onClick={() =>
+          handleToggleFavorite(noticeId, isLoggedIn, !favorite.includes(id))
+        }
+      >
+        <HeartIcon
+          id={'icon-heart'}
+          className={`heartIcon ${
+            favorite.includes(id) ? 'inFavouriteIcon' : ''
+          }`}
         ></HeartIcon>
       </AddToFavouriteBtn>
-    
+
       {id === owner ? (
         <DeleteBtn
           type="button"
           onClick={() => {
-            toggleDeleteModal()
-
+            toggleDeleteModal();
           }}
         >
           <SvgIcon id={'icon-trash-2'}></SvgIcon>
         </DeleteBtn>
-        
       ) : (
         ''
       )}
-      
-      {(modalDeleteOpen ? <ModalDeleteAds modalClose={toggleDeleteModal} _id = {noticeId} title={title} /> : "") }
 
+      {modalDeleteOpen ? (
+        <ModalDeleteAds
+          modalClose={toggleDeleteModal}
+          _id={noticeId}
+          title={title}
+        />
+      ) : (
+        ''
+      )}
 
       <LearnMoreBtnWrap>
-          <LearnMoreBtn type="button" isFavorite={isFavorite} className='btn' onClick={() => {
+        <LearnMoreBtn
+          type="button"
+          isFavorite={isFavorite}
+          className="btn"
+          onClick={() => {
             dispatch(getNoticeById({ _id: noticeId }));
-          isModalOpen(true);
-                }}>
+            isModalOpen(true);
+          }}
+        >
           Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>
         </LearnMoreBtn>
       </LearnMoreBtnWrap>
-    </Card>)
+    </Card>
+  );
 }
