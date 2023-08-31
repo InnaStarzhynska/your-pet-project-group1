@@ -19,8 +19,8 @@ export const UserPage = () => {
   const isLoading = useSelector(selectLoadingUser);
 
   useEffect(() => {
-    
-  }, [dispatch])
+    dispatch(getUserInfo())
+  }, [])
 
   return (
     <>

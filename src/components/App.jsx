@@ -26,7 +26,7 @@ export const App = () => {
 }, [dispatch])
 
   return (
-     !isLoading && <Routes>
+      <Routes>
       <Route path="/" element={<Sharedlayout />}>
         <Route index element={<MainPage />} />
         <Route path="/notices" element={<Navigate to={"/notices/sell"} />} />

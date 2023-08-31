@@ -7,19 +7,15 @@ import {
   PetsTitle,
 } from './PetsData.styled';
 
-export const PetsData = () => {
+export default function PetsData () {
   
   return (
     <PetsContainer>
       <PetsHeaderContainer>
         <PetsTitle>My pets:</PetsTitle>
-
         <AddPetBtn />
       </PetsHeaderContainer>
-
       <PetsList />
     </PetsContainer>
   );
 };
-
-export default PetsData;

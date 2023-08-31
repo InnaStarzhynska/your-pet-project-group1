@@ -1,11 +1,10 @@
 import React from 'react';
 import { PetsCardContainer } from './PetsList.styled';
-import PetsItemDefault from '../PetsItem/PetsItemDefault/PetsItemDefault';
 import { useSelector } from 'react-redux';
 import { selectPets } from 'redux/selectors';
 import PetsItem from '../PetsItem/PetsItem';
 
-export const PetsList = () => {
+export default function PetsList () {
   const pets = useSelector(selectPets);
 
   return (
@@ -16,18 +15,18 @@ export const PetsList = () => {
         ) : (
             pets.map((pet, index) => {
                return  < PetsItem
-              key = { index }
+                 key={index}
+                 id={pet.id}
               name = { pet.name }
-              birthday = { pet.birthday }
+              birthday = { pet.dateOfBirth }
               avatar = { pet.avatar }
               type = { pet.type }
               comments = { pet.comments }
                 />
             })
         )}
+  
       </PetsCardContainer>
     </>
   );
 };
-
-export default PetsList;

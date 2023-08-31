@@ -4,6 +4,7 @@ import { getNewsByQuery } from 'redux/operations/fetchNews';
 const initialState = {
   news: [],
   isLoading: false,
+  page:1,
   totalPages: 1
 };
 
@@ -24,7 +25,8 @@ const newsSlice = createSlice({
       .addCase(getNewsByQuery.fulfilled, (state, { payload }) => {
         state.news = payload.news;
         state.isLoading = false;
-        state.totalPages = payload.totalPages
+        state.totalPages = payload.totalPages;
+        state.page= payload.page
       })
       .addCase(getNewsByQuery.rejected, handleRejected);
   },
