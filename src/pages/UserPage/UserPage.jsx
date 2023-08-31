@@ -19,8 +19,11 @@ export const UserPage = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectLoadingUser);
 
-  const {isNewUser}  = useSelector(state => state.user);
-  console.log('isNewUser->', isNewUser)
+  const { isNewUser } = useSelector(state => state.user);
+  const toggleModal = () => {
+    dispatch(isNewUser(false))
+  }
+
 
   useEffect(() => {
     dispatch(getUserInfo())
@@ -28,7 +31,7 @@ export const UserPage = () => {
 
   return (
     <>
-    {isNewUser && <ModalCongrats></ModalCongrats>}
+    {isNewUser && <ModalCongrats closeModal={toggleModal}></ModalCongrats>}
       {isLoading ? (
         <IsLoading />
       ) : (
