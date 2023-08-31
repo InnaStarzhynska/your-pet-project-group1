@@ -9,13 +9,15 @@ ButtonClose,
   Text,
   ApproveButton,
 } from './ModalCongrats.styled';
-import { useDispatch } from 'react-redux';
-import { statusNewUser } from '../../redux/slices/userSlice';
 
 const modalApproveAction = document.querySelector('#modal_approveAction');
 
 const ModalCongrats = ({ closeModal }) => {
-  const dispatch = useDispatch();
+
+
+ const handleClickClose = () => {
+    closeModal()
+  };
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -29,16 +31,12 @@ const ModalCongrats = ({ closeModal }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [closeModal]);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
       handleClickClose();
     }
-  };
-
-  const handleClickClose = () => {
-    dispatch(statusNewUser(false));
   };
 
   return createPortal(
