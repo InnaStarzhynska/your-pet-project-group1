@@ -10,7 +10,6 @@ export default function AddPetButton() {
   const [isShownModal, setIsShownModal] = useState(false);
   const isLoggedIn = useSelector(selectLoggedIn);
 
-  console.log('modalClose->', isShownModal);
 
   useEffect(() => {
     const handleResize = () => {
