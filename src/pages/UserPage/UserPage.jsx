@@ -14,6 +14,7 @@ import { getUserInfo } from 'redux/operations/fetchUser';
 import { selectLoadingUser } from 'redux/selectors';
 import IsLoading from 'components/IsLoading/IsLoading';
 import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
+import { statusNewUser } from 'redux/slices/userSlice';
 
 export const UserPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export const UserPage = () => {
 
   const { isNewUser } = useSelector(state => state.user);
   const toggleModal = () => {
-    dispatch(isNewUser(false))
+    dispatch(statusNewUser(false))
   }
 
 

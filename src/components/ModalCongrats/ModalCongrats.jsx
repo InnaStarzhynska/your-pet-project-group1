@@ -14,15 +14,10 @@ const modalApproveAction = document.querySelector('#modal_approveAction');
 
 const ModalCongrats = ({ closeModal }) => {
 
-
- const handleClickClose = () => {
-    closeModal()
-  };
-
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        handleClickClose();
+       closeModal()
       }
     };
 
@@ -35,14 +30,14 @@ const ModalCongrats = ({ closeModal }) => {
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      handleClickClose();
+      closeModal()
     }
-  };
+  }
 
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal>
-        <ButtonClose type="button" onClick={handleClickClose}>
+        <ButtonClose type="button" onClick={closeModal}>
           <SvgIcon id={'icon-cross-small'} />
         </ButtonClose>
         <Banner>Congrats!</Banner>
