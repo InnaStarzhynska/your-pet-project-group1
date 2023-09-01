@@ -168,6 +168,39 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
           ) : (
             ''
           )}
+          {sex}
+        </InfoElement>
+      </InfoIconsWraper>
+      <CardTitle>{noticeTitle}</CardTitle>
+      <StyledCategory>{category}</StyledCategory>
+      <AddToFavouriteBtn
+        type="button"
+        onClick={() =>
+          handleToggleFavorite(noticeId, isLoggedIn, !favorite.includes(id))}      
+      >
+      
+        { !favorite.includes(id) ?  (<HeartIcon
+          id={'icon-heart'}
+       className={"heartIcon"}
+        ></HeartIcon>) :  (<HeartIcon
+        id={'icon-heart-2'}
+     
+      ></HeartIcon>)}
+       
+      </AddToFavouriteBtn>
+
+      {id === owner ? (
+        <DeleteBtn
+          type="button"
+          onClick={() => {
+            toggleDeleteModal();
+          }}
+        >
+          <SvgIcon id={'icon-trash-2'}></SvgIcon>
+        </DeleteBtn>
+      ) : (
+        ''
+      )}
 
           {modalDeleteOpen ? (
             <ModalDeleteAds
