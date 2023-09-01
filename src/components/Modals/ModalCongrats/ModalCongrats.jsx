@@ -4,7 +4,7 @@ import SvgIcon from 'components/SvgIcon/SvgIcon';
 import {
   Backdrop,
   Modal,
-ButtonClose,
+  ButtonClose,
   Banner,
   Text,
   ApproveButton,
@@ -13,26 +13,35 @@ ButtonClose,
 const modalApproveAction = document.querySelector('#modal_approveAction');
 
 const ModalCongrats = ({ closeModal }) => {
-
   useEffect(() => {
+    const originalOverflowStyle = {
+      html: document.documentElement.style.overflow,
+      body: document.body.style.overflow,
+    };
+
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
-       closeModal()
+        closeModal();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      document.documentElement.style.overflow = originalOverflowStyle.html;
+      document.body.style.overflow = originalOverflowStyle.body;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [closeModal]);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      closeModal()
+      closeModal();
     }
-  }
+  };
 
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
@@ -41,10 +50,10 @@ const ModalCongrats = ({ closeModal }) => {
           <SvgIcon id={'icon-cross-small'} />
         </ButtonClose>
         <Banner>Congrats!</Banner>
-        <Text>Youre registration is success</Text>
+        <Text>Your registration is successful</Text>
         <ApproveButton type="button" onClick={handleBackdropClick}>
           Go to profile
-          <SvgIcon id={'icon-pawprint-1'} color={"none"} />
+          <SvgIcon id={'icon-pawprint-1'} color={'none'} />
         </ApproveButton>
       </Modal>
     </Backdrop>,

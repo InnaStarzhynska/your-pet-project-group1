@@ -1,11 +1,16 @@
-
 import { useEffect } from 'react';
 import { BackDrop, Content } from './Modal.styled';
 
-
 const Modal = ({ closeModal, children }) => {
   useEffect(() => {
+    const originalOverflowStyle = {
+      html: document.documentElement.style.overflow,
+      body: document.body.style.overflow,
+    };
+
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+
     const handlePressESC = e => {
       if (e.code === 'Escape') {
         closeModal();
@@ -15,7 +20,8 @@ const Modal = ({ closeModal, children }) => {
     window.addEventListener('keydown', handlePressESC);
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = originalOverflowStyle.html;
+      document.body.style.overflow = originalOverflowStyle.body;
       window.removeEventListener('keydown', handlePressESC);
     };
   }, [closeModal]);
