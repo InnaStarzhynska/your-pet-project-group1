@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/your-pet-project-group1/static/css/main.1b6efad6.css",
+    "main.js": "/your-pet-project-group1/static/js/main.37664a16.js",
+    "static/media/desctop2x.png": "/your-pet-project-group1/static/media/desctop2x.6760de0e49f1a9fe62e1.png",
+    "static/media/tablet2x.png": "/your-pet-project-group1/static/media/tablet2x.cb0dc83d6eb526890d89.png",
+    "static/media/404_desktopx2.png": "/your-pet-project-group1/static/media/404_desktopx2.7f03da0bf60ead3e760c.png",
+    "static/media/mobile2x.png": "/your-pet-project-group1/static/media/mobile2x.985d7001ccc367da9bcd.png",
+    "static/media/desctop1x.png": "/your-pet-project-group1/static/media/desctop1x.177518eaa492d18d0019.png",
+    "static/media/tablet1x.png": "/your-pet-project-group1/static/media/tablet1x.52d623f4ba4ad64f5990.png",
+    "static/media/404_tabletx2.png": "/your-pet-project-group1/static/media/404_tabletx2.332075865969bb7c63b6.png",
+    "static/media/404_desktopx1.png": "/your-pet-project-group1/static/media/404_desktopx1.52b05e74a721c4dcb4cb.png",
+    "static/media/mobile1x.png": "/your-pet-project-group1/static/media/mobile1x.443b6bb430473d913fe6.png",
+    "static/media/404_tabletx1.png": "/your-pet-project-group1/static/media/404_tabletx1.92a03bff975a9fd42b01.png",
+    "static/media/404_mobilex2.png": "/your-pet-project-group1/static/media/404_mobilex2.7139362ddc8c88d09d5d.png",
+    "static/media/bg_desctop2x.png": "/your-pet-project-group1/static/media/bg_desctop2x.f8a4af23ab9dbb650735.png",
+    "static/media/bg_tablet2x.png": "/your-pet-project-group1/static/media/bg_tablet2x.fc4b32b413efa9062a91.png",
+    "static/media/errorImg.jpg": "/your-pet-project-group1/static/media/errorImg.f78af20b00de23926dbb.jpg",
+    "static/media/bg_desctop1x.png": "/your-pet-project-group1/static/media/bg_desctop1x.b13521a52ba64b1fd893.png",
+    "static/media/bg_tablet1x.png": "/your-pet-project-group1/static/media/bg_tablet1x.eb2fd0c8956e3895595d.png",
+    "static/media/bg_mobile2x.png": "/your-pet-project-group1/static/media/bg_mobile2x.d6d53f6936fa4b3e36a8.png",
+    "static/media/404_mobilex1.png": "/your-pet-project-group1/static/media/404_mobilex1.921b6d864806cdef13a7.png",
+    "static/media/icons.svg": "/your-pet-project-group1/static/media/icons.46703369d4c75eb004d1bc3b477343b9.svg",
+    "static/media/bg_mobile1x.png": "/your-pet-project-group1/static/media/bg_mobile1x.9a61cb650571c7a8aa79.png",
+    "static/media/Cutie Fox-1.1s-201px.svg": "/your-pet-project-group1/static/media/Cutie Fox-1.1s-201px.1ee00bc8d879a8ed6be95e4dcbc1f0c5.svg",
+    "index.html": "/your-pet-project-group1/index.html",
+    "main.1b6efad6.css.map": "/your-pet-project-group1/static/css/main.1b6efad6.css.map",
+    "main.37664a16.js.map": "/your-pet-project-group1/static/js/main.37664a16.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1b6efad6.css",
+    "static/js/main.37664a16.js"
+  ]
+}
