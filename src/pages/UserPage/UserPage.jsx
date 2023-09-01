@@ -11,14 +11,11 @@ import { Container } from 'components/Sharedlayout/Sharedlayout.styled';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo } from 'redux/operations/fetchUser';
-import { selectLoadingUser } from 'redux/selectors';
-import IsLoading from 'components/IsLoading/IsLoading';
 import ModalCongrats from 'components/Modals/ModalCongrats/ModalCongrats';
 import { statusNewUser } from 'redux/slices/userSlice';
 
 export const UserPage = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectLoadingUser);
 
   const { isNewUser } = useSelector(state => state.user);
   const toggleModal = () => {
@@ -33,7 +30,6 @@ export const UserPage = () => {
   return (
     <>
     {isNewUser && <ModalCongrats closeModal={toggleModal}></ModalCongrats>}
-      
         <Section>
           <Container>
             <UserPageContainer>
