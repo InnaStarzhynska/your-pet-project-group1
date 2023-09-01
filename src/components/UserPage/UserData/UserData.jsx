@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Notiflix from 'notiflix';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import {
@@ -45,6 +45,11 @@ export const UserData = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
+
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+  
   const handleChangeFormStatus = () => {
     setFormDisabled(!formDisabled);
   };
@@ -79,7 +84,7 @@ export const UserData = () => {
   };
 
   const handleAvatarUpload = () => {
-    console.log('selected', selectedAvatar);
+
     if (!selectedAvatar) {
       Notiflix.Notify.failure('Please select a file!');
     }
@@ -133,6 +138,7 @@ export const UserData = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
+          enableReinitialize
         >
           <StyledForm autoComplete="off">
             <AvatarContainer>

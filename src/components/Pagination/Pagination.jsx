@@ -3,13 +3,14 @@ import { Button, PaginationContainer, Wrapper } from "./Pagination.styled";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectNotices } from "redux/selectors";
+import { selectNews, selectNotices } from "redux/selectors";
 
 export default function Pagination({ currentPage: page, changePage, totalPages }) {
 const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get('query') ?? '';
-    const notices = useSelector(selectNotices)
+    const notices = useSelector(selectNotices);
+    const news = useSelector(selectNews)
 
   useEffect(() => {
     const handleResize = () => {
@@ -76,7 +77,7 @@ const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     return (
   <>
-    {notices.length !==0 && <PaginationContainer>
+    {(notices.length !==0 || news.length !==0) && <PaginationContainer>
           <Button onClick={handleClickPageBack} disabled={page === 1} className="buttonArrow">
               <SvgIcon id={'icon-arrow-right'} className="iconArrowLeft"/> 
       </Button>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
 export const NewsContainer = styled.div`
   padding-top: 40px;
+  padding-bottom: 117px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -10,6 +11,7 @@ export const NewsContainer = styled.div`
 
   @media screen and (${devices.tablet}) {
     padding-top: 80px;
+     padding-bottom: 126px;
   }
 `;
 export const NewsTitle = styled.h2`
