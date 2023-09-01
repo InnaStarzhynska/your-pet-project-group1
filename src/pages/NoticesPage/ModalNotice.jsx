@@ -39,7 +39,8 @@ function formatDate(inputDate) {
 
 const ModalNotice = ({
   toggleModal,
-  isFavorite,
+  notices,
+
   isDisabledBtn,
   isModalOpen,
 }) => {
@@ -71,7 +72,7 @@ const ModalNotice = ({
 
     dispatch(removeNoticeFromFavorites({ _id: noticeId }));
   };
-
+  const isFavorite = notices[notice._id];
   return (
     <>
       {isShownModal ? (
@@ -159,15 +160,18 @@ const ModalNotice = ({
                   <span>Add to</span>
                 )}
 
-                <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} className={"modalHeartIcon"}
+                <SvgIcon
+                  id={'icon-heart'}
+                  color={colors.secondaryTextColor}
+                  className={'modalHeartIcon'}
                 />
               </AddBtn>
             </div>
           </ModalNoticeBox>
         </Modal>
-       
-      )
-      }</>)
-}
+      )}
+    </>
+  );
+};
 
-export default ModalNotice
+export default ModalNotice;
