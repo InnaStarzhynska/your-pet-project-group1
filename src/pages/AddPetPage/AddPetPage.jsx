@@ -72,7 +72,7 @@ export default function AddPetPage() {
       formData.append('location', data.location);
 
       if (formattedCategory === 'sell') {
-        return formData.append('price', data.price);
+        formData.append('price', data.price);
       }
       
 
