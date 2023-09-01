@@ -8,7 +8,6 @@ export const AddPetBtn = styled(Link)`
   position: fixed;
     top: 460px;
     right: 20px;
-    z-index: 5;
 
   display: flex;
   flex-direction: column-reverse;
