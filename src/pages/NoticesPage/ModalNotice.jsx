@@ -65,6 +65,7 @@ const ModalNotice = ({
     }
 
     if (favorite) {
+      isModalOpen()
       dispatch(addNoticeToFavorites({ _id: noticeId }));
       return;
     }
