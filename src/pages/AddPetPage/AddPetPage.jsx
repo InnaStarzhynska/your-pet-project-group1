@@ -51,7 +51,17 @@ export default function AddPetPage() {
     }
 
     if (data.category !== 'your pet') {
-      formData.append('category', data.category);
+      let formattedCategory = 'sell';
+
+      if (data.category === 'lost/found') {
+        formattedCategory = 'lost-found'
+      }
+
+      if (data.category === "in good hands") {
+        formattedCategory = "in-good-hands"
+      }
+
+      formData.append('category', formattedCategory);
       formData.append('name', data.namePets);
       formData.append('dateOfBirth', data.dateOfBirth);
       formData.append('type', data.typePets);
@@ -60,12 +70,16 @@ export default function AddPetPage() {
       formData.append('title', data.title);
       formData.append('sex', data.gender);
       formData.append('location', data.location);
-      formData.append('price', data.price);
+
+      if (formattedCategory === 'sell') {
+        return formData.append('price', data.price);
+      }
+      
 
 
       dispatch(addNotice(formData)).then(response => {
         if (!response.error) {
-          navigate(`/notices/${data.category}`);
+          navigate(`/notices/${formattedCategory}`);
           return;
         }
       });

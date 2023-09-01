@@ -4,7 +4,7 @@ import {
   addNoticeToFavorites,
   removeNoticeFromFavorites,
 } from '../../redux/operations/fetchNotices';
-import Modal from "components/Modal/Modal";
+import Modal from 'components/Modal/Modal';
 import {
   ModalNoticeBox,
   Image,
@@ -27,6 +27,7 @@ import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 import { selectNoticeById, selectLoggedIn } from 'redux/selectors';
 import { createPortal } from 'react-dom';
+import ModalAtention from '../../components/ModalAtention/ModalAtention';
 
 function formatDate(inputDate) {
   const dateObj = new Date(inputDate);
@@ -56,6 +57,12 @@ const ModalNotice = ({
     setPhone(notice.owner?.phone || 'unknown');
   }, [notice.owner]);
   const isLoggedIn = useSelector(selectLoggedIn);
+  const [isShownModal, setIsShownModal] = useState(false);
+
+  const switchModal = () => {
+    setIsShownModal(prevState => !prevState);
+    return;
+  };
 
   const handleToggleFavorite = (noticeId, isLoggedIn, favorite) => {
     if (!isLoggedIn) {
@@ -70,89 +77,101 @@ const ModalNotice = ({
     dispatch(removeNoticeFromFavorites({ _id: noticeId }));
   };
 
-  return createPortal (
-   <><Modal closeModal={isModalOpen}>
-      <ModalNoticeBox>
-        <ModalNoticeWrap>
-          <ImageContainer>
-            <Image src={notice.avatar} alt={notice.name} />
-          </ImageContainer>
-          <Category>
-            {notice.category === 'for-free' ? 'in good hands' : notice.category}
-          </Category>
-          <div>
-            <Title>{notice.title}</Title>
-            <ModalNoticeInfoList>
-              <ModelItemInfo>
-                <Key>Name:</Key>
-                <Value>{notice.name}</Value>
-              </ModelItemInfo>
-              <ModelItemInfo>
-                <Key>Birthday:</Key>
-                <Value>{formatDate(notice.dateOfBirth)}</Value>
-              </ModelItemInfo>
-              <ModelItemInfo>
-                <Key>Type:</Key>
-                <Value>{notice.type}</Value>
-              </ModelItemInfo>
-              <ModelItemInfo>
-                <Key>Place:</Key>
-                <Value>{notice.location}</Value>
-              </ModelItemInfo>
-              <ModelItemInfo>
-                <Key>The sex:</Key>
-                <Value>{notice.sex}</Value>
-              </ModelItemInfo>
-              {notice.price && (
-                <ModelItemInfo>
-                  <Key>Price:</Key>
-                  <Value>{notice.price}</Value>
-                </ModelItemInfo>
-              )}
-              <ModelItemInfo>
-                <Key>Email:</Key>
-                <AddressLink href={`mailto:${email}`}>{email}</AddressLink>
-              </ModelItemInfo>
-              <ModelItemInfo>
-                <Key>Phone:</Key>
-                <AddressLink href={`tel:${phone}`}>{phone}</AddressLink>
-              </ModelItemInfo>
-            </ModalNoticeInfoList>
-          </div>
-        </ModalNoticeWrap>
-        <Comments>
-          <CommentsBold>Comments: </CommentsBold> {notice.comments}
-        </Comments>
-        <CloseBtn type="button" onClick={isModalOpen}>
-          <SvgIcon id={'icon-cross-small'} color={colors.blueColor} />
-        </CloseBtn>
-        <div>
-          <ContactLink href={`tel:${phone}`}>Contact</ContactLink>
-          <AddBtn
-            disabled={isDisabledBtn}
-            onClick={() => {
-              handleToggleFavorite(notice._id, isLoggedIn, !isFavorite);
-            }}
-          >
-            {isFavorite ? (
-              <span
-                style={{
-                  fontSize: 12,
-                  letterSpacing: 0.1,
+  return createPortal(
+    <>
+      {isShownModal ? (
+        <ModalAtention toggleModal={switchModal}></ModalAtention>
+      ) : (
+        <Modal closeModal={isModalOpen}>
+          <ModalNoticeBox>
+            <ModalNoticeWrap>
+              <ImageContainer>
+                <Image src={notice.avatar} alt={notice.name} />
+              </ImageContainer>
+              <Category>
+                {notice.category === 'for-free'
+                  ? 'in good hands'
+                  : notice.category}
+              </Category>
+              <div>
+                <Title>{notice.title}</Title>
+                <ModalNoticeInfoList>
+                  <ModelItemInfo>
+                    <Key>Name:</Key>
+                    <Value>{notice.name}</Value>
+                  </ModelItemInfo>
+                  <ModelItemInfo>
+                    <Key>Birthday:</Key>
+                    <Value>{formatDate(notice.dateOfBirth)}</Value>
+                  </ModelItemInfo>
+                  <ModelItemInfo>
+                    <Key>Type:</Key>
+                    <Value>{notice.type}</Value>
+                  </ModelItemInfo>
+                  <ModelItemInfo>
+                    <Key>Place:</Key>
+                    <Value>{notice.location}</Value>
+                  </ModelItemInfo>
+                  <ModelItemInfo>
+                    <Key>The sex:</Key>
+                    <Value>{notice.sex}</Value>
+                  </ModelItemInfo>
+                  {notice.price && (
+                    <ModelItemInfo>
+                      <Key>Price:</Key>
+                      <Value>{notice.price}</Value>
+                    </ModelItemInfo>
+                  )}
+                  <ModelItemInfo>
+                    <Key>Email:</Key>
+                    <AddressLink href={`mailto:${email}`}>{email}</AddressLink>
+                  </ModelItemInfo>
+                  <ModelItemInfo>
+                    <Key>Phone:</Key>
+                    <AddressLink href={`tel:${phone}`}>{phone}</AddressLink>
+                  </ModelItemInfo>
+                </ModalNoticeInfoList>
+              </div>
+            </ModalNoticeWrap>
+            <Comments>
+              <CommentsBold>Comments: </CommentsBold> {notice.comments}
+            </Comments>
+            <CloseBtn type="button" onClick={isModalOpen}>
+              <SvgIcon id={'icon-cross-small'} color={colors.blueColor} />
+            </CloseBtn>
+            <div>
+              <ContactLink href={`tel:${phone}`}>Contact</ContactLink>
+              <AddBtn
+                disabled={isDisabledBtn}
+                onClick={() => {
+                  if (!isLoggedIn) {
+                    switchModal();
+                    return;
+                  }
+                  handleToggleFavorite(notice._id, isLoggedIn, !isFavorite);
                 }}
               >
-                Remove from
-              </span>
-            ) : (
-              <span>Add to</span>
-            )}
+                {isFavorite ? (
+                  <span
+                    style={{
+                      fontSize: 12,
+                      letterSpacing: 0.1,
+                    }}
+                  >
+                    Remove from
+                  </span>
+                ) : (
+                  <span>Add to</span>
+                )}
 
-            <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} />
+            <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} className={"modalHeartIcon"}
+/>
           </AddBtn>
         </div>
       </ModalNoticeBox>
     </Modal>
       </>, modalApproveAction
+
   );
 };
 
