@@ -66,6 +66,7 @@ export default function NoticesPage() {
     setSearchParams({ query, page });
   };
 
+  
   return (
     <>{isLoading ? <IsLoading /> :
       (<Section>
