@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import UserDefaultAvatar from '../../../images/Photo_default@2x.jpg';
+import { useEffect, useRef, useState } from 'react';
+import Notiflix from 'notiflix';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import {
   ButtonEditUserInfo,
@@ -29,11 +29,10 @@ import {
 import { colors } from 'constants/colors';
 import { Formik } from 'formik';
 import { getValidationSchema } from './utils/SchemaValidateUserForm';
-import Notiflix from 'notiflix';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { updateUserInfo } from 'redux/operations/fetchUser';
-import { formateDate } from 'utils/formatedDate';
+import moment from 'moment';
 
 export const UserData = () => {
   const validationSchema = getValidationSchema();
@@ -42,24 +41,33 @@ export const UserData = () => {
   const [imgUrl, setImgUrl] = useState();
   const [isAvatarUpdated, setIsAvatarUpdated] = useState(false);
   const [errorImg, setErrorImg] = useState('');
-  const [isAvatarSelected, setIsAvatarSelected] = useState(false);
   const [selectedAvatar, setSelectedAvatar] = useState(null);
-  const [file, setFile] = useState('');
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
 
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+  
   const handleChangeFormStatus = () => {
     setFormDisabled(!formDisabled);
+  };
+
+  const formateDate = parsedDate => {
+    const formatedDate = moment(parsedDate)
+      .format('DD-MM-YYYY')
+      .replaceAll('-', '.');
+    return formatedDate;
   };
 
   const initialValues = {
     name: user.name,
     email: user.email,
-    birthday: formateDate(user.birthday) ?? new Date().toLocaleDateString().replaceAll("-", '.'),
+    birthday: user.birthday ? formateDate(user.birthday) : formateDate(new Date ()),
     phone: user.phone,
     city: user.city,
-    avatar: user.avatar
+    avatar: user.avatar,
   };
 
   const handleAvatarPick = () => {
@@ -76,7 +84,7 @@ export const UserData = () => {
   };
 
   const handleAvatarUpload = () => {
-    console.log('selected', selectedAvatar);
+
     if (!selectedAvatar) {
       Notiflix.Notify.failure('Please select a file!');
     }
@@ -84,31 +92,45 @@ export const UserData = () => {
       setErrorImg('Image is too big please select image below 3 MB');
       return;
     }
-    setIsAvatarSelected(true);
     setIsAvatarUpdated(false);
   };
 
   const cancelAvatarUpload = () => {
     setImgUrl('');
-    setFile('');
     setIsAvatarUpdated(false);
   };
 
-  const handleSubmit = ({name, email, birthday,
-    phone, city}, { resetForm }) => {
+  const handleSubmit = (
+    { name, email, birthday, phone, city },
+    { resetForm }
+  ) => {
     let updateValues = null;
     if (selectedAvatar) {
-      updateValues = { name, email, birthday, phone, city, birthday: birthday.replaceAll("-", '.'), avatar: selectedAvatar};
+      updateValues = {
+        name,
+        email,
+        birthday: birthday.replaceAll('-', '.'),
+        phone,
+        city,
+        avatar: selectedAvatar,
+      };
     } else {
-      updateValues = { name, email, phone, city, birthday: birthday.replaceAll("-", '.')};
+      updateValues = {
+        name,
+        email,
+        phone,
+        city,
+        birthday: birthday.replaceAll('-', '.'),
+      };
     }
     const updateInfo = new FormData();
     for (const [key, value] of Object.entries(updateValues)) {
-      updateInfo.append(key, value)
+      updateInfo.append(key, value);
     }
     dispatch(updateUserInfo(updateInfo));
-    resetForm()
-  }
+    resetForm();
+  };
+
   return (
     <>
       <StyledUserDataForm>
@@ -116,6 +138,7 @@ export const UserData = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
+          enableReinitialize
         >
           <StyledForm autoComplete="off">
             <AvatarContainer>
@@ -201,8 +224,9 @@ export const UserData = () => {
                     <ErrorMessageContainer>
                       <StyledInputMask
                         {...field}
-                        mask="99-99-9999"
-                        maskplaceholder="11-11-1970"
+                        //   mask="00.00.0000"
+                        //  maskplaceholder="00.00.0000"
+                        placeholder="00.00.0000"
                         type="text"
                         disabled={formDisabled}
                       />
@@ -211,7 +235,6 @@ export const UserData = () => {
                   </InputContainer>
                 )}
               </StyledInput>
-
               <InputContainer>
                 <StyledLabel htmlFor="phone">Phone:</StyledLabel>
                 <ErrorMessageContainer>
@@ -245,10 +268,15 @@ export const UserData = () => {
             </UserInfoContainer>
           </StyledForm>
         </Formik>
-
-        <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
-          <SvgIcon id={'icon-edit-2'} />
-        </ButtonEditUserInfo>
+        {formDisabled ? (
+          <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
+            <SvgIcon id={'icon-edit-2'} />
+          </ButtonEditUserInfo>
+        ) : (
+          <ButtonEditUserInfo type="button" onClick={handleChangeFormStatus}>
+            <SvgIcon id={'icon-cross-small'} />
+          </ButtonEditUserInfo>
+        )}
       </StyledUserDataForm>
     </>
   );

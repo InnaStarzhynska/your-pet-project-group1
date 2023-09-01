@@ -10,9 +10,9 @@ export default function Nav({closeMenu, isMenuOpen = false}) {
       <MenuItem>
         <MainNavLink to="/notices" onClick={() => closeMenu()}>Find pet</MainNavLink>
       </MenuItem>
-      <MenuItem>
+      {/* <MenuItem>
         <MainNavLink to="/friends" onClick={() => closeMenu()}>Our friends</MainNavLink>
-      </MenuItem>
+      </MenuItem> */}
     </MenuList>
   );
 }

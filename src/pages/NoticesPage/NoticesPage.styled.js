@@ -3,6 +3,7 @@ import { devices } from '../../constants/breakpoints';
 import { Link } from 'react-router-dom';
 import { colors } from '../../constants/colors';
 
+
 export const Section = styled.section`
   padding-top: 40px;
   padding-bottom: 117px;
@@ -76,8 +77,8 @@ export const Search = styled.input`
 `;
 
 export const NoticesNavbtn = styled(Link)`
-  background-color: #cce4fb;
-  color: #54adff;
+  background-color: ${props => props.current === "true" ? colors.blueColor : colors.lightBlueColor};
+  color: ${props => props.current === "true" ? colors.secondaryTextColor : colors.blueColor};
   border: none;
   border-radius: 40px;
   padding: 8px 16px;

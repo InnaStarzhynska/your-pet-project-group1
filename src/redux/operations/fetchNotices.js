@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Notiflix from 'notiflix';
 
+
 axios.defaults.baseURL = 'https://yorpet-backpart-deployment.onrender.com/api';
 
 export const getNoticesByQuery = createAsyncThunk(
@@ -52,9 +53,9 @@ export const deleteNotice = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const queryURL = `/notice/delete/${credentials._id}`;
-      const response = await axios.delete(queryURL);
+       await axios.delete(queryURL);
       Notiflix.Notify.success(`Your notice has been successfully deleted!`);
-      return response.data;
+      return credentials._id;
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
@@ -108,11 +109,10 @@ export const removeNoticeFromFavorites = createAsyncThunk(
   'notices/removeNoticeFromFavorites',
   async (credentials, thunkAPI) => {
     try {
-      console.log(credentials);
       const queryURL = `/notice/unmark/${credentials._id}`;
-      const responce = axios.patch(queryURL);
+      axios.patch(queryURL);
       Notiflix.Notify.success(`The notice removed from favorites!`);
-      return responce.data;
+      return { id: credentials._id, category: credentials.categoryName };
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);

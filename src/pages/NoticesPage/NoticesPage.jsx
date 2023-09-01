@@ -17,7 +17,7 @@ import {
   getNoticesAddByUser,
   getNoticesByQuery,
 } from 'redux/operations/fetchNotices';
-import { selectLoadingNotices } from 'redux/selectors';
+import { selectLoadingUser, selectNoticesTotalPages } from 'redux/selectors';
 import IsLoading from 'components/IsLoading/IsLoading';
 
 export default function NoticesPage() {
@@ -26,8 +26,9 @@ export default function NoticesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page') ?? 1);
   const query = searchParams.get('query') ?? '';
-  const isLoading = useSelector(selectLoadingNotices);
+  const totalPages = useSelector(selectNoticesTotalPages);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const isLoading = useSelector(selectLoadingUser);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,14 +44,11 @@ export default function NoticesPage() {
   }, []);
 
   useEffect(() => {
-    console.log(category)
     if (category === 'favorite-ads') {
       dispatch(getFavoriteNotices());
-      console.log("favorite")
       return;
     }
     if (category === 'my-ads') {
-       console.log("adds")
       dispatch(getNoticesAddByUser({page}));
       return;
     }

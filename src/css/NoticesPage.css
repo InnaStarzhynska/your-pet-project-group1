@@ -13,8 +13,19 @@
   fill: #54ADFF;
 }
 
+.defoultHeart{
+  stroke: #54ADFF;
+}
+
+
 .inFavouriteIcon{
   fill: #54ADFF;
+}
+
+
+.modalHeartIcon{
+  fill:#54ADFF;
+  
 }
 
 .buttonArrow:hover .iconArrow  {

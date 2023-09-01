@@ -3,14 +3,12 @@ import { AddPetBtn } from './AddPetButton.styled';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectLoggedIn } from '../../redux/selectors';
-import ModalAtention from '../ModalAtention/ModalAtention';
+import ModalAtention from '../Modals/ModalAtention/ModalAtention';
 
 export default function AddPetButton() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [isShownModal, setIsShownModal] = useState(false);
   const isLoggedIn = useSelector(selectLoggedIn);
-
-  console.log('modalClose->', isShownModal);
 
   useEffect(() => {
     const handleResize = () => {

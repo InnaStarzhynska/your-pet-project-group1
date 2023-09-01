@@ -10,4 +10,5 @@ export const selectNoticeById = state => state.notices.noticeById;
 
 export const selectNews = state => state.news.news;
 export const selectLoadingNews = state => state.news.isLoading;
+export const selectPage = state => state.news.page;
 export const selectNewsTotalPages = state => state.news.totalPages;

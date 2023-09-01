@@ -13,13 +13,13 @@ import { colors } from 'constants/colors';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 
-export default function UserNav({isMenuOpen = false}) {
+export default function UserNav({isMenuOpen = false, closeMenu}) {
   const {name, avatar} = useSelector(selectUser);
 
   return (
     <Wrapper $isopen={isMenuOpen}>
-      <LogOut onClick={() => {}} isMenuOpen={isMenuOpen}/>
-      <BoxUser $isopen={isMenuOpen}>
+      <LogOut closeMenu={closeMenu} isMenuOpen={isMenuOpen}/>
+      <BoxUser $isopen={isMenuOpen} onClick={() => closeMenu()}>
         {avatar ? <BoxAvatar><ImgAvatar src={avatar} alt="avatar" /></BoxAvatar> : <SvgIcon id={'icon-user-1'} color={colors.accentColor}/>}
         <LinkUser to="user" $isopen={isMenuOpen}>{name}</LinkUser>
       </BoxUser>

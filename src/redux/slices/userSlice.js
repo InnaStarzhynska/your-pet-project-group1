@@ -21,16 +21,7 @@ const initialState = {
     phone: null,
     city: null,
   },
-  pets: [
-    {
-      id: 1,
-      name: 'Your pet name',
-      birthday: 'DD-MM-YYYY',
-      photoUrl: '',
-      type: 'Type of your pet',
-      comments: 'The best pets',
-    },
-  ],
+  pets: [],
   token: null,
   isLoggedIn: false,
   isNewUser: false,
@@ -48,9 +39,9 @@ const handleRejected = state => {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reduser: {
+  reducers: {
     statusNewUser(state, payload) {
-      state.isNewUser = payload
+      state.isNewUser = payload.payload;
     }
   },
   extraReducers: builder => {
@@ -115,7 +106,11 @@ const userSlice = createSlice({
       })
       .addCase(addPet.rejected, handleRejected)
       .addCase(deletePet.pending, handlePending)
-      .addCase(deletePet.fulfilled, state => {
+      .addCase(deletePet.fulfilled, (state, {payload}) => {
+        const updatePets = [...state.pets].filter(
+          item => item._id !== payload
+        )
+        state.pets = updatePets;
         state.isLoading = false;
       })
       .addCase(deletePet.rejected, handleRejected)
@@ -129,3 +124,4 @@ const persistConfig = {
 };
 
 export const userReducer = persistReducer(persistConfig, userSlice.reducer);
+export const { statusNewUser } = userSlice.actions;

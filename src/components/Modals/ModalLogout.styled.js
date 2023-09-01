@@ -92,3 +92,20 @@ export const ApproveButton = styled(Button)`
   color: ${colors.textButtonColor};
   background-color: ${colors.blueColor};
 `;
+
+export const Text = styled.p`
+  // width: 240px;
+  // margin: auto;
+  color: ${colors.textColor};
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.14px;
+
+  @media screen and ${devices.tablet} {
+    // width: 393px;
+    color: ${colors.blackColor};
+    font-size: 36px;
+    letter-spacing: -0.16px;
+    padding-top: 40px;
+  }
+`;

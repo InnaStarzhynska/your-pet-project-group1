@@ -77,11 +77,9 @@ export const updateUserInfo = createAsyncThunk("user/updateUserInfo", async (cre
     try {
         const responce = await axios.put('/auth/update', credentials);
         Notiflix.Notify.success(`Information changed successfully`);
-        console.log(responce)
         return responce.data
     }
     catch (error) {
-        console.log(error)
         Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);
     }
@@ -101,9 +99,9 @@ export const addPet = createAsyncThunk('user/addPet', async (credentials, thunkA
 export const deletePet = createAsyncThunk('user/deletePet', async (credentials, thunkAPI) => {
 try {
     const queryURL = `/pets/delete/${credentials._id}`;
-    const responce = await axios.delete(queryURL);
+    await axios.delete(queryURL);
     Notiflix.Notify.success(`Your pet has been successfully deleted`);
-        return responce.data
+        return credentials._id
 } catch (error) {
     Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);

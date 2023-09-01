@@ -12,6 +12,7 @@ import {
   TitleNews,
   ButtonRead,
 } from './NewsItem.styled';
+import defaultImg from '../../images/errorImg.jpg';
 
 export default function NewsItem({ article }) {
   const { url = '', text, title, imgUrl, date } = article;
@@ -21,7 +22,10 @@ export default function NewsItem({ article }) {
 
   return (
     <ItemNews>
-      <ImageNews src={imgUrl} alt="news" />
+      <ImageNews src={imgUrl} alt="news" onError={event => {
+          event.target.src = defaultImg;
+          event.onerror = null;
+        }}/>
 
       <Content>
         <TitleNews>{title}</TitleNews>

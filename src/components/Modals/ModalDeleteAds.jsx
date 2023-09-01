@@ -16,10 +16,11 @@ import {
     Button,
   ApproveButton,
 } from './ModalDeleteAds.styled';
+import { deletePet } from 'redux/operations/fetchUser';
 
 const modalApproveAction = document.querySelector('#modal_approveAction');
 
-const ModalDeleteAds = ({ modalClose, _id, title }) => {
+const ModalDeleteAds = ({ modalClose, _id, title, type }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,6 +43,11 @@ const ModalDeleteAds = ({ modalClose, _id, title }) => {
     };
 
   const handleDelete = (_id) => {
+    if (type === 'pet') {
+      dispatch(deletePet({ _id }));
+       modalClose();
+      return
+    }
     dispatch(deleteNotice({_id}));
     modalClose();
   };

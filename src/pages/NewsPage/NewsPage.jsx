@@ -10,27 +10,27 @@ import {
   ClearButton,
 } from './NewsPage.styled';
 import { Container } from 'components/Sharedlayout/Sharedlayout.styled';
-import { selectLoadingNews } from 'redux/selectors';
+import { selectLoadingNews, selectNewsTotalPages } from 'redux/selectors';
 import IsLoading from 'components/IsLoading/IsLoading';
 import { useDispatch, useSelector } from 'react-redux';
 import { getNewsByQuery } from 'redux/operations/fetchNews';
 import { useSearchParams } from 'react-router-dom';
 import Pagination from 'components/Pagination/Pagination';
-import { formateDate } from 'utils/formatedDate';
 
 export default function NewsPage() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page') ?? 1);
+  const totalPages = useSelector(selectNewsTotalPages);
   const query = searchParams.get('query') ?? '';
   const isLoading = useSelector(selectLoadingNews);
   const [inputValue, setInputValue] = useState(query);
 
   useEffect(() => {
-    dispatch(getNewsByQuery({ query, page }))
+    dispatch(getNewsByQuery({ query, page }));
   }, [dispatch, query, page]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const query = e.target.search.value.trim();
     setSearchParams({ query, page });
@@ -48,8 +48,8 @@ export default function NewsPage() {
 
   const changePage = (e) => {
     const page = e.target.textContent;
-    setSearchParams({ query, page })
-  }
+    setSearchParams({ query, page });
+  };
 
   return (
     <>

@@ -1,20 +1,16 @@
-// export default function Modal() {
-//   return (
-//     <div>Modal</div>
-//   )
-// }
-
 import { useEffect } from 'react';
-import { BackDrop, Button, Content } from './Modal.styled';
-// import { createPortal } from 'react-dom';
-import SvgIcon from 'components/SvgIcon/SvgIcon';
-import { colors } from 'constants/colors';
-
-const modalWindow = document.getElementById('modal');
+import { BackDrop, Content } from './Modal.styled';
 
 const Modal = ({ closeModal, children }) => {
   useEffect(() => {
+    const originalOverflowStyle = {
+      html: document.documentElement.style.overflow,
+      body: document.body.style.overflow,
+    };
+
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+
     const handlePressESC = e => {
       if (e.code === 'Escape') {
         closeModal();
@@ -24,7 +20,8 @@ const Modal = ({ closeModal, children }) => {
     window.addEventListener('keydown', handlePressESC);
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = originalOverflowStyle.html;
+      document.body.style.overflow = originalOverflowStyle.body;
       window.removeEventListener('keydown', handlePressESC);
     };
   }, [closeModal]);
