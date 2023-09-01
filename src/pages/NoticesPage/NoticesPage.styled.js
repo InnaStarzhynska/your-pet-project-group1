@@ -125,7 +125,8 @@ export const SearchButton = styled.button`
   top: 0;
   padding: 10px 0 6px;
   background-color: transparent;
-  border-color: transparent
+  border-color: transparent;
+  cursor: pointer;
 `
 export const NoticesCategoryListWrap = styled.div`
 padding: 24px 0 40px;
@@ -137,4 +138,8 @@ padding: 24px 0 40px;
 /* @media screen and (${devices.tablet}) {
   padding: 42px 0 68px;
 } */
-`
+`;
+
+export const ClearButton = styled(SearchButton)`
+right: 40px;
+`;

@@ -130,7 +130,7 @@ export const ButtonEditPhoto = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 250ms cubic-bezier(0.21, 0.65, 0.66, 0.12);
-  &:hover,
+  &:,
   &:focus {
     box-shadow: 7px 13px 14px 0px #74B1E83D;
     background-color: #CCE4FB;

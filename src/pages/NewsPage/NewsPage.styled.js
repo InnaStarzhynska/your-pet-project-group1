@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
+import { colors } from '../../constants/colors';
+
 export const NewsContainer = styled.div`
   padding-top: 40px;
   text-align: center;
@@ -61,4 +63,9 @@ export const SearchButton = styled.button`
   padding: 10px 0 6px;
   background-color: transparent;
   border-color: transparent;
+  cursor: pointer;
+`;
+
+export const ClearButton = styled(SearchButton)`
+right: 40px;
 `;
