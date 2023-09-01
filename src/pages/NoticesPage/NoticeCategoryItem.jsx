@@ -84,6 +84,8 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
   }
   const formatNoticeLocation = formatLocation(location);
   const noticeTitle = formatNoticeTitle(title);
+const formatCategory = category.replaceAll('-', ' ');
+
   return (
     <>{isShownModal ? (
       <ModalAtention toggleModal={switchModal}></ModalAtention>
@@ -119,7 +121,7 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
           </InfoElement>
         </InfoIconsWraper>
         <CardTitle>{noticeTitle}</CardTitle>
-        <StyledCategory>{category}</StyledCategory>
+        <StyledCategory>{formatCategory}</StyledCategory>
         <AddToFavouriteBtn
           type="button"
             onClick={() => {
