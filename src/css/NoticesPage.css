@@ -22,6 +22,12 @@
   fill: #54ADFF;
 }
 
+
+.modalHeartIcon{
+  fill:#54ADFF;
+  
+}
+
 .buttonArrow:hover .iconArrow  {
   stroke: #fff;
  

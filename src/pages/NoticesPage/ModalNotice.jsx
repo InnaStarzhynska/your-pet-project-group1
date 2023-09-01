@@ -164,14 +164,14 @@ const ModalNotice = ({
                   <span>Add to</span>
                 )}
 
-                <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} />
-              </AddBtn>
-            </div>
-          </ModalNoticeBox>
-        </Modal>
-      )}
-    </>,
-    modalApproveAction
+            <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} className={"modalHeartIcon"}
+/>
+          </AddBtn>
+        </div>
+      </ModalNoticeBox>
+    </Modal>
+      </>, modalApproveAction
+
   );
 };
 
