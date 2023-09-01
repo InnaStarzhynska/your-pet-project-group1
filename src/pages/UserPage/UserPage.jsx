@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo } from 'redux/operations/fetchUser';
 import { selectLoadingUser } from 'redux/selectors';
 import IsLoading from 'components/IsLoading/IsLoading';
-import ModalCongrats from 'components/ModalCongrats/ModalCongrats';
+import ModalCongrats from 'components/Modals/ModalCongrats/ModalCongrats';
 import { statusNewUser } from 'redux/slices/userSlice';
 
 export const UserPage = () => {

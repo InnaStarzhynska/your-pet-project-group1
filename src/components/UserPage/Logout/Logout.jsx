@@ -3,7 +3,7 @@ import { BoxLogOut } from './Logout.styled';
 import React, { useState } from 'react';
 // import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 import ModalLogout from 'components/Modals/ModalLogout';
-import { Text } from 'components/ModalApproveAction/ModalApproveAction.styled';
+import { Text } from 'components/Modals/ModalLogout.styled';
 
 export default function LogOut({ isMenuOpen }) {
   const [modalClose, setModalClose] = useState(false);

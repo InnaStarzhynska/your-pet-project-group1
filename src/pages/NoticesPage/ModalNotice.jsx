@@ -4,7 +4,7 @@ import {
   addNoticeToFavorites,
   removeNoticeFromFavorites,
 } from '../../redux/operations/fetchNotices';
-import Modal from 'components/Modal/Modal';
+import Modal from 'components/Modals/Modal/Modal';
 import {
   ModalNoticeBox,
   Image,
@@ -26,8 +26,7 @@ import {
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 import { selectNoticeById, selectLoggedIn } from 'redux/selectors';
-import { createPortal } from 'react-dom';
-import ModalAtention from '../../components/ModalAtention/ModalAtention';
+import ModalAtention from '../../components/Modals/ModalAtention/ModalAtention';
 
 function formatDate(inputDate) {
   const dateObj = new Date(inputDate);
@@ -38,10 +37,7 @@ function formatDate(inputDate) {
   return `${day}.${month}.${year}`;
 }
 
-const modalApproveAction = document.querySelector('#modal_approveAction');
-
 const ModalNotice = ({
-  // handleClickHeart,
   toggleModal,
   isFavorite,
   isDisabledBtn,
@@ -51,7 +47,6 @@ const ModalNotice = ({
   const notice = useSelector(selectNoticeById);
   const [email, setEmail] = useState(notice.owner?.email || 'unknown');
   const [phone, setPhone] = useState(notice.owner?.phone || 'unknown');
-  console.log(notice._id);
   useEffect(() => {
     setEmail(notice.owner?.email || 'unknown');
     setPhone(notice.owner?.phone || 'unknown');
@@ -77,7 +72,7 @@ const ModalNotice = ({
     dispatch(removeNoticeFromFavorites({ _id: noticeId }));
   };
 
-  return createPortal(
+  return (
     <>
       {isShownModal ? (
         <ModalAtention toggleModal={switchModal}></ModalAtention>
@@ -164,15 +159,15 @@ const ModalNotice = ({
                   <span>Add to</span>
                 )}
 
-            <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} className={"modalHeartIcon"}
-/>
-          </AddBtn>
-        </div>
-      </ModalNoticeBox>
-    </Modal>
-      </>, modalApproveAction
+                <SvgIcon id={'icon-heart'} color={colors.secondaryTextColor} className={"modalHeartIcon"}
+                />
+              </AddBtn>
+            </div>
+          </ModalNoticeBox>
+        </Modal>
+       
+      )
+      }</>)
+}
 
-  );
-};
-
-export default ModalNotice;
+export default ModalNotice
