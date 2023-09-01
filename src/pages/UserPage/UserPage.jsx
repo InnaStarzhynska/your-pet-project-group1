@@ -33,9 +33,7 @@ export const UserPage = () => {
   return (
     <>
     {isNewUser && <ModalCongrats closeModal={toggleModal}></ModalCongrats>}
-      {isLoading ? (
-        <IsLoading />
-      ) : (
+      
         <Section>
           <Container>
             <UserPageContainer>
@@ -50,8 +48,7 @@ export const UserPage = () => {
             </UserPageContainer>
           </Container>
         </Section>
-      )
-      }
+      
     </>
   )
 }
