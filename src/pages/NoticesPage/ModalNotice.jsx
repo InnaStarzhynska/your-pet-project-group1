@@ -27,6 +27,7 @@ import SvgIcon from 'components/SvgIcon/SvgIcon';
 import { colors } from 'constants/colors';
 import { selectNoticeById, selectLoggedIn } from 'redux/selectors';
 import ModalAtention from '../../components/Modals/ModalAtention/ModalAtention';
+import { useParams } from 'react-router-dom';
 
 function formatDate(inputDate) {
   const dateObj = new Date(inputDate);
@@ -39,7 +40,7 @@ function formatDate(inputDate) {
 
 const ModalNotice = ({
   toggleModal,
-  isFavorite,
+  notices,
   isDisabledBtn,
   isModalOpen,
 }) => {
@@ -51,6 +52,7 @@ const ModalNotice = ({
     setEmail(notice.owner?.email || 'unknown');
     setPhone(notice.owner?.phone || 'unknown');
   }, [notice.owner]);
+  const { categoryName } = useParams();
   const isLoggedIn = useSelector(selectLoggedIn);
   const [isShownModal, setIsShownModal] = useState(false);
 
@@ -70,8 +72,10 @@ const ModalNotice = ({
       return;
     }
 
-    dispatch(removeNoticeFromFavorites({ _id: noticeId }));
+    dispatch(removeNoticeFromFavorites({ _id: noticeId, categoryName }));
   };
+
+  const isFavorite = notices[notice._id];
 
   return (
     <>
@@ -141,9 +145,10 @@ const ModalNotice = ({
                 disabled={isDisabledBtn}
                 onClick={() => {
                   if (!isLoggedIn) {
-                    switchModal();
+                    isModalOpen()
                     return;
                   }
+                  isModalOpen()
                   handleToggleFavorite(notice._id, isLoggedIn, !isFavorite);
                 }}
               >
