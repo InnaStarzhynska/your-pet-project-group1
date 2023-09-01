@@ -75,7 +75,7 @@ export default function NoticesPage() {
       ) : (
         <Section>
           <Container>
-            <NoticesSearch handleSubmit={handleSubmit} value={query} />
+            <NoticesSearch handleSubmit={handleSubmit} query={query} />
             <NoticesContainer>
               <NoticesCategoriesNav />
               {!isMobile && <AddPetButton />}

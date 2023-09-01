@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
 import { Link } from 'react-router-dom';
+import { colors } from '../../constants/colors';
 
 export const Section = styled.section`
   padding-top: 40px;
@@ -127,7 +128,16 @@ export const SearchButton = styled.button`
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
-`
+
+  &:focus,
+  &:hover {
+    svg{
+      transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      stroke: ${colors.accentColor}
+    }
+  }
+`;
+
 export const NoticesCategoryListWrap = styled.div`
 padding: 24px 0 40px;
 

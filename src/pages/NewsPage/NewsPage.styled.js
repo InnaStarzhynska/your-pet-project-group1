@@ -64,6 +64,14 @@ export const SearchButton = styled.button`
   background-color: transparent;
   border-color: transparent;
   cursor: pointer;
+
+  &:focus,
+  &:hover {
+    svg{
+      transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      stroke: ${colors.accentColor}
+    }
+  }
 `;
 
 export const ClearButton = styled(SearchButton)`

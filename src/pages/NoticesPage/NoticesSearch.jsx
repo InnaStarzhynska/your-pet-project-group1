@@ -19,7 +19,6 @@ export default function NoticesSearch({ handleSubmit, query }) {
   const handleInputClear = () => {
     setInputValue('');
   };
- 
   return (
     <NoticesSearchContainer>
       <NoticesTitle>Find your favorite pet</NoticesTitle>
