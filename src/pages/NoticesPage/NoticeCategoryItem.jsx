@@ -56,7 +56,7 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
       return;
     }
     if (favorite) {
-      dispatch(addNoticeToFavorites({ _id: noticeId}));
+      dispatch(addNoticeToFavorites({ _id: noticeId }));
       return;
     }
     dispatch(removeNoticeFromFavorites({ _id: noticeId, categoryName }));
@@ -87,105 +87,108 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
   const formatNoticeLocation = formatLocation(location);
   const noticeTitle = formatNoticeTitle(title);
 
-  const formatCategory = (category) => {
+  const formatCategory = category => {
     if (category === 'lost-found') {
       return 'lost/found';
     } else if (category === 'in-good-hands') {
       return 'in good hands';
     } else return category;
   };
-   const normalCategory = formatCategory(category);
+  const normalCategory = formatCategory(category);
 
   return (
-    <>{isShownModal ? (
-      <ModalAtention toggleModal={switchModal}></ModalAtention>
-    ) : (
-      <Card className="card">
-        <Avatar
-          src={avatar}
-          alt={title}
-          onError={event => {
-            event.target.src = defaultImg;
-            event.onerror = null;
-          }}
-        />
-        <InfoIconsWraper>
-          <LocateLink
-            target="_blank"
-            href={`https://www.google.com/maps/place/${location}`}
-          >
-            <InfoIcon id={'icon-location-1'}></InfoIcon>
-            {formatNoticeLocation}
-          </LocateLink>
-          <InfoElement>
-            <InfoIcon id={'icon-clock'}></InfoIcon>
-            {petsAge}
-          </InfoElement>
-          <InfoElement>
-            {sex === 'male' ? (
-              <InfoIcon id={'icon-male'}></InfoIcon>
-            ) : (
-              <InfoIcon id={'icon-female'}></InfoIcon>
-            )}
-            {sex}
-          </InfoElement>
-        </InfoIconsWraper>
-        <CardTitle>{noticeTitle}</CardTitle>
-        <StyledCategory>{normalCategory}</StyledCategory>
-        <AddToFavouriteBtn
-          type="button"
+    <>
+      {isShownModal ? (
+        <ModalAtention toggleModal={switchModal}></ModalAtention>
+      ) : (
+        <Card className="card">
+          <Avatar
+            src={avatar}
+            alt={title}
+            onError={event => {
+              event.target.src = defaultImg;
+              event.onerror = null;
+            }}
+          />
+          <InfoIconsWraper>
+            <LocateLink
+              target="_blank"
+              href={`https://www.google.com/maps/place/${location}`}
+            >
+              <InfoIcon id={'icon-location-1'}></InfoIcon>
+              {formatNoticeLocation}
+            </LocateLink>
+            <InfoElement>
+              <InfoIcon id={'icon-clock'}></InfoIcon>
+              {petsAge}
+            </InfoElement>
+            <InfoElement>
+              {sex === 'male' ? (
+                <InfoIcon id={'icon-male'}></InfoIcon>
+              ) : (
+                <InfoIcon id={'icon-female'}></InfoIcon>
+              )}
+              {sex}
+            </InfoElement>
+          </InfoIconsWraper>
+          <CardTitle>{noticeTitle}</CardTitle>
+          <StyledCategory>{normalCategory}</StyledCategory>
+          <AddToFavouriteBtn
+            type="button"
             onClick={() => {
               if (!isLoggedIn) {
                 switchModal();
                 return;
               }
-              handleToggleFavorite(noticeId, isLoggedIn, !favorite.includes(id))
-            }} >
-          {!favorite.includes(id) ? (<HeartIcon
-            id={'icon-heart'}
-            className={"heartIcon"}
-          ></HeartIcon>) : (<HeartIcon
-            id={'icon-heart-2'}
-
-          ></HeartIcon>)}
-
-        </AddToFavouriteBtn>
-
-        {id === owner ? (
-          <DeleteBtn
-            type="button"
-            onClick={() => {
-              toggleDeleteModal();
+              handleToggleFavorite(
+                noticeId,
+                isLoggedIn,
+                !favorite.includes(id)
+              );
             }}
           >
-            <SvgIcon id={'icon-trash-2'}></SvgIcon>
-          </DeleteBtn>
-        ) : (
-          ''
-        )}
-        {modalDeleteOpen ? (
-          <ModalDeleteAds
-            modalClose={toggleDeleteModal}
-            _id={noticeId}
-            title={title}
-          />
-        ) : (
-          ''
-        )}
-        <LearnMoreBtnWrap>
-          <LearnMoreBtn
-            type="button"
-            isFavorite={isFavorite}
-            className="btn"
-            onClick={() => {
-              dispatch(getNoticeById({ _id: noticeId }));
-              isModalOpen(true);
-            }}
-          >
-            Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>
-          </LearnMoreBtn>
-        </LearnMoreBtnWrap>
-      </Card>)
-      }</>
+            {!favorite.includes(id) ? (
+              <HeartIcon id={'icon-heart'} className={'heartIcon'}></HeartIcon>
+            ) : (
+              <HeartIcon id={'icon-heart-2'}></HeartIcon>
+            )}
+          </AddToFavouriteBtn>
+
+          {id === owner ? (
+            <DeleteBtn
+              type="button"
+              onClick={() => {
+                toggleDeleteModal();
+              }}
+            >
+              <SvgIcon id={'icon-trash-2'}></SvgIcon>
+            </DeleteBtn>
+          ) : (
+            ''
+          )}
+          {modalDeleteOpen ? (
+            <ModalDeleteAds
+              modalClose={toggleDeleteModal}
+              _id={noticeId}
+              title={title}
+            />
+          ) : (
+            ''
+          )}
+          <LearnMoreBtnWrap>
+            <LearnMoreBtn
+              type="button"
+              className="btn"
+              onClick={() => {
+                dispatch(getNoticeById({ _id: noticeId }));
+                isModalOpen(true);
+              }}
+            >
+              Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>
+            </LearnMoreBtn>
+          </LearnMoreBtnWrap>
+        </Card>
+      )}
+    </>
   );
 }

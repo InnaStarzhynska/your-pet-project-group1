@@ -2,13 +2,10 @@ import styled from 'styled-components';
 import { devices } from '../../constants/breakpoints';
 import { Link } from 'react-router-dom';
 
-
-
 export const AddPetBtn = styled(Link)`
   position: fixed;
-    top: 460px;
-    right: 20px;
-    z-index: 5;
+  top: 460px;
+  right: 20px;
 
   display: flex;
   flex-direction: column-reverse;
@@ -33,20 +30,15 @@ export const AddPetBtn = styled(Link)`
 
   @media screen and (${devices.tablet}) {
     width: 129px;
-height: 40px;
+    height: 40px;
 
+    padding: 8px 16px;
+    border-radius: 40px;
 
-padding: 8px 16px;
-border-radius: 40px;
-
-
-   
     flex-direction: row;
     top: 0;
-    
-    
+
     position: relative;
     text-decoration: none;
-    
   }
 `;
