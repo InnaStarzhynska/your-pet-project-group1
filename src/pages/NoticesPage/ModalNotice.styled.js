@@ -183,7 +183,6 @@ export const AddressLink = styled.a`
 `;
 
 export const Comments = styled.p`
-  width: 618px;
   margin-bottom: 70px;
 
   color: ${colors.blackColor};
