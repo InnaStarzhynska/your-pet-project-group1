@@ -99,9 +99,9 @@ export const addPet = createAsyncThunk('user/addPet', async (credentials, thunkA
 export const deletePet = createAsyncThunk('user/deletePet', async (credentials, thunkAPI) => {
 try {
     const queryURL = `/pets/delete/${credentials._id}`;
-    const responce = await axios.delete(queryURL);
+    await axios.delete(queryURL);
     Notiflix.Notify.success(`Your pet has been successfully deleted`);
-        return responce.data
+        return credentials._id
 } catch (error) {
     Notiflix.Notify.failure(error.response.data.message);
         return thunkAPI.rejectWithValue(error.message);

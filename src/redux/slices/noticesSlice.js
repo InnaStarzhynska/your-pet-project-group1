@@ -27,6 +27,14 @@ const handleRejected = state => {
 const noticesSlice = createSlice({
   name: 'notices',
   initialState,
+  reducers: {
+    updateNotices(state, payload) {
+      const updateNotices = [...state.notices].filter(
+        item => item.id !== payload.payload
+      )
+      state.notices = updateNotices
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(getNoticesByQuery.pending, handlePending)
@@ -49,7 +57,11 @@ const noticesSlice = createSlice({
       })
       .addCase(addNotice.rejected, handleRejected)
       .addCase(deleteNotice.pending, handlePending)
-      .addCase(deleteNotice.fulfilled, state => {
+      .addCase(deleteNotice.fulfilled, (state, {payload}) => {
+        const updateNotices = [...state.notices].filter(
+          item => item._id !== payload
+        )
+        state.notices = updateNotices;
         state.isLoading = false;
       })
       .addCase(deleteNotice.rejected, handleRejected)
@@ -76,7 +88,11 @@ const noticesSlice = createSlice({
       })
       .addCase(addNoticeToFavorites.rejected, handleRejected)
       .addCase(removeNoticeFromFavorites.pending, handlePending)
-      .addCase(removeNoticeFromFavorites.fulfilled, state => {
+      .addCase(removeNoticeFromFavorites.fulfilled, (state, { payload }) => {
+        const updateNotices = [...state.notices].filter(
+          item => item._id !== payload
+        )
+        state.notices = updateNotices;
         state.isLoading = false;
         state.noticeById = {}
       })
@@ -85,3 +101,4 @@ const noticesSlice = createSlice({
 });
 
 export const noticesReducer = noticesSlice.reducer;
+export const { updateNotices } = noticesSlice.actions;

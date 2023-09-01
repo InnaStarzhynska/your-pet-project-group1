@@ -134,8 +134,4 @@ padding: 24px 0 40px;
 @media screen and (${devices.tablet}) {
   padding: 40px 0 60px;
 }
-
-/* @media screen and (${devices.tablet}) {
-  padding: 42px 0 68px;
-} */
 `

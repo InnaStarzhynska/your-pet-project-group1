@@ -10,7 +10,6 @@ export default function AddPetButton() {
   const [isShownModal, setIsShownModal] = useState(false);
   const isLoggedIn = useSelector(selectLoggedIn);
 
-
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;

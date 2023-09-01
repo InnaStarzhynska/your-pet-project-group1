@@ -49,7 +49,6 @@ export default function NoticesPage() {
       return;
     }
     if (category === 'my-ads') {
-       console.log("adds")
       dispatch(getNoticesAddByUser({page}));
       return;
     }

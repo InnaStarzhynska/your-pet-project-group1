@@ -65,7 +65,7 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
 
     if (favorite) {
       dispatch(addNoticeToFavorites({ _id: noticeId }));
-
+      
       return;
     }
 

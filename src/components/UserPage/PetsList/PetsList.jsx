@@ -1,8 +1,9 @@
 import React from 'react';
-import { PetsCardContainer } from './PetsList.styled';
+import { PetsCardContainer, Text } from './PetsList.styled';
 import { useSelector } from 'react-redux';
 import { selectPets } from 'redux/selectors';
 import PetsItem from '../PetsItem/PetsItem';
+import { formateDate } from 'utils/formatedDate';
 
 export default function PetsList () {
   const pets = useSelector(selectPets);
@@ -11,21 +12,22 @@ export default function PetsList () {
     <>
       <PetsCardContainer style={{ position: 'relative' }}>
         {pets.length === 0 ? (
-          <h4>Add information about your pet</h4>
+          <Text>Add information about your pet</Text>
         ) : (
             pets.map((pet, index) => {
+             
                return  < PetsItem
                  key={index}
-                 id={pet.id}
+                 id={pet._id}
               name = { pet.name }
-              birthday = { pet.dateOfBirth }
+              birthday = { formateDate(pet.dateOfBirth) }
               avatar = { pet.avatar }
               type = { pet.type }
               comments = { pet.comments }
                 />
             })
         )}
-  
+      
       </PetsCardContainer>
     </>
   );
