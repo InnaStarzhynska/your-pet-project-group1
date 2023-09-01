@@ -10,7 +10,7 @@ import { useState } from 'react';
 import SvgIcon from 'components/SvgIcon/SvgIcon';
 import ModalDeleteAds from 'components/Modals/ModalDeleteAds';
 
-export default function PetsItem ({ name, dateOfBirth, type, comments, id, avatar }) {
+export default function PetsItem ({ name, birthday, type, comments, id, avatar }) {
   const [isModalOpen, setModalOpen] = useState(false);
 
 
@@ -32,7 +32,7 @@ export default function PetsItem ({ name, dateOfBirth, type, comments, id, avata
           </PetsInfoText>
           <PetsInfoText>
             <PetsInfoTitle>Date of birth: </PetsInfoTitle>
-            {dateOfBirth}
+            {birthday}
           </PetsInfoText>
           <PetsInfoText>
             <PetsInfoTitle>Type: </PetsInfoTitle>

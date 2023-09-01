@@ -59,7 +59,7 @@ export const UserData = () => {
   const initialValues = {
     name: user.name,
     email: user.email,
-    birthday: formateDate(user.birthday),
+    birthday: user.birthday ? formateDate(user.birthday) : formateDate(new Date ()),
     phone: user.phone,
     city: user.city,
     avatar: user.avatar,

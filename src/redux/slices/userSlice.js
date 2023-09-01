@@ -86,13 +86,13 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(getUserInfo.rejected, handleRejected)
-      // .addCase(getCurrentUser.pending, handlePending)
+      .addCase(getCurrentUser.pending, handlePending)
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
         state.user = payload.user;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      // .addCase(getCurrentUser.rejected, handleRejected)
+      .addCase(getCurrentUser.rejected, handleRejected)
       .addCase(updateUserInfo.pending, handlePending)
       .addCase(updateUserInfo.fulfilled, (state, { payload }) => {
         state.user = payload;
@@ -106,7 +106,11 @@ const userSlice = createSlice({
       })
       .addCase(addPet.rejected, handleRejected)
       .addCase(deletePet.pending, handlePending)
-      .addCase(deletePet.fulfilled, state => {
+      .addCase(deletePet.fulfilled, (state, {payload}) => {
+        const updatePets = [...state.pets].filter(
+          item => item._id !== payload
+        )
+        state.pets = updatePets;
         state.isLoading = false;
       })
       .addCase(deletePet.rejected, handleRejected)

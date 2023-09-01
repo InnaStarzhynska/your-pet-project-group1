@@ -2,11 +2,14 @@ import SvgIcon from "components/SvgIcon/SvgIcon";
 import { Button, PaginationContainer, Wrapper } from "./Pagination.styled";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectNotices } from "redux/selectors";
 
 export default function Pagination({ currentPage: page, changePage, totalPages }) {
 const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get('query') ?? '';
+    const notices = useSelector(selectNotices)
 
   useEffect(() => {
     const handleResize = () => {
@@ -71,8 +74,9 @@ const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
         return item ===page ? "current" : ""
     }
 
-  return (
-    <PaginationContainer>
+    return (
+  <>
+    {notices.length !==0 && <PaginationContainer>
           <Button onClick={handleClickPageBack} disabled={page === 1} className="buttonArrow">
               <SvgIcon id={'icon-arrow-right'} className="iconArrowLeft"/> 
       </Button>
@@ -82,6 +86,8 @@ const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
           <Button  onClick={handleClickPageForward} disabled={page===totalPages} className="buttonArrow">
               <SvgIcon id={'icon-arrow-right'} className="iconArrow"/>
       </Button>
-    </PaginationContainer>
+            </PaginationContainer>
+            }
+            </>
   );
 }

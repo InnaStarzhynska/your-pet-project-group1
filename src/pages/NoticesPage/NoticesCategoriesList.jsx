@@ -5,12 +5,14 @@ import NoticesCategoryItem from './NoticeCategoryItem';
 import { useEffect, useState } from 'react';
 import ModalNotice from './ModalNotice';
 import AddPetButton from 'components/AddPetButton/AddPetButton';
+import { Text } from './NoticesCategoriesList.styled';
 
 export default function NoticesCategoriesList() {
   const notices = useSelector(selectNotices);
   const item = useSelector(selectNoticeById);
-  const [isModalOpen, setModalOpen] = useState(Object.keys(item).length);
+  const [isModalOpen, setModalOpen] = useState(Object.keys(item).length ? true : false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const isNotices = notices.length === 0 ? false : true;
 
   useEffect(() => {
     const handleResize = () => {
@@ -31,7 +33,9 @@ export default function NoticesCategoriesList() {
   return (
     <>
       <NoticesList>
-        {notices.map(item => {
+        {!isNotices ? <Text>There are no pets here yet </Text> :
+          notices.map(item => {
+          console.log(item)
           return (
             <NoticesCategoryItem
               isModalOpen={setModalOpen}
@@ -41,7 +45,7 @@ export default function NoticesCategoriesList() {
           );
         })}
         {isModalOpen && <ModalNotice isModalOpen={toggleModal} />}
-        {isMobile && <AddPetButton />}
+        {isMobile && <AddPetButton />} 
       </NoticesList>
     </>
   );
