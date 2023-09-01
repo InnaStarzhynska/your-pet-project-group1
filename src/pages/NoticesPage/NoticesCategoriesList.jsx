@@ -35,7 +35,6 @@ export default function NoticesCategoriesList() {
       <NoticesList>
         {!isNotices ? <Text>There are no pets here yet </Text> :
           notices.map(item => {
-          console.log(item)
           return (
             <NoticesCategoryItem
               isModalOpen={setModalOpen}

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { devices } from '../../constants/breakpoints';
+import { devices } from '../../../constants/breakpoints';
 import { colors } from 'constants/colors';
 
 export const BackDrop = styled.div`

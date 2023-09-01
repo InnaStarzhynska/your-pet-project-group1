@@ -3,7 +3,7 @@ import { AddPetBtn } from './AddPetButton.styled';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectLoggedIn } from '../../redux/selectors';
-import ModalAtention from '../ModalAtention/ModalAtention';
+import ModalAtention from '../Modals/ModalAtention/ModalAtention';
 
 export default function AddPetButton() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
