@@ -84,7 +84,15 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
   }
   const formatNoticeLocation = formatLocation(location);
   const noticeTitle = formatNoticeTitle(title);
-const formatCategory = category.replaceAll('-', ' ');
+
+  const formatCategory = (category) => {
+    if (category === 'lost-found') {
+      return 'lost/found';
+    } else if (category === 'in-good-hands') {
+      return 'in good hands';
+    } else return category;
+  };
+   const normalCategory = formatCategory(category);
 
   return (
     <>{isShownModal ? (
@@ -121,7 +129,7 @@ const formatCategory = category.replaceAll('-', ' ');
           </InfoElement>
         </InfoIconsWraper>
         <CardTitle>{noticeTitle}</CardTitle>
-        <StyledCategory>{formatCategory}</StyledCategory>
+        <StyledCategory>{normalCategory}</StyledCategory>
         <AddToFavouriteBtn
           type="button"
             onClick={() => {
