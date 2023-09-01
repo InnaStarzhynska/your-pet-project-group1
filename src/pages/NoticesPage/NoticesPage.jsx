@@ -17,7 +17,8 @@ import {
   getNoticesAddByUser,
   getNoticesByQuery,
 } from 'redux/operations/fetchNotices';
-import { selectNoticesTotalPages } from 'redux/selectors';
+import { selectLoadingUser, selectNoticesTotalPages } from 'redux/selectors';
+import IsLoading from 'components/IsLoading/IsLoading';
 
 export default function NoticesPage() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export default function NoticesPage() {
   const query = searchParams.get('query') ?? '';
   const totalPages = useSelector(selectNoticesTotalPages);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const isLoading = useSelector(selectLoadingUser);
 
   useEffect(() => {
     const handleResize = () => {
@@ -65,22 +67,22 @@ export default function NoticesPage() {
   };
 
   return (
-    <>
-        <Section>
-          <Container>
-            <NoticesSearch handleSubmit={handleSubmit} defaultValue={query} />
-            <NoticesContainer>
-              <NoticesCategoriesNav />
-              {!isMobile && <AddPetButton />}
-            </NoticesContainer>
-            <NoticesCategoryListWrap>
-                {<NoticesCategoriesList />}
-            </NoticesCategoryListWrap>
-            <Outlet />
-            <Pagination changePage={changePage} currentPage={page} totalPages={totalPages}/>
-          </Container>
-        </Section>
-    
+    <>{isLoading ? <IsLoading /> :
+      (<Section>
+        <Container>
+          <NoticesSearch handleSubmit={handleSubmit} defaultValue={query} />
+          <NoticesContainer>
+            <NoticesCategoriesNav />
+            {!isMobile && <AddPetButton />}
+          </NoticesContainer>
+          <NoticesCategoryListWrap>
+            {<NoticesCategoriesList />}
+          </NoticesCategoryListWrap>
+          <Outlet />
+          <Pagination changePage={changePage} currentPage={page} totalPages={totalPages} />
+        </Container>
+      </Section>
+      )}
     </>
   );
 }
