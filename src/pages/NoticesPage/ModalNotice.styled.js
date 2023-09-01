@@ -32,7 +32,6 @@ export const ModalNoticeWrap = styled.div`
 
   @media screen and (${devices.tablet}) {
     flex-direction: row;
-    align-items: center;
     gap: 24px;
     margin-bottom: 28px;
   }
@@ -219,8 +218,8 @@ export const CommentsBold = styled.span`
 
 export const AddBtn = styled.button`
   display: flex;
-  width: 100%;
   height: 40px;
+  padding: 8px 22px;
   margin-top: 8px;
   border-radius: 40px;
   background: ${colors.blueColor};
@@ -235,7 +234,7 @@ export const AddBtn = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  letter-spacing: 0.64px;
+  // letter-spacing: 0.64px;
 
   &:hover,
   &:focus {
@@ -244,11 +243,14 @@ export const AddBtn = styled.button`
     background: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
   }
 
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+
   @media only screen and ${devices.tablet} {
     position: absolute;
     right: 177px;
     bottom: 24px;
-    width: 129px;
   }
 `;
 
