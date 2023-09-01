@@ -26,9 +26,15 @@ import {
   PawIcon,
 } from './NoticeCategoryItem.styled';
 import defaultImg from '../../images/errorImg.jpg';
+import ModalAtention from '../../components/ModalAtention/ModalAtention';
 
 export default function NoticesCategoryItem({ item, isModalOpen }) {
   const dispatch = useDispatch();
+
+  const switchModal = () => {
+    setIsShownModal(prevState => !prevState);
+    return;
+  };
 
   const {
     _id: noticeId,
@@ -46,6 +52,7 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
   const { id } = useSelector(selectUser);
   const [isFavorite] = useState(favorite.includes(id));
   const [modalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [isShownModal, setIsShownModal] = useState(false);
 
   const toggleDeleteModal = () => {
     setIsModalDeleteOpen(prevState => !prevState);
@@ -91,32 +98,75 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
   const noticeTitle = formatNoticeTitle(title);
 
   return (
-    <Card className="card">
-      <Avatar
-        src={avatar}
-        alt={title}
-        onError={event => {
-          event.target.src = defaultImg;
-          event.onerror = null;
-        }}
-      />
-      <InfoIconsWraper>
-        <LocateLink
-          target="_blank"
-          href={`https://www.google.com/maps/place/${location}`}
-        >
-          <InfoIcon id={'icon-location-1'}></InfoIcon>
-          {formatNoticeLocation}
-        </LocateLink>
-        <InfoElement>
-          <InfoIcon id={'icon-clock'}></InfoIcon>
-          {petsAge}
-        </InfoElement>
-        <InfoElement>
-          {sex === 'male' ? (
-            <InfoIcon id={'icon-male'}></InfoIcon>
+    <>
+      {isShownModal ? (
+        <ModalAtention toggleModal={switchModal}></ModalAtention>
+      ) : (
+        <Card className="card">
+          <Avatar
+            src={avatar}
+            alt={title}
+            onError={event => {
+              event.target.src = defaultImg;
+              event.onerror = null;
+            }}
+          />
+          <InfoIconsWraper>
+            <LocateLink
+              target="_blank"
+              href={`https://www.google.com/maps/place/${location}`}
+            >
+              <InfoIcon id={'icon-location-1'}></InfoIcon>
+              {formatNoticeLocation}
+            </LocateLink>
+            <InfoElement>
+              <InfoIcon id={'icon-clock'}></InfoIcon>
+              {petsAge}
+            </InfoElement>
+            <InfoElement>
+              {sex === 'male' ? (
+                <InfoIcon id={'icon-male'}></InfoIcon>
+              ) : (
+                <InfoIcon id={'icon-female'}></InfoIcon>
+              )}
+              {sex}
+            </InfoElement>
+          </InfoIconsWraper>
+          <CardTitle>{noticeTitle}</CardTitle>
+          <StyledCategory>{category}</StyledCategory>
+          <AddToFavouriteBtn
+            type="button"
+            onClick={() => {
+              if (!isLoggedIn) {
+                switchModal();
+                return;
+              }
+              handleToggleFavorite(
+                noticeId,
+                isLoggedIn,
+                !favorite.includes(id)
+              );
+            }}
+          >
+            <HeartIcon
+              id={'icon-heart'}
+              className={`heartIcon ${
+                favorite.includes(id) ? 'inFavouriteIcon' : ''
+              }`}
+            ></HeartIcon>
+          </AddToFavouriteBtn>
+
+          {id === owner ? (
+            <DeleteBtn
+              type="button"
+              onClick={() => {
+                toggleDeleteModal();
+              }}
+            >
+              <SvgIcon id={'icon-trash-2'}></SvgIcon>
+            </DeleteBtn>
           ) : (
-            <InfoIcon id={'icon-female'}></InfoIcon>
+            ''
           )}
           {sex}
         </InfoElement>
@@ -152,29 +202,31 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
         ''
       )}
 
-      {modalDeleteOpen ? (
-        <ModalDeleteAds
-          modalClose={toggleDeleteModal}
-          _id={noticeId}
-          title={title}
-        />
-      ) : (
-        ''
-      )}
+          {modalDeleteOpen ? (
+            <ModalDeleteAds
+              modalClose={toggleDeleteModal}
+              _id={noticeId}
+              title={title}
+            />
+          ) : (
+            ''
+          )}
 
-      <LearnMoreBtnWrap>
-        <LearnMoreBtn
-          type="button"
-          isFavorite={isFavorite}
-          className="btn"
-          onClick={() => {
-            dispatch(getNoticeById({ _id: noticeId }));
-            isModalOpen(true);
-          }}
-        >
-          Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>
-        </LearnMoreBtn>
-      </LearnMoreBtnWrap>
-    </Card>
+          <LearnMoreBtnWrap>
+            <LearnMoreBtn
+              type="button"
+              isFavorite={isFavorite}
+              className="btn"
+              onClick={() => {
+                dispatch(getNoticeById({ _id: noticeId }));
+                isModalOpen(true);
+              }}
+            >
+              Learn more<PawIcon id={'icon-pawprint-1'}></PawIcon>
+            </LearnMoreBtn>
+          </LearnMoreBtnWrap>
+        </Card>
+      )}
+    </>
   );
 }
