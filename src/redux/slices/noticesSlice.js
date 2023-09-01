@@ -89,10 +89,12 @@ const noticesSlice = createSlice({
       .addCase(addNoticeToFavorites.rejected, handleRejected)
       .addCase(removeNoticeFromFavorites.pending, handlePending)
       .addCase(removeNoticeFromFavorites.fulfilled, (state, { payload }) => {
-        const updateNotices = [...state.notices].filter(
-          item => item._id !== payload
-        )
-        state.notices = updateNotices;
+        if (payload.category === 'favorite-ads') {
+          const updateNotices = [...state.notices].filter(
+            item => item._id !== payload.id
+          )
+          state.notices = updateNotices;
+        }
         state.isLoading = false;
         state.noticeById = {}
       })

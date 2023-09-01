@@ -27,8 +27,10 @@ import {
 } from './NoticeCategoryItem.styled';
 import defaultImg from '../../images/errorImg.jpg';
 import ModalAtention from 'components/Modals/ModalAtention/ModalAtention';
+import { useParams } from 'react-router';
 export default function NoticesCategoryItem({ item, isModalOpen }) {
   const dispatch = useDispatch();
+  const { categoryName } = useParams();
 
   const {
     _id: noticeId,
@@ -54,10 +56,10 @@ export default function NoticesCategoryItem({ item, isModalOpen }) {
       return;
     }
     if (favorite) {
-      dispatch(addNoticeToFavorites({ _id: noticeId }));
+      dispatch(addNoticeToFavorites({ _id: noticeId}));
       return;
     }
-    dispatch(removeNoticeFromFavorites({ _id: noticeId }));
+    dispatch(removeNoticeFromFavorites({ _id: noticeId, categoryName }));
   };
   const formatPetsAge = birthDate => {
     return formatDistanceStrict(new Date(), Date.parse(birthDate), {

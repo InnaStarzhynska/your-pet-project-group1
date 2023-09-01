@@ -112,7 +112,7 @@ export const removeNoticeFromFavorites = createAsyncThunk(
       const queryURL = `/notice/unmark/${credentials._id}`;
       axios.patch(queryURL);
       Notiflix.Notify.success(`The notice removed from favorites!`);
-      return credentials._id;
+      return { id: credentials._id, category: credentials.categoryName };
     } catch (error) {
       Notiflix.Notify.failure(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
