@@ -52,6 +52,7 @@ export default function AddPetPage() {
 
     if (data.category !== 'your pet') {
       let formattedCategory = 'sell';
+      console.log(formattedCategory);
 
       if (data.category === 'lost/found') {
         formattedCategory = 'lost-found'
@@ -72,7 +73,8 @@ export default function AddPetPage() {
       formData.append('location', data.location);
 
       if (formattedCategory === 'sell') {
-        return formData.append('price', data.price);
+        console.log("if->", formattedCategory);
+        formData.append('price', data.price);
       }
       
 
