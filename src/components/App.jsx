@@ -1,20 +1,20 @@
 import {Route, Routes } from 'react-router';
 import Sharedlayout from './Sharedlayout/Sharedlayout';
-import NotFound from './NotFound/NotFound';
-import UserPage from 'pages/UserPage/UserPage';
-import NoticesPage from 'pages/NoticesPage/NoticesPage';
-import MainPage from 'pages/MainPage/MainPage';
-import RegisterPage from 'pages/RegisterPage/RegisterPage';
-import LoginPage from 'pages/LoginPage/LoginPage';
-import AddPetPage from 'pages/AddPetPage/AddPetPage';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { useDispatch} from 'react-redux';
 import { getCurrentUser } from 'redux/operations/fetchUser';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
-import NewsPage from 'pages/NewsPage/NewsPage';
 import { Navigate } from "react-router-dom";
 
+const MainPage = lazy(() => import('../pages/MainPage/MainPage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
+const AddPetPage = lazy(() => import('../pages/AddPetPage/AddPetPage'));
+const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
+const NoticesPage = lazy(() => import('../pages/NoticesPage/NoticesPage'));
+const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
+const NotFound = lazy(() => import('../components/NotFound/NotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();

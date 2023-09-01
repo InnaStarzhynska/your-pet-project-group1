@@ -20,7 +20,6 @@ export const List = styled.ul`
     padding: 40px 0 60px;
   }
   @media screen and (${devices.desktop}) {
-    max-width: 1200px;
     padding: 60px 0 68px;
     column-gap: 30px;
     row-gap: 37px;

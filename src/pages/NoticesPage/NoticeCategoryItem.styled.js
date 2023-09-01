@@ -169,7 +169,7 @@ top: 12px;
 right: 12px;
 cursor: pointer;
 color: ${colors.lightBlueColor};
-&:hover{
+&:hover, &:active{
   color: ${colors.blueColor};
 
 }
